@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "solana";
+  /* Project id 2286649 */
+  src: url("./font/PlusJakartaDisplay-Regular.woff2") format("woff2"),
+}
+
+* {
+  scrollbar-width: none;
+  font-family: solana !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.semi-card {
+  border-radius: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+body[theme-mode="dark"] {
+  .main {
+    border-left: #3d3e3f9b solid 1px;
+    background: var(--semi-color-nav-bg) !important;
+  }
+
+  .header {
+    border-bottom: #3d3e3f9b solid 1px !important;
+  }
+}
+
+.App {
+  .header {
+    height: 8rem;
+    box-sizing: border-box;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(224, 224, 224);
+
+    .head-item {
+      margin-left: 10px;
+    }
+  }
+
+  .page {
+    height: calc(100% - 8rem);
+
+    .menu,
+    .main {
+      height: 100%;
+    }
+
+    .main {
+      padding: 1rem;
+      box-sizing: border-box;
+      flex: 1;
+      background-color: #F4F6F8;
+    }
+  }
+
+
+
+}
+
+.card {
+  border: 1px solid #eee;
+  padding: 17px;
+  // padding-top: 0;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  position: relative;
+  background: #fff;
+
+  .item {
+    font-size: 14px;
+    margin-bottom: 13px;
+    color: var(--text-color);
+
+    * {
+      color: #ccc;
+    }
+  }
+}
+
+body[theme-mode="dark"] {
+  .card {
+    border: none;
+    background: #21252E;
+    color: #fff;
+  }
+
+
+  .link {
+    cursor: pointer;
+
+    &:hover {
+      transition: 300ms;
+      color: rgb(108, 106, 250);
+    }
+  }
+}
+
+
+.btn {
+  background-color: #3772ff;
+  padding: 16px 24px;
+  font-size: 16px;
+  color: #fcfcfd !important;
+  font-weight: bold;
+  border-radius: 90px;
+  text-align: center;
+  cursor: pointer;
+  transition: 400ms;
+
+  &:hover {
+    color: #fcfcfd !important;
+    background: #044eff;
+  }
+}

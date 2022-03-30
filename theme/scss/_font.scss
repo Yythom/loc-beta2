@@ -1,0 +1,56 @@
+@mixin font-size-header-6 {
+fontSize: 16px;
+lineHeight: 22px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}
+@mixin font-size-header-5 {
+fontSize: 18px;
+lineHeight: 24px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}
+@mixin font-size-header-4 {
+fontSize: 20px;
+lineHeight: 28px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}
+@mixin font-size-header-3 {
+fontSize: 24px;
+lineHeight: 32px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}
+@mixin font-size-header-2 {
+fontSize: 28px;
+lineHeight: 40px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}
+@mixin font-size-header-1 {
+fontSize: 32px;
+lineHeight: 44px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}
+@mixin font-size-small {
+fontSize: 12px;
+lineHeight: 16px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}
+@mixin font-size-regular {
+fontSize: 14px;
+lineHeight: 20px;
+fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',    Helvetica, Arial, sans-serif;
+
+
+}

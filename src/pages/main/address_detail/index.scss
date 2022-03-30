@@ -1,0 +1,26 @@
+@import '../../../var.scss';
+
+.address-detail {
+
+    .semi-tabs-content {
+        margin-top: 12px;
+    }
+
+    .content-head {
+        height: auto;
+    }
+
+    .search {
+        margin: 0 0 12px 0;
+    }
+
+    .btn {
+        &:hover {
+            .semi-button-content {
+                color: #fff !important;
+            }
+
+        }
+
+    }
+}
