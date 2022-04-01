@@ -10,7 +10,7 @@ const Logo = memo(() => {
             <Text>
                 <h1 style={{ fontSize: '24px', fontStyle: 'normal' }}>
                     <a href={window.location.origin} style={{ color: 'inherit', fontSize: '45px' }}>
-                        logo
+                        LoconChain
                     </a>
                 </h1>
             </Text>

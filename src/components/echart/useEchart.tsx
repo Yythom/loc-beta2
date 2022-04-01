@@ -6,9 +6,15 @@ import echart_theme from './theme';
 
 export interface useEchartOption {
 	title?: string,
-	x_data: string[] | number[],
-	x_name?: string,
-	y_name?: string,
+	x_option: {
+		name?: string,
+		data: string[] | number[],
+		show?: boolean
+	}
+	y_option: {
+		name?: string,
+		show?: boolean
+	}
 	dataSource: string[] | number[] | undefined
 }
 
@@ -26,14 +32,13 @@ function useEchart(classname: string, option: useEchartOption,) {
 				},
 				xAxis: [
 					{
-						data: option.x_data,
-						name: option?.x_name
+						...option.x_option
 					}
 				],
 				yAxis: [
 					{
 						type: 'value',
-						name: option?.y_name
+						...option.y_option,
 					}
 				],
 				series: [
@@ -41,6 +46,7 @@ function useEchart(classname: string, option: useEchartOption,) {
 						symbol: 'none',
 						data: option?.dataSource,
 						type: 'line',
+						smooth: true
 					}
 				],
 				tooltip: {
@@ -49,8 +55,8 @@ function useEchart(classname: string, option: useEchartOption,) {
 					// formatter: "{c0}",
 					formatter: (p: any[]) => {
 						const str = p.map(e => {
-							const x = `${option?.x_name || ''}: $${e.axisValue}`;
-							const y = `${option?.y_name || ''}${e.value}`;
+							const x = `${option?.x_option?.name || ''}: $${e.axisValue}`;
+							const y = `${option?.y_option?.name || ''}${e.value}`;
 							return `${x}`
 						}).join(' ')
 						return str

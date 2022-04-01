@@ -14,6 +14,7 @@ import useSlice from "@/hooks/useSlice";
 import ThemeMode from "@/global-component/theme_mode";
 import RouteComponentsMap, { basePath } from "@/pages/route";
 // import ProBreadcrumb from "@/global-component/pro_breadcrumb";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const header = memo(() =>
   <div className="header fb">
     <Logo />
@@ -41,7 +42,7 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Route path={basePath} component={header} />
+        {/* <Route path={basePath} component={header} /> */}
         <div className="page flex">
           <div className="menu">
             <Route path={basePath} component={Menu} />

@@ -196,16 +196,7 @@ const Tables = memo(() => {
     const onChange = (e: any) => {
         const { sorter } = e;
         if (sorter) {
-            console.log(e, '00000');
             const { sortOrder, dataIndex } = sorter;
-            // switch (sortOrder) {
-            //     case "ascend": // 升序
-            //         break;
-            //     case "descend": // 降序
-            //         break;
-            //     default:
-            //         break;
-            // }
             const sortRet: any = {}
             sortRet[dataIndex] = sortOrder ? sortOrder?.replace('end', '') : '';
             setParams({

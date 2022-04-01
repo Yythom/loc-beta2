@@ -11,7 +11,7 @@ export interface GlobalStateInterface {
 
 const initialState = {
     mode: 'light',
-    lang: 'zh_CN',
+    lang: 'en_US',
     user_route: []
 }
 

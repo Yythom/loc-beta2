@@ -45,7 +45,8 @@ body[theme-mode="dark"] {
   }
 
   .page {
-    height: calc(100% - 8rem);
+    // height: calc(100% - 8rem);
+    height: calc(100%);
 
     .menu,
     .main {

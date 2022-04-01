@@ -8,10 +8,14 @@ const Dashboard = () => {
             <ProEchart
                 classname='test'
                 option={{
-                    x_data: [1, 2, 3, 4, 5, 6, 7],
+                    x_option: {
+                        name: 'X',
+                        data: [1, 2, 3, 4, 5, 6, 7],
+                    },
+                    y_option: {
+                        name: 'Y'
+                    },
                     dataSource: [140, 232, 101, 264, 90, 340, 250],
-                    x_name: 'baba',
-                    y_name: 'money',
                 }}
             />
             <div className='content-head' style={{ marginBottom: '12px' }}>
