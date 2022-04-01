@@ -40,6 +40,36 @@ const Tables = memo(() => {
     const [isOpen, setOpen] = useState(false);
     const [sortOrder, setSortOrder] = useState<any>('descend')
 
+    const onChange = (e: any) => {
+        const { sorter } = e;
+        if (sorter) {
+            const { sortOrder, dataIndex } = sorter;
+            const sortRet: any = {}
+            sortRet[dataIndex] = sortOrder ? sortOrder?.replace('end', '') : '';
+            setParams({
+                ...params,
+                page: 1,
+                sort: sortRet
+            })
+            if (dataIndex === "profitUsd") {
+                setSortOrder(sortOrder);
+            } else {
+                setSortOrder('');
+            }
+        }
+    };
+
+    const setSearchParams = (key: String, value: any) => {
+        const c = JSON.parse(JSON.stringify(params?.search || {}))
+        c[`${key}`] = value;
+        console.log(c, 'search');
+        setParams({
+            ...params,
+            page: 1,
+            search: c
+        })
+    }
+
     const columns = useMemo(() => {
         return [
             {
@@ -192,36 +222,6 @@ const Tables = memo(() => {
 
         ]
     }, [params, sortOrder]);
-
-    const onChange = (e: any) => {
-        const { sorter } = e;
-        if (sorter) {
-            const { sortOrder, dataIndex } = sorter;
-            const sortRet: any = {}
-            sortRet[dataIndex] = sortOrder ? sortOrder?.replace('end', '') : '';
-            setParams({
-                ...params,
-                page: 1,
-                sort: sortRet
-            })
-            if (dataIndex === "profitUsd") {
-                setSortOrder(sortOrder);
-            } else {
-                setSortOrder('');
-            }
-        }
-    };
-
-    const setSearchParams = (key: String, value: any, isReturn?: boolean) => {
-        const c = JSON.parse(JSON.stringify(params?.search || {}))
-        c[`${key}`] = value;
-        console.log(c, 'search');
-        setParams({
-            ...params,
-            page: 1,
-            search: c
-        })
-    }
     return <div style={{ marginTop: '12px' }}>
         <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} />
         <Collapsible isOpen={true}>

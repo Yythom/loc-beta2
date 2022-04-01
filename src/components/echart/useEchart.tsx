@@ -55,7 +55,7 @@ function useEchart(classname: string, option: useEchartOption,) {
 					// formatter: "{c0}",
 					formatter: (p: any[]) => {
 						const str = p.map(e => {
-							const x = `${option?.x_option?.name || ''}: $${e.axisValue}`;
+							const x = `${option?.x_option?.name || ''}: ${e.axisValue}`;
 							const y = `${option?.y_option?.name || ''}${e.value}`;
 							return `${x}`
 						}).join(' ')
