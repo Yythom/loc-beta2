@@ -67,18 +67,6 @@ const MoreSetting = memo(({ setParams, }: { setParams: Function, params: any }) 
                     </RadioGroup>
                 </div>
             </div>
-
-            {/* <Slider
-                onChange={(e) => {
-                    console.log(e);
-                    setParams('swap_num', e)
-                }}
-                style={{ width: '230px', marginLeft: '10px' }}
-                step={5}
-                marks={{ 0: '0', 5: '5', 10: '10', 20: '20', 30: '30', 40: '40', 50: '50+' }}
-                defaultValue={[0, 100]}
-                max={50}
-                range /> */}
         </div>
     </div>
 })

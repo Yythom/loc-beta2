@@ -37,22 +37,6 @@ const DefaultSetting = memo(({ setParams, setOpen, isOpen }: { setParams: Functi
                 More {!isOpen ? <IconChevronDown /> : <IconChevronUp />}
             </Text> */}
         </div>
-
-        {/* 分页 */}
-        {/* <div className='flex'>
-            <Button theme='borderless' ><IconDownload size='large' style={{ color: mode === 'dark' ? '#fff' : '', paddingTop: '8px' }} /></Button>
-            <Pagination
-                showTotal
-                // position='top'
-                total={20}
-                currentPage={1}
-                pageSize={10}
-                onPageChange={page => setPage(page)}
-                size='small'
-                hoverShowPageSelect
-            // formatPageText= false
-            />
-        </div> */}
     </div>
 })
 
