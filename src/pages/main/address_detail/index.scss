@@ -23,4 +23,12 @@
         }
 
     }
+
+    .trans {
+        ._table {
+            >div:nth-of-type(1) {
+                margin-top: 1rem !important;
+            }
+        }
+    }
 }

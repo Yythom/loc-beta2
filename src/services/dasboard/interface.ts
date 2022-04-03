@@ -1,12 +1,12 @@
 
 export interface DashboardInterface {
-	list: List[];
+	list: DataList[];
 	page: number;
 	page_size: number;
 	total: number;
 }
 
-export interface List {
+export interface DataList {
 	id: number;
 	address: string;
 	investUsd: number;
@@ -21,3 +21,19 @@ export interface List {
 	enable: number;
 }
 
+
+export interface DashboardParams {
+	"page": number,
+	"page_size": number,
+	"search"?: {
+		"address": string,
+		"swapTimes": number,
+		"timeRange": number
+	},
+	"sort": {
+		"invest"?: string,
+		"profit"?: string,
+		"profitRate"?: string,
+		"swapTimes"?: string
+	}
+}

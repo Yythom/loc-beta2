@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useLayoutEffect, } from "react";
 import useRequest from "./useRequest";
 
 function useTable<T, P = undefined>(
@@ -7,6 +6,7 @@ function useTable<T, P = undefined>(
     option: {
         start_owner?: boolean,
         initParams: {},
+        callback?: ((data: T) => void) | undefined
     },
 ): {
     params: P | undefined;
@@ -24,11 +24,8 @@ function useTable<T, P = undefined>(
     ] = useRequest<T, P>(promise, {
         initParams: option?.initParams,
         start_owner: option?.start_owner,
+        callback: option?.callback,
     })
-
-    useLayoutEffect(() => {
-        fetch()
-    }, [])
 
     return {
         params,

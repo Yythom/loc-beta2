@@ -1,16 +1,15 @@
-import { Toast } from '@douyinfe/semi-ui'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { showNotic } from '@/utils/ui_utils/toast'
 import axios, { AxiosRequestConfig } from 'axios'
-import Storage from '../../utils/js_utils/storage'
 import { baseURL, timeout } from './config'
 
 function request<T>(config: AxiosRequestConfig): Promise<T | undefined> {
     const instance = axios.create({
         baseURL,
-        timeout,
+        // timeout,
         method: config?.method || 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer ' + Storage.getStorageSync('token')
+            // 'Content-Type': 'application/json',
         }
     })
 
@@ -34,27 +33,10 @@ function request<T>(config: AxiosRequestConfig): Promise<T | undefined> {
     // 此处封装一层捕捉错误
     return new Promise((resolve, reject) => {
         instance(config).then((res: any) => {
-            if (res) {
-                let opts = {
-                    content: res?.msg,
-                    duration: 2,
-                };
-                if (res?.code === 0) {
-                    resolve(res.data)
-
-                } else if (res?.code === 'B_0000005') {
-                    // Toast.warning(opts);
-                    // const domain = Storage.getStorageSync('domain')
-                    // setTimeout(() => {
-                    //     Storage.clear();
-                    //     Storage.setStorageSync('domain', domain);
-                    // }, 1000);
-                    // setTimeout(() => {
-                    //     window.location.href = window.location.origin;
-                    // }, 2000);
-                } else {
-                    Toast.warning(opts);
-                }
+            if (res.status === 200) {
+                resolve(res?.data)
+            } else {
+                showNotic('error', { content: `${res?.message}` });
             }
         }).catch(err => {
             if (err.response) {

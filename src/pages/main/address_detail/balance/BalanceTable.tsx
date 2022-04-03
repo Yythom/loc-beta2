@@ -1,50 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import useSlice from "@/hooks/useSlice";
+import useTable from "@/hooks/useTable";
+import AddressService from "@/services/address_detail";
+import { HoldingInterface } from "@/services/address_detail/hold_interface";
 import { GlobalStateInterface } from "@/store/global_slice";
 import { formatUrl } from "@/utils/js_utils/format";
 import { Button, Table } from "@douyinfe/semi-ui";
 import { Fragment, memo, useLayoutEffect, useMemo, useState } from "react";
 import LangComponent from "../../../../lang/local";
-import { getBalances } from "../../../../services/info";
-
 
 const BalanceTable = memo(() => {
     const [{ lang }] = useSlice<GlobalStateInterface>();
-    const params: any = formatUrl();
-    const [reqParams, setParams] = useState<any>({
-        address: params?.address,
-    });
-    const [loadingToken, setLoadingToken] = useState(false);
-    const [balances, setBalances] = useState<any>([]);
+    const url: any = formatUrl();
 
-    const setReq = (key: String, value: any, isReturn?: boolean) => {
-        const c = JSON.parse(JSON.stringify(reqParams))
-        c[`${key}`] = value;
-        if (key === 'sortField') {
-            c['sortOrder'] = 'asc'
-            c['offset'] = ''
-        }
-        if (isReturn) return c
-        setParams(c)
-    }
-    const getAssets = async (data?: any) => {
-        setLoadingToken(true);
-        const res = await getBalances({
-            address: params?.address,
-        });
-
-        setBalances(res?.data?.items || []);
-        setLoadingToken(false)
-
-    }
-
-    useLayoutEffect(() => {
-        const params: any = formatUrl();
-        if (params?.address) {
-            getAssets(reqParams)
-        }
-    }, [reqParams])
+    const {
+        params,
+        setParams,
+        tableData,
+        fetch,
+        loading
+    } = useTable<
+        HoldingInterface,
+        { address: string }>(
+            AddressService.getHoldings,
+            {
+                initParams: {
+                    address: url.address
+                },
+            }
+        )
 
     const columns = useMemo(() => {
         return [
@@ -93,48 +78,19 @@ const BalanceTable = memo(() => {
                 // sorter: true
             },
         ]
-    }, [lang, reqParams]);
-    const onChange = (e: any) => {
-        const { sorter } = e;
-        if (sorter) {
-            console.log(e, '00000');
-            const { sortOrder, dataIndex } = sorter;
-            // switch (sortOrder) {
-            //     case "ascend": // 升序
-            //         break;
-            //     case "descend": // 降序
-            //         break;
-            //     default:
-            //         break;
-            // }
-            const params = setReq('sortField', sortOrder ? dataIndex : '', true);
-            params.sortOrder = sortOrder ? sortOrder?.replace('end', '') : '';
-            setParams(params)
-        }
-    };
+    }, [lang, tableData]);
+
     return (
         <Fragment>
-            <div className='search'>
-                {/* <Input
-                            value={search}
-                            autofocus
-                            placeholder='search' style={{ width: 260 }}
-                            onChange={async (e) => {
-                                setSearch2(e);
-                            }} suffix={<IconSearch />} showClear
-                        /> */}
-
-            </div>
             <div style={{ height: 'calc(100vh - 18rem)', overflowY: 'scroll' }}>
                 <div className="card">
                     <LangComponent>
                         <Table
-                            onChange={onChange}
-                            loading={loadingToken}
+                            loading={loading}
                             className='table'
                             pagination={false}
                             columns={columns}
-                            dataSource={balances}
+                            dataSource={tableData?.data.items || []}
                         />
                     </LangComponent>
                 </div>

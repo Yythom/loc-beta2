@@ -3,30 +3,18 @@
 import { Collapsible, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
-import LangComponent from "../../../../lang/local";
+import LangComponent from "../../../lang/local";
 import { Pagination } from '@douyinfe/semi-ui';
-import MoreSetting, { PopContent, } from "./MoreSetting";
-import DefaultSetting from "./DefaultSetting";
+import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
+import DefaultSetting from "./search-setting/DefaultSetting";
 import { useHistory } from "react-router";
-import { getProfitRankList } from "../../../../services/info";
 import NumberUtils from "@/utils/js_utils/number";
 import { DashboardInterface } from "@/services/dasboard/interface";
 import useTable from "@/hooks/useTable";
+import DasboardService, { initParams } from "@/services/dasboard";
 
-export const initParams = {
-    "page": 1,
-    "page_size": 30,
-    "sort": {
-        profitUsd: 'desc'
-    },
-    "search": {
-        "address": "",
-        "swapTimes": 1,
-        "timeRange": 1
-    }
-}
 
-const Tables = memo(() => {
+const TableComponent = memo(() => {
     const history = useHistory()
     const {
         setParams,
@@ -34,7 +22,7 @@ const Tables = memo(() => {
         tableData,
         loading
     } = useTable<DashboardInterface, any>(
-        getProfitRankList,
+        DasboardService.getProfitRankList,
         { initParams, }
     )
     const [isOpen, setOpen] = useState(false);
@@ -262,4 +250,4 @@ const Tables = memo(() => {
 
 })
 
-export default Tables
+export default TableComponent
