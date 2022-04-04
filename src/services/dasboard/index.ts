@@ -3,7 +3,6 @@ import { DashboardParams } from "./interface"
 
 export const initParams = {
     "page": 1,
-    "page_size": 30,
     "sort": {
         profitUsd: 'desc'
     },
@@ -18,7 +17,10 @@ class DasboardService {
     static getProfitRankList = async (data: DashboardParams) => {
         const result = await request({
             url: '/transaction/index',
-            data
+            data: {
+                ...data,
+                "page_size": 30,
+            }
         })
         console.log(result, 'resultresultresult');
 

@@ -24,11 +24,10 @@ export interface DataList {
 
 export interface DashboardParams {
 	"page": number,
-	"page_size": number,
 	"search"?: {
-		"address": string,
-		"swapTimes": number,
-		"timeRange": number
+		"address"?: string,
+		"swapTimes"?: number | string,
+		"timeRange"?: number | string,
 	},
 	"sort": {
 		"invest"?: string,

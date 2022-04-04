@@ -9,9 +9,10 @@ import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
 import DefaultSetting from "./search-setting/DefaultSetting";
 import { useHistory } from "react-router";
 import NumberUtils from "@/utils/js_utils/number";
-import { DashboardInterface } from "@/services/dasboard/interface";
+import { DashboardInterface, DashboardParams } from "@/services/dasboard/interface";
 import useTable from "@/hooks/useTable";
 import DasboardService, { initParams } from "@/services/dasboard";
+import { SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 
 
 const TableComponent = memo(() => {
@@ -21,12 +22,12 @@ const TableComponent = memo(() => {
         params,
         tableData,
         loading
-    } = useTable<DashboardInterface, any>(
+    } = useTable<DashboardInterface, DashboardParams>(
         DasboardService.getProfitRankList,
         { initParams, }
     )
-    const [isOpen, setOpen] = useState(false);
-    const [sortProfit, setSortProfit] = useState<any>('descend') // Profi受控 默认排序是他
+    const [isOpen, setOpen] = useState<boolean>(false);
+    const [sortProfit, setSortProfit] = useState<SortOrder>('descend') // Profi受控 默认排序是他
 
     const onChange = (e: any) => {
         const { sorter } = e;
@@ -44,7 +45,7 @@ const TableComponent = memo(() => {
     };
 
     const setSearchParams = (key: String, value: any) => {
-        setParams({
+        params && setParams({
             ...params,
             page: 1,
             search: {
