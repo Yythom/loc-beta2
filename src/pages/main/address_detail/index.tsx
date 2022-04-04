@@ -3,7 +3,7 @@
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import { memo, useState } from "react";
 import TrandeTable from "./trande/TrandeTable";
-import BalanceTable from "./balance/BalanceTable";
+import BalanceTable from "./holding/holding";
 import { formatUrl } from "@/utils/js_utils/format";
 import './index.scss'
 
