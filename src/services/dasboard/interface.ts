@@ -30,9 +30,10 @@ export interface DashboardParams {
 		"timeRange"?: number | string,
 	},
 	"sort": {
+		[key: string]: string | undefined,
 		"invest"?: string,
 		"profit"?: string,
 		"profitRate"?: string,
-		"swapTimes"?: string
+		"swapTimes"?: string,
 	}
 }

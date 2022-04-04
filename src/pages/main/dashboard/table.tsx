@@ -12,8 +12,7 @@ import NumberUtils from "@/utils/js_utils/number";
 import { DashboardInterface, DashboardParams } from "@/services/dasboard/interface";
 import useTable from "@/hooks/useTable";
 import DasboardService, { initParams } from "@/services/dasboard";
-import { SortOrder } from "@douyinfe/semi-ui/lib/es/table";
-
+import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 
 const TableComponent = memo(() => {
     const history = useHistory()
@@ -29,18 +28,18 @@ const TableComponent = memo(() => {
     const [isOpen, setOpen] = useState<boolean>(false);
     const [sortProfit, setSortProfit] = useState<SortOrder>('descend') // Profi受控 默认排序是他
 
-    const onChange = (e: any) => {
+    const onChange = (e: ChangeInfo<any>) => {
         const { sorter } = e;
         if (sorter) {
             const { sortOrder, dataIndex } = sorter;
-            const sortRet: any = {}
-            sortRet[dataIndex] = sortOrder ? sortOrder?.replace('end', '') : '';
+            const sortRet: DashboardParams['sort'] = {}
+            sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : '';
             setParams({
                 ...params,
                 page: 1,
                 sort: sortRet
             })
-            setSortProfit(dataIndex === "profitUsd" ? sortOrder : '');
+            setSortProfit(dataIndex === "profitUsd" ? sortOrder : false);
         }
     };
 
