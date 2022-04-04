@@ -52,6 +52,7 @@ const RouteComponentsMap: {
     'dashboard': {
         text: 'DEX Profit Ranking',
         component: <CacheRoute
+            className="overview"
             path={setPagePath('dashboard')}
             exact
             component={Dashboard}

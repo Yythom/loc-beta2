@@ -4,7 +4,7 @@ import ProEchart from '@/components/echart/pro_echart';
 import TableComponent from './table';
 const Dashboard = () => {
     return (
-        <div className="overview">
+        <div >
             <ProEchart
                 classname='test'
                 option={{

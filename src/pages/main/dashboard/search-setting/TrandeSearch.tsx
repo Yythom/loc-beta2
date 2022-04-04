@@ -1,6 +1,6 @@
 import { Input } from "@douyinfe/semi-ui/lib/es/input";
-import { Fragment, memo, useState } from "react";
-import { IconChevronDown, IconSearch } from "@douyinfe/semi-icons";
+import { memo } from "react";
+import { IconSearch } from "@douyinfe/semi-icons";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 
 const TrandeSearch = memo(({ search, setSearch }: any) => {

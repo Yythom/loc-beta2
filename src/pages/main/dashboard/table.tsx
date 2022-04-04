@@ -26,7 +26,7 @@ const TableComponent = memo(() => {
         { initParams, }
     )
     const [isOpen, setOpen] = useState(false);
-    const [sortOrder, setSortOrder] = useState<any>('descend')
+    const [sortProfit, setSortProfit] = useState<any>('descend') // Profi受控 默认排序是他
 
     const onChange = (e: any) => {
         const { sorter } = e;
@@ -39,22 +39,18 @@ const TableComponent = memo(() => {
                 page: 1,
                 sort: sortRet
             })
-            if (dataIndex === "profitUsd") {
-                setSortOrder(sortOrder);
-            } else {
-                setSortOrder('');
-            }
+            setSortProfit(dataIndex === "profitUsd" ? sortOrder : '');
         }
     };
 
     const setSearchParams = (key: String, value: any) => {
-        const c = JSON.parse(JSON.stringify(params?.search || {}))
-        c[`${key}`] = value;
-        console.log(c, 'search');
         setParams({
             ...params,
             page: 1,
-            search: c
+            search: {
+                ...params?.search,
+                [`${key}`]: value
+            }
         })
     }
 
@@ -62,9 +58,7 @@ const TableComponent = memo(() => {
         return [
             {
                 title: <>
-                    Address<PopContent
-                        text='Address'
-                    />
+                    Address<PopContent text='Address' />
                 </>,
                 dataIndex: 'address',
                 render: (text: any, record: any, index: any) => {
@@ -86,15 +80,10 @@ const TableComponent = memo(() => {
                                 </p>
                                 <p>
                                     On Jan 1, address A purchases 1 ETH for 175 LINK when the ETH price is $3,500 and the LINK price is $20. And we assume address A only trades once in the whole of January.
-
                                     If you open Lookonchain on Jan 1, the “Invest" of address A is $3,500.
-
                                     On Jan 2, the price of ETH changes to $4,000.
-
                                     When you open Lookonchain on Jan 2, the "Invest" of address A on Jan 1st is $4,000.
-
                                     Invest = (1 ETH) * (ETH price on Jan 2) = 1 * $4,000 = $4,000
-
                                     Because the price of ETH has changed.
                                 </p>
                             </div>
@@ -120,15 +109,10 @@ const TableComponent = memo(() => {
                                 <p>
                                     Example:
                                     On Jan 1, address A purchases 1 ETH for 175 LINK when the ETH price is $3,500 and the LINK price is $20. And we assume address A only trades once in the whole of January.
-
                                     If you open Lookonchain on Jan 1, the “Return" of address A is $3,500.
-
                                     On Jan 2, the price of LINK changes to $30.
-
                                     When you open Lookonchain on Jan 2, the "Return" of address A on Jan 1st is $5,250.
-
                                     Return = (175 LINK) * ( LINK price on Jan 2) =175 *  $30 = $5,250
-
                                     Because the price of LINK has changed.
                                 </p>
                             </div>
@@ -153,17 +137,11 @@ const TableComponent = memo(() => {
                                 </p>
                                 <p>
                                     Example:
-
                                     On Jan 1, address A purchases 1 ETH for 175 LINK when the ETH price is $3,500 and the LINK price is $20. And we assume address A only trades once in the whole of January.
-
                                     If you open Lookonchain on Jan 1, the “Profit" of address A is $0.
-
                                     On Jan 2, the price of ETH changes to $4,000, and the price of LINK changes to $30.
-
                                     When you open Lookonchain on Jan 2, the “Profit" of address A is $1,250.
-
                                     Profit = Return - Invest = (175 * $30) - (1 * $4,000) = $5,250 - $4,000 = $1,250
-
                                     Because the price of ETH and LINK has changed.
                                 </p>
                             </div>
@@ -177,12 +155,12 @@ const TableComponent = memo(() => {
                     </div>;
                 },
                 sorter: true,
-                sortOrder: sortOrder,
+                sortOrder: sortProfit,
             },
             {
                 title: <>
                     ROI<PopContent
-                        text={'Profit(USD)/Invest(USD) * 100% '}
+                        text='Profit(USD)/Invest(USD) * 100% '
                     />
                 </>,
                 dataIndex: 'profitRate',
@@ -196,7 +174,7 @@ const TableComponent = memo(() => {
                 title: <>
                     Swap Times
                     <PopContent
-                        text={`Number of times the account swaps with another account. For example, account A buys 10 ETH from account B. Then the Swap Num of account A is 1. `}
+                        text='Number of times the account swaps with another account. For example, account A buys 10 ETH from account B. Then the Swap Num of account A is 1. '
                     />
                 </>,
                 dataIndex: 'swapNum',
@@ -209,7 +187,8 @@ const TableComponent = memo(() => {
             },
 
         ]
-    }, [params, sortOrder]);
+    }, [params, sortProfit]);
+
     return <div style={{ marginTop: '12px' }}>
         <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} />
         <Collapsible isOpen={true}>
