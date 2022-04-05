@@ -23,7 +23,7 @@ const TableComponent = memo(() => {
         tableData,
         loading
     } = useTable<FlowInInterface, FlowParamsInterface>(
-        FlowService.get_flow_in_list,
+        FlowService.get_flow_out_list,
         {
             initParams: {
                 page: 1
