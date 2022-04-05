@@ -78,7 +78,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'total',
                 render: (text: any, record: any, index: any) => {
                     return <ModalControl bindKey="consistent_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.contract_address}&type=in`)
+                        history.push(`/token-flow?id=${record?.id}&type=in`)
                     }}>
                         <div className='flex'  >
                             <Text>$ {text}</Text>
