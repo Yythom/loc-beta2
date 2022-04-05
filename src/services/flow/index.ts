@@ -42,7 +42,7 @@ class FlowService {
     // 获取flow out列表
     static get_flow_out_list = async (data: FlowParamsInterface) => {
         const res = await request<FlowInInterface>({
-            url: `/v1/user/tokenInFlow/list`,
+            url: `/v1/user/tokenOutFlow/list`,
             data: {
                 "condition": {},
                 "search": {
