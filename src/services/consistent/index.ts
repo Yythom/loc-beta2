@@ -12,7 +12,6 @@ class ConsistentService {
                 "search": {
                     "source": "cex",
                     "time_range": data?.search?.time_range || 1,
-                    "tag": 1648915200
                 },
                 "page": {
                     "page": data?.page || 1,
@@ -50,7 +49,6 @@ class ConsistentService {
                 "search": {
                     "source": "cex",
                     "time_range": data?.search?.time_range || 1,
-                    "tag": 1648915200
                 },
                 "page": {
                     "page": data?.page || 1,
