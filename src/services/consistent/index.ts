@@ -16,7 +16,7 @@ class ConsistentService {
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 20,
+                    "page_size": 30,
                     "all": false,
                     "total": true
                 },
@@ -41,7 +41,7 @@ class ConsistentService {
     // 获取consistent in列表
     static get_consistent_in_list = async (data: ConsistentInListParamsInterface) => {
         const res = await request<ConsistentInListParamsInterface>({
-            url: `/v1/user/consistentOutFlow/list`,
+            url: `/v1/user/consistentInFlow/list`,
             data: {
                 "condition": {},
                 "search": {
@@ -51,7 +51,7 @@ class ConsistentService {
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 20,
+                    "page_size": 30,
                     "all": false,
                     "total": true
                 },
@@ -64,7 +64,7 @@ class ConsistentService {
 
     static get_consistent_in_detail = async (data: any) => {
         const res = await request<ConsistentInDetailInterface>({
-            url: `/v1/user/consistentOutFlow/detail`,
+            url: `/v1/user/consistentInFlow/detail`,
             data: {
                 "condition": {},
                 "search": {}

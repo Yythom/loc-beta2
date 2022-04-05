@@ -4,6 +4,8 @@ import {
     Route,
 } from "react-router-dom";
 import AddressDetail from "../main/address_detail";
+import DetailDexTrack from "../main/detail_dex_track";
+import DetailTokenFlow from "../main/detail_token_flow";
 import DexTrack from "../main/dex_track";
 import Ranking from "../main/ranking";
 import TokenFlow from "../main/token_flow";
@@ -42,9 +44,20 @@ const menu_route: RouteItemInterface[] = [
         itemKey: 'dex-track',
     },
     {
+        text: '',
+        icon: '',
+        itemKey: 'detail-dex-track',
+    },
+
+    {
         text: 'Token Flow',
         icon: 'iconshezhi',
         itemKey: 'token-flow',
+    },
+    {
+        text: '',
+        icon: '',
+        itemKey: 'detail-token-flow',
     },
 ];
 
@@ -88,6 +101,13 @@ const RouteComponentsMap: {
             component={DexTrack}
         />
     },
+    'detail-dex-track': {
+        component: <Route
+            path={setPagePath('detail-dex-track')}
+            exact
+            component={DetailDexTrack}
+        />
+    },
     'consistent-out-detail': {
         text: 'DEX Profit Ranking',
         component: <Route
@@ -102,6 +122,13 @@ const RouteComponentsMap: {
             path={setPagePath('token-flow')}
             exact
             component={TokenFlow}
+        />
+    },
+    'detail-token-flow': {
+        component: <Route
+            path={setPagePath('detail-token-flow')}
+            exact
+            component={DetailTokenFlow}
         />
     },
 }

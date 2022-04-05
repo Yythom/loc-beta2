@@ -14,7 +14,7 @@ class FlowService {
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 20,
+                    "page_size": 30,
                     "all": false,
                     "total": true
                 },
@@ -51,7 +51,7 @@ class FlowService {
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 20,
+                    "page_size": 30,
                     "all": false,
                     "total": true
                 },
@@ -64,7 +64,7 @@ class FlowService {
 
     static get_flow_out_detail = async (data: { id: string }) => {
         const res = await request<any>({
-            url: `/v1/user/tokenInFlow/detail`,
+            url: `/v1/user/tokenOutFlow/detail`,
             data: {
                 "condition": {},
                 "search": {

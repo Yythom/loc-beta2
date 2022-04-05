@@ -71,7 +71,7 @@ const TableComponent = memo(() => {
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' style={{ cursor: 'pointer' }} onClick={() => {
                         // window.open(`${window.location.origin}/address?address=${text}`)
-                        history.push(`/address?address=${text}`)
+                        history.push(`/detail-dex-track?address=${text}&type=out`)
                     }}>
                         <Text>{text}</Text>
                     </div>;
@@ -94,7 +94,7 @@ const TableComponent = memo(() => {
     }, [params, sortProfit]);
 
     return <div style={{ marginTop: '12px' }}>
-        <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} />
+        {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
         <Collapsible isOpen={true}>
             <MoreSetting
                 setParams={setSearchParams}

@@ -61,15 +61,22 @@ const TableComponent = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>
-                    token_name
-                </>,
-                dataIndex: 'token_name',
+                title: <> Id   </>,
+                dataIndex: 'id',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' style={{ cursor: 'pointer' }} onClick={() => {
                         // window.open(`${window.location.origin}/address?address=${text}`)
-                        history.push(`/address?address=${text}`)
+                        history.push(`/detail-token-flow?id=${text}&type=out`)
                     }}>
+                        <Text>{text}</Text>
+                    </div>;
+                },
+            },
+            {
+                title: <> Token Name   </>,
+                dataIndex: 'token_name',
+                render: (text: any, record: any, index: any) => {
+                    return <div className='flex' >
                         <Text>{text}</Text>
                     </div>;
                 },

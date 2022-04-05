@@ -3,32 +3,32 @@
 import { Collapsible, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
-import LangComponent from "../../../../lang/local";
 import { Pagination } from '@douyinfe/semi-ui';
 import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
 import DefaultSetting from "./search-setting/DefaultSetting";
 import { useHistory } from "react-router";
-import NumberUtils from "@/utils/js_utils/number";
-import { DashboardInterface, DashboardParams } from "@/services/ranking/interface";
+import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
-import RankingService, { initParams } from "@/services/ranking";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
-import ConsistentService from "@/services/consistent";
-import { ConsistentOutListInterface } from "@/services/consistent/in_interface";
-import { ConsistentOutListParamsInterface } from "@/services/consistent/out_interface";
+import LangComponent from "@/lang/local";
+import { FlowInDetailInterface, FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
+import FlowService from "@/services/flow";
+import { formatUrl } from "@/utils/js_utils/format";
 
 const TableComponent = memo(() => {
     const history = useHistory()
+    const _url_params: any = formatUrl();
+
     const {
         setParams,
         params,
         tableData,
         loading
-    } = useTable<ConsistentOutListInterface, ConsistentOutListParamsInterface>(
-        ConsistentService.get_consistent_in_list,
+    } = useTable<FlowInDetailInterface, FlowParamsInterface>(
+        FlowService.get_flow_out_detail,
         {
             initParams: {
-                page: 1
+                id: _url_params?.id
             }
         }
     )
@@ -65,43 +65,27 @@ const TableComponent = memo(() => {
         return [
             {
                 title: <>
-                    Address<PopContent text='Address' />
+                    from_address
                 </>,
-                dataIndex: 'contract_address',
+                dataIndex: 'from_address',
                 render: (text: any, record: any, index: any) => {
-                    return <div className='flex' style={{ cursor: 'pointer' }} onClick={() => {
-                        // window.open(`${window.location.origin}/address?address=${text}`)
-                        history.push(`/detail-dex-track?address=${text}&type=in`)
-                    }}>
+                    return <div className='flex' >
                         <Text>{text}</Text>
                     </div>;
                 },
             },
-            {
-                title: <>
-                    contract_name
-                </>,
-                dataIndex: 'investUsd',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex'>
-                        {NumberUtils.numToFixed(text, 6)}
-                    </div>;
-                },
-                sorter: true,
-            },
-
         ]
     }, [params, sortProfit]);
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <Collapsible isOpen={true}>
+        {/* <Collapsible isOpen={true}>
             <MoreSetting
                 setParams={setSearchParams}
                 params={params}
             />
-        </Collapsible>
-        <div className='flex' style={{ justifyContent: 'flex-end' }}>
+        </Collapsible> */}
+        {/* <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Pagination
                 showTotal
                 total={tableData?.total}
@@ -111,7 +95,7 @@ const TableComponent = memo(() => {
                 size='small'
                 hoverShowPageSelect
             />
-        </div>
+        </div> */}
 
         <div className='Portfolio card' style={{ marginTop: '20px' }}>
             <LangComponent>
@@ -121,7 +105,7 @@ const TableComponent = memo(() => {
                     className='table'
                     pagination={false}
                     columns={columns}
-                    dataSource={tableData?.list}
+                    dataSource={tableData}
                 />
             </LangComponent>
         </div>

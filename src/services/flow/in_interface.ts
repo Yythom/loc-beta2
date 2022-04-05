@@ -44,3 +44,17 @@ interface List {
     update_at: number;
     token: any[];
 }
+
+
+
+export type FlowInDetailInterface = FlowInDetailitem[]
+interface FlowInDetailitem {
+    from_address: string;
+    to_address: string;
+    total: string;
+    address: string;
+    type: string;
+    price: string;
+    total_usd: string;
+}
+
