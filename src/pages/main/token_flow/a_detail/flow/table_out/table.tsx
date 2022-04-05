@@ -87,7 +87,7 @@ const TableComponent = memo(() => {
 
             {
                 title: <>
-                    Outflow (1day)
+                    Outflow
                 </>,
                 dataIndex: 'total_usd',
                 render: (text: any, record: any, index: any) => {
