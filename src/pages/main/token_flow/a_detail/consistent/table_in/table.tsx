@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Collapsible, Table } from "@douyinfe/semi-ui";
+import { Collapsible, ConfigProvider, LocaleProvider, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import { Pagination } from '@douyinfe/semi-ui';
@@ -11,23 +11,25 @@ import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 import LangComponent from "@/lang/local";
-import { FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
+import { FlowInDetailInterface, FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
 import FlowService from "@/services/flow";
-import ModalControl from "@/pro-modal/modal_control";
-import Storage from "@/utils/js_utils/storage";
+import { formatUrl } from "@/utils/js_utils/format";
+import ConsistentService from "@/services/consistent";
+import loacl from "@/lang/semi-ui-local";
 
 const TableComponent = memo(() => {
     const history = useHistory()
+    const _url_params: any = formatUrl();
+
     const {
         setParams,
         params,
         tableData,
         loading
-    } = useTable<FlowInInterface, FlowParamsInterface>(
-        FlowService.get_flow_in_list,
+    } = useTable<FlowInDetailInterface, FlowParamsInterface>(
+        ConsistentService.get_consistent_in_detail,
         {
             initParams: {
-                page: 1
             }
         }
     )
@@ -63,8 +65,19 @@ const TableComponent = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
-                dataIndex: 'token_name',
+                title: <>No.  </>,
+                dataIndex: '#',
+                render: (text: any, record: any, index: any) => {
+                    return <div className='flex' >
+                        <Text>{index + 1}</Text>
+                    </div>;
+                },
+            },
+            {
+                title: <>
+                    Address
+                </>,
+                dataIndex: 'contract_address',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>{text}</Text>
@@ -73,25 +86,14 @@ const TableComponent = memo(() => {
             },
 
             {
-                title: <>  Inflow($)  </>,
-                dataIndex: 'address_num',
-                render: (text: any, record: FlowInInterface['list'][0], index: any) => {
-                    return <div className='flex' style={{ cursor: 'pointer' }} >
-                        <Text>$ {text}</Text>
-                    </div>
-                },
-            },
-            {
-                title: <>address</>,
-                dataIndex: 'token_address',
+                title: <>
+                    Inflow (1day)
+                </>,
+                dataIndex: 'total',
                 render: (text: any, record: any, index: any) => {
-                    return <ModalControl bindKey="token_flow_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=in`)
-                    }}>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </ModalControl>
+                    return <div className='flex' >
+                        <Text>$ {text}</Text>
+                    </div>;
                 },
             },
         ]
@@ -99,13 +101,13 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <Collapsible isOpen={true}>
+        {/* <Collapsible isOpen={true}>
             <MoreSetting
                 setParams={setSearchParams}
                 params={params}
             />
-        </Collapsible>
-        <div className='flex' style={{ justifyContent: 'flex-end' }}>
+        </Collapsible> */}
+        {/* <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Pagination
                 showTotal
                 total={tableData?.total}
@@ -115,19 +117,21 @@ const TableComponent = memo(() => {
                 size='small'
                 hoverShowPageSelect
             />
-        </div>
+        </div> */}
 
         <div className='Portfolio card' style={{ marginTop: '20px' }}>
-            <LangComponent>
-                <Table
-                    onChange={onChange}
-                    loading={loading}
-                    className='table'
-                    pagination={false}
-                    columns={columns}
-                    dataSource={tableData?.list}
-                />
-            </LangComponent>
+            <LocaleProvider locale={loacl['en_US']}>
+                <ConfigProvider locale={loacl['en_US']}>
+                    <Table
+                        onChange={onChange}
+                        loading={loading}
+                        className='table'
+                        pagination={false}
+                        columns={columns}
+                        dataSource={[tableData]}
+                    />
+                </ConfigProvider>
+            </LocaleProvider>
         </div>
     </div>
 

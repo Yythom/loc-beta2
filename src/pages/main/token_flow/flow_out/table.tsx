@@ -13,6 +13,7 @@ import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 import LangComponent from "@/lang/local";
 import { FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
 import FlowService from "@/services/flow";
+import ModalControl from "@/pro-modal/modal_control";
 
 const TableComponent = memo(() => {
     const history = useHistory()
@@ -61,24 +62,35 @@ const TableComponent = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <> Id   </>,
-                dataIndex: 'id',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' style={{ cursor: 'pointer' }} onClick={() => {
-                        // window.open(`${window.location.origin}/address?address=${text}`)
-                        history.push(`/detail-token-flow?id=${text}&type=out`)
-                    }}>
-                        <Text>{text}</Text>
-                    </div>;
-                },
-            },
-            {
-                title: <> Token Name   </>,
+                title: <>Token</>,
                 dataIndex: 'token_name',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>{text}</Text>
                     </div>;
+                },
+            },
+
+            {
+                title: <>  Outflow($)  </>,
+                dataIndex: 'address_num',
+                render: (text: any, record: FlowInInterface['list'][0], index: any) => {
+                    return <div className='flex' style={{ cursor: 'pointer' }} >
+                        <Text>$ {text}</Text>
+                    </div>
+                },
+            },
+            {
+                title: <>address</>,
+                dataIndex: 'token_address',
+                render: (text: any, record: any, index: any) => {
+                    return <ModalControl bindKey="token_flow_detail" onClick={() => {
+                        history.push(`/token-flow?id=${record?.id}&type=out`)
+                    }}>
+                        <div className='flex'  >
+                            <Text>{text}</Text>
+                        </div>
+                    </ModalControl>
                 },
             },
         ]

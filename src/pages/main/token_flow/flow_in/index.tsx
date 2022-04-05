@@ -8,7 +8,7 @@ const FlowIn = memo(() => {
             <div className='content-head' style={{ marginBottom: '12px' }}>
                 <div className='desc' style={{ width: '80%', wordBreak: 'break-all', lineHeight: '24px' }}>
                     <Text>
-                        desc
+                        <h2>Flow In</h2>
                     </Text>
                 </div>
             </div>

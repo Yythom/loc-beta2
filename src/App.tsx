@@ -51,7 +51,7 @@ const App = () => {
             {/* <Route path='/' exact component={Login} /> */}
             {/* <Route path={basePath} component={ProBreadcrumb} /> */}
             {
-              global_slice.user_route.map(e => {
+              global_slice?.user_route.map(e => {
                 return <Fragment key={e.itemKey}>
                   {
                     e?.items?.map(child => {

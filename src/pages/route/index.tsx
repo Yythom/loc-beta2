@@ -3,12 +3,13 @@ import CacheRoute from "react-router-cache-route";
 import {
     Route,
 } from "react-router-dom";
-import AddressDetail from "../main/address_detail";
-import DetailDexTrack from "../main/detail_dex_track";
-import DetailTokenFlow from "../main/detail_token_flow";
+import AddressDetail from "../main/ranking/address_detail";
 import DexTrack from "../main/dex_track";
 import Ranking from "../main/ranking";
 import TokenFlow from "../main/token_flow";
+import TokenBalance from "../main/token_balance";
+import WalletBalance from "../main/wallet_balance";
+import TokenAnalysis from "../main/token_analysis";
 export const basePath = '/';
 
 const setPagePath = (_path: string) => {
@@ -44,20 +45,25 @@ const menu_route: RouteItemInterface[] = [
         itemKey: 'dex-track',
     },
     {
-        text: '',
-        icon: '',
-        itemKey: 'detail-dex-track',
-    },
-
-    {
         text: 'Token Flow',
         icon: 'iconshezhi',
         itemKey: 'token-flow',
     },
+
     {
-        text: '',
-        icon: '',
-        itemKey: 'detail-token-flow',
+        text: 'Token Balance',
+        icon: 'iconshezhi',
+        itemKey: 'token-balance',
+    },
+    {
+        text: 'Wallet Balance',
+        icon: 'iconshezhi',
+        itemKey: 'wallet-balance',
+    },
+    {
+        text: 'Token Analysis',
+        icon: 'iconshezhi',
+        itemKey: 'token-analysis',
     },
 ];
 
@@ -101,22 +107,6 @@ const RouteComponentsMap: {
             component={DexTrack}
         />
     },
-    'detail-dex-track': {
-        component: <Route
-            path={setPagePath('detail-dex-track')}
-            exact
-            component={DetailDexTrack}
-        />
-    },
-    'consistent-out-detail': {
-        text: 'DEX Profit Ranking',
-        component: <Route
-            path={setPagePath('address')}
-            exact
-            component={AddressDetail}
-        />
-    },
-
     'token-flow': {
         component: <Route
             path={setPagePath('token-flow')}
@@ -124,11 +114,25 @@ const RouteComponentsMap: {
             component={TokenFlow}
         />
     },
-    'detail-token-flow': {
+    'token-balance': {
         component: <Route
-            path={setPagePath('detail-token-flow')}
+            path={setPagePath('token-balance')}
             exact
-            component={DetailTokenFlow}
+            component={TokenBalance}
+        />
+    },
+    'wallet-balance': {
+        component: <Route
+            path={setPagePath('wallet-balance')}
+            exact
+            component={WalletBalance}
+        />
+    },
+    'token-analysis': {
+        component: <Route
+            path={setPagePath('token-analysis')}
+            exact
+            component={TokenAnalysis}
         />
     },
 }

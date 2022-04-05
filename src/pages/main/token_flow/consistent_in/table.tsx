@@ -3,18 +3,20 @@
 import { Collapsible, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
+import LangComponent from "../../../../lang/local";
 import { Pagination } from '@douyinfe/semi-ui';
 import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
 import DefaultSetting from "./search-setting/DefaultSetting";
 import { useHistory } from "react-router";
-import { DashboardParams } from "@/services/ranking/interface";
+import NumberUtils from "@/utils/js_utils/number";
+import { DashboardInterface, DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
+import RankingService, { initParams } from "@/services/ranking";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
-import LangComponent from "@/lang/local";
-import { FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
-import FlowService from "@/services/flow";
+import ConsistentService from "@/services/consistent";
+import { ConsistentOutListInterface } from "@/services/consistent/in_interface";
+import { ConsistentOutListParamsInterface } from "@/services/consistent/out_interface";
 import ModalControl from "@/pro-modal/modal_control";
-import Storage from "@/utils/js_utils/storage";
 
 const TableComponent = memo(() => {
     const history = useHistory()
@@ -23,8 +25,8 @@ const TableComponent = memo(() => {
         params,
         tableData,
         loading
-    } = useTable<FlowInInterface, FlowParamsInterface>(
-        FlowService.get_flow_in_list,
+    } = useTable<ConsistentOutListInterface, ConsistentOutListParamsInterface>(
+        ConsistentService.get_consistent_in_list,
         {
             initParams: {
                 page: 1
@@ -63,35 +65,38 @@ const TableComponent = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
-                dataIndex: 'token_name',
+                title: <>Token </>,
+                dataIndex: 'contract_name',
                 render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
+                    return <div className='flex' style={{ cursor: 'pointer' }} >
                         <Text>{text}</Text>
                     </div>;
                 },
             },
-
             {
-                title: <>  Inflow($)  </>,
-                dataIndex: 'address_num',
-                render: (text: any, record: FlowInInterface['list'][0], index: any) => {
-                    return <div className='flex' style={{ cursor: 'pointer' }} >
-                        <Text>$ {text}</Text>
-                    </div>
+                title: <>Inflow ($) </>,
+                dataIndex: 'total',
+                render: (text: any, record: any, index: any) => {
+                    return <ModalControl bindKey="consistent_detail" onClick={() => {
+                        history.push(`/token-flow?id=${record?.contract_address}&type=in`)
+                    }}>
+                        <div className='flex'  >
+                            <Text>$ {text}</Text>
+                        </div>
+                    </ModalControl>;
                 },
             },
             {
-                title: <>address</>,
-                dataIndex: 'token_address',
+                title: <>address </>,
+                dataIndex: 'contract_address',
                 render: (text: any, record: any, index: any) => {
-                    return <ModalControl bindKey="token_flow_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=in`)
+                    return <ModalControl bindKey="consistent_detail" onClick={() => {
+                        history.push(`/token-flow?id=${record?.contract_address}&type=in`)
                     }}>
                         <div className='flex'  >
                             <Text>{text}</Text>
                         </div>
-                    </ModalControl>
+                    </ModalControl>;
                 },
             },
         ]
@@ -105,7 +110,7 @@ const TableComponent = memo(() => {
                 params={params}
             />
         </Collapsible>
-        <div className='flex' style={{ justifyContent: 'flex-end' }}>
+        <div className='fb' style={{ justifyContent: 'flex-end' }}>
             <Pagination
                 showTotal
                 total={tableData?.total}

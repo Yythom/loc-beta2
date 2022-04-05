@@ -3,19 +3,18 @@
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import { memo, useState } from "react";
 import './index.scss'
-// import ConsistentIn from "./consistent_in";
-// import ConsistentOut from "./consistent_out";
 
-const DexTrack = memo(() => {
+const WalletBalance = memo(() => {
     const [tab, setTab] = useState('1')
-
+    const tabChange = async (e: any, data?: any) => {
+        setTab(e)
+    }
 
     return (
-        <div className='dex_track' style={{ width: '100%', height: '100%', }}>
-            DexTrack
-
+        <div className='token_balance' style={{ width: '100%', height: '100%', }}>
+            WalletBalance
         </div >
     )
 })
 
-export default DexTrack;
+export default WalletBalance;

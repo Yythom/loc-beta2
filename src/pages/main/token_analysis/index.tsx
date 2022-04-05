@@ -3,19 +3,18 @@
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import { memo, useState } from "react";
 import './index.scss'
-// import ConsistentIn from "./consistent_in";
-// import ConsistentOut from "./consistent_out";
 
-const DexTrack = memo(() => {
+const TokenAnalysis = memo(() => {
     const [tab, setTab] = useState('1')
-
+    const tabChange = async (e: any, data?: any) => {
+        setTab(e)
+    }
 
     return (
-        <div className='dex_track' style={{ width: '100%', height: '100%', }}>
-            DexTrack
-
+        <div className='token_analysis' style={{ width: '100%', height: '100%', }}>
+            TokenAnalysis
         </div >
     )
 })
 
-export default DexTrack;
+export default TokenAnalysis;
