@@ -10,7 +10,7 @@ class ConsistentService {
             data: {
                 "condition": {},
                 "search": {
-                    "source": "SmartMoney",
+                    "source": "cex",
                     "time_range": data?.search?.time_range || 1,
                     "tag": 1648915200
                 },
@@ -45,7 +45,7 @@ class ConsistentService {
             data: {
                 "condition": {},
                 "search": {
-                    "source": "SmartMoney",
+                    "source": "cex",
                     "time_range": data?.search?.time_range || 1,
                     "tag": 1648915200
                 },
