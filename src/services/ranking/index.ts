@@ -13,7 +13,7 @@ export const initParams = {
     }
 }
 
-class DasboardService {
+class RankingService {
     static getProfitRankList = async (data: DashboardParams) => {
         const result = await request({
             url: '/transaction/index',
@@ -29,4 +29,4 @@ class DasboardService {
 
 }
 
-export default DasboardService;
+export default RankingService;

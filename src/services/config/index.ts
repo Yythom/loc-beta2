@@ -33,7 +33,7 @@ function request<T>(config: AxiosRequestConfig): Promise<T | undefined> {
     // 此处封装一层捕捉错误
     return new Promise((resolve, reject) => {
         instance(config).then((res: any) => {
-            if (res.status === 200) {
+            if (res?.data) {
                 resolve(res?.data)
             } else {
                 showNotic('error', { content: `${res?.message}` });

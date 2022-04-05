@@ -4,7 +4,9 @@ import {
     Route,
 } from "react-router-dom";
 import AddressDetail from "../main/address_detail";
-import Dashboard from "../main/dashboard";
+import DexTrack from "../main/dex_track";
+import Ranking from "../main/ranking";
+import TokenFlow from "../main/token_flow";
 export const basePath = '/';
 
 const setPagePath = (_path: string) => {
@@ -22,15 +24,27 @@ export interface RouteItemInterface {
 }
 
 const menu_route: RouteItemInterface[] = [
+    // ranking
     {
         text: 'DEX Profit Ranking',
         icon: 'iconshezhi',
-        itemKey: 'dashboard',
+        itemKey: 'ranking',
     },
     {
         text: '',
         icon: '',
         itemKey: 'address',
+    },
+    // consistent
+    {
+        text: 'Dex Track ',
+        icon: 'iconshezhi',
+        itemKey: 'dex-track',
+    },
+    {
+        text: 'Token Flow',
+        icon: 'iconshezhi',
+        itemKey: 'token-flow',
     },
 ];
 
@@ -45,17 +59,17 @@ const get_menu_route: () => Promise<RouteItemInterface[]> = async () => {
 
 const RouteComponentsMap: {
     [key: string]: {
-        text: string;
+        text?: string;
         component: JSX.Element;
     }
 } = {
-    'dashboard': {
+    'ranking': {
         text: 'DEX Profit Ranking',
         component: <CacheRoute
             className="overview"
-            path={setPagePath('dashboard')}
+            path={setPagePath('ranking')}
             exact
-            component={Dashboard}
+            component={Ranking}
         />
     },
     'address': {
@@ -65,7 +79,31 @@ const RouteComponentsMap: {
             exact
             component={AddressDetail}
         />
-    }
+    },
+
+    'dex-track': {
+        component: <Route
+            path={setPagePath('dex-track')}
+            exact
+            component={DexTrack}
+        />
+    },
+    'consistent-out-detail': {
+        text: 'DEX Profit Ranking',
+        component: <Route
+            path={setPagePath('address')}
+            exact
+            component={AddressDetail}
+        />
+    },
+
+    'token-flow': {
+        component: <Route
+            path={setPagePath('token-flow')}
+            exact
+            component={TokenFlow}
+        />
+    },
 }
 
 export {

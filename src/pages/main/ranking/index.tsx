@@ -2,7 +2,8 @@ import './index.scss'
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import ProEchart from '@/components/echart/pro_echart';
 import TableComponent from './table';
-const Dashboard = () => {
+import { memo } from 'react';
+const Ranking = memo(() => {
     return (
         <div >
             <ProEchart
@@ -24,9 +25,9 @@ const Dashboard = () => {
             <TableComponent />
         </div >
     );
-}
+})
 
-export default Dashboard;
+export default Ranking;
 
 
 

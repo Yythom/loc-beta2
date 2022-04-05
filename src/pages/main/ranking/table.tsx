@@ -9,9 +9,9 @@ import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
 import DefaultSetting from "./search-setting/DefaultSetting";
 import { useHistory } from "react-router";
 import NumberUtils from "@/utils/js_utils/number";
-import { DashboardInterface, DashboardParams } from "@/services/dasboard/interface";
+import { DashboardInterface, DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
-import DasboardService, { initParams } from "@/services/dasboard";
+import RankingService, { initParams } from "@/services/ranking";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 
 const TableComponent = memo(() => {
@@ -22,7 +22,7 @@ const TableComponent = memo(() => {
         tableData,
         loading
     } = useTable<DashboardInterface, DashboardParams>(
-        DasboardService.getProfitRankList,
+        RankingService.getProfitRankList,
         { initParams, }
     )
     const [isOpen, setOpen] = useState<boolean>(false);
