@@ -33,7 +33,9 @@ class ConsistentService {
             url: `/v1/user/consistentOutFlow/detail`,
             data: {
                 "condition": {},
-                "search": {}
+                "search": {
+                    id: data.id
+                }
             }
         })
         return res
@@ -69,7 +71,9 @@ class ConsistentService {
             url: `/v1/user/consistentInFlow/detail`,
             data: {
                 "condition": {},
-                "search": {}
+                "search": {
+                    id: data.id
+                }
             }
         })
         return res

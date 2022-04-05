@@ -30,7 +30,7 @@ const TableComponent = memo(() => {
         ConsistentService.get_consistent_out_detail,
         {
             initParams: {
-                // id: _url_params?.id
+                id: _url_params?.id
             }
         }
     )
@@ -94,7 +94,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'total',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>$ {text}</Text>
+                        <Text>- $ {text}</Text>
                     </div>;
                 },
             },

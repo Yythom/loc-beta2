@@ -92,7 +92,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'total_usd',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>$ {text}</Text>
+                        <Text>- $ {text}</Text>
                     </div>;
                 },
             },

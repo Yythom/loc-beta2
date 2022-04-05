@@ -6,7 +6,7 @@ import TableOut from "./table_out";
 const DetailDexTrack = memo(() => {
     const params: any = formatUrl();
 
-    return <div>
+    return <div  >
         Consistent {params?.type}
         {params?.type === 'in' ? <TableIn /> : <TableOut />}
     </div>

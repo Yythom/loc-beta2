@@ -32,6 +32,11 @@ body[theme-mode="dark"] {
   }
 }
 
+.semi-modal-small {
+  min-width: 50rem;
+  width: max-content;
+}
+
 .App {
   .header {
     height: 8rem;

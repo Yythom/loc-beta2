@@ -30,6 +30,7 @@ const TableComponent = memo(() => {
         ConsistentService.get_consistent_in_detail,
         {
             initParams: {
+                id: _url_params?.id
             }
         }
     )

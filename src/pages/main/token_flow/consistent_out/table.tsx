@@ -68,7 +68,7 @@ const TableComponent = memo(() => {
                 title: <>Token </>,
                 dataIndex: 'contract_name',
                 render: (text: any, record: any, index: any) => {
-                    return <div className='flex' style={{ cursor: 'pointer' }} >
+                    return <div className='flex'  >
                         <Text>{text}</Text>
                     </div>;
                 },
