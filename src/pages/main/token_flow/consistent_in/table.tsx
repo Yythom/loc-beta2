@@ -88,7 +88,7 @@ const TableComponent = memo(() => {
             },
             {
                 title: <>address </>,
-                dataIndex: 'contract_address',
+                dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <ModalControl bindKey="consistent_detail" onClick={() => {
                         history.push(`/token-flow?id=${record?.contract_address}&type=in`)
