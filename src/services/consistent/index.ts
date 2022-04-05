@@ -21,6 +21,7 @@ class ConsistentService {
                     "total": true
                 },
                 "sort": {
+                    total: 'desc'
                 },
             }
         })
@@ -56,6 +57,7 @@ class ConsistentService {
                     "total": true
                 },
                 "sort": {
+                    total: 'desc'
                 },
             }
         })

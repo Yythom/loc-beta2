@@ -81,7 +81,7 @@ const TableComponent = memo(() => {
                         history.push(`/token-flow?id=${record?.contract_address}&type=out`)
                     }}>
                         <div className='flex'  >
-                            <Text>$ {text}</Text>
+                            <Text>- $ {text}</Text>
                         </div>
                     </ModalControl>;
                 },

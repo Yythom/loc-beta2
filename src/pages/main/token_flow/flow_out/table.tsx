@@ -37,12 +37,12 @@ const TableComponent = memo(() => {
         const { sorter } = e;
         if (sorter) {
             const { sortOrder, dataIndex } = sorter;
-            const sortRet: DashboardParams['sort'] = {}
+            const sortRet: any = {}
             sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : '';
             setParams({
                 ...params,
                 page: 1,
-                // sort: sortRet
+                sort: sortRet
             })
             setSortProfit(dataIndex === "profitUsd" ? sortOrder : false);
         }
@@ -76,7 +76,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'total',
                 render: (text: any, record: FlowInInterface['list'][0], index: any) => {
                     return <div className='flex' style={{ cursor: 'pointer' }} >
-                        <Text>$ {text}</Text>
+                        <Text>- $ {text}</Text>
                     </div>
                 },
             },

@@ -19,6 +19,7 @@ class FlowService {
                     "total": true
                 },
                 "sort": {
+                    total: 'desc'
                 },
             }
         })
@@ -56,6 +57,7 @@ class FlowService {
                     "total": true
                 },
                 "sort": {
+                    total: 'desc'
                 },
             }
         })

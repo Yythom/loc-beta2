@@ -42,8 +42,8 @@ const MoreSetting = memo(({ setParams, }: { setParams: Function, params: any }) 
                             setParams('time_range', e.target.value || '')
                         }}>
                         <Radio value={1}>1 Day</Radio>
+                        <Radio value={3}>3 Day</Radio>
                         <Radio value={7}>7 Day</Radio>
-                        <Radio value={30}>30 Day</Radio>
                     </RadioGroup>
                 </div>
             </div>
