@@ -17,70 +17,80 @@ const Menu = () => {
     const [global_slice, dispatch] = useSlice<GlobalStateInterface>();
     const path = history.location.pathname.split('/').join('/').replace(basePath, '');
     const [menu, setmenu] = useState(path || '');
+    const [collapsed, setCollapsed] = useState(true)
 
     useLayoutEffect(() => {
         dispatch(actions.getMenuRouteAsync())
     }, [])
     return (
-        <div className="fdc" style={{ height: '100%' }}>
-            <LangComponent>
-                <Nav
-                    defaultOpenKeys={Storage.getStorageSync('openKeys') || []}
-                    selectedKeys={[menu]}
-                    style={{ height: '100%', border: 'none' }}
-                    onClick={(el: any) => {
-                        if (!el?.openKeys) {
-                            stopInterval() // 重置全局轮训
-                            setmenu(el.itemKey)
-                            history.push(basePath + el.itemKey)
-                        } else {
-                            Storage.setStorageSync('openKeys', el.openKeys);
-                        }
-                    }}
-                    footer={{
-                        collapseButton: true,
-                    }}
-                >
-                    <Nav.Header
-                        // eslint-disable-next-line jsx-a11y/alt-text
-                        logo={<img src={require('@/image/logo/logo.jpg').default} />}
-                        text={'LookonChain'}
-                    />
-                    {
-                        global_slice.user_route.map(item => {
-                            if (!item.text) return null;
-                            if (item.items) {
-                                return <Nav.Sub
-                                    key={item.itemKey}
-                                    itemKey={item.itemKey}
-                                    text={item.text}
-                                    icon={<Icon icon={item.icon} />}
-                                >
-                                    {item.items.map(child =>
-                                        <Nav.Item
-                                            style={{
-                                                width: 'calc(100% - 5rem)',
-                                                marginLeft: '3rem'
-                                            }}
-                                            key={child.itemKey}
-                                            itemKey={child.itemKey}
-                                            text={child.text}
-                                            icon={<Icon icon={child.icon} />}
-                                        />
-                                    )}
-                                </Nav.Sub>
+        <div className="fdc menu" style={{ height: '100%' }} >
+            <div className="toggle fc hover" onClick={() => setCollapsed(!collapsed)}>
+                <Icon icon="iconjigouguanli" color="#fff" />
+            </div>
+            <div className="_menu"
+                onMouseEnter={() => {
+                    setCollapsed(false)
+                }}
+                onMouseLeave={() => {
+                    setCollapsed(true)
+                }}>
+                <LangComponent>
+                    <Nav
+                        isCollapsed={collapsed}
+                        defaultOpenKeys={Storage.getStorageSync('openKeys') || []}
+                        selectedKeys={[menu]}
+                        style={{ height: '100%', border: 'none' }}
+                        onClick={(el: any) => {
+                            if (!el?.openKeys) {
+                                stopInterval() // 重置全局轮训
+                                setmenu(el.itemKey)
+                                history.push(basePath + el.itemKey)
                             } else {
-                                return <Nav.Item
-                                    key={item.itemKey}
-                                    itemKey={item.itemKey}
-                                    text={item.text}
-                                    icon={<Icon icon={item.icon} />}
-                                />
+                                Storage.setStorageSync('openKeys', el.openKeys);
                             }
-                        })
-                    }
-                </Nav>
-            </LangComponent>
+                        }}
+                    >
+                        <Nav.Header
+                            // eslint-disable-next-line jsx-a11y/alt-text
+                            logo={<img src={require('@/image/logo/logo.jpg').default} />}
+                            text={'LookonChain'}
+                        />
+                        {
+                            global_slice.user_route.map(item => {
+                                if (!item.text) return null;
+                                if (item.items) {
+                                    return <Nav.Sub
+                                        key={item.itemKey}
+                                        itemKey={item.itemKey}
+                                        text={item.text}
+                                        icon={<Icon icon={item.icon} />}
+                                    >
+                                        {item.items.map(child =>
+                                            <Nav.Item
+                                                style={{
+                                                    width: 'calc(100% - 5rem)',
+                                                    marginLeft: '3rem'
+                                                }}
+                                                key={child.itemKey}
+                                                itemKey={child.itemKey}
+                                                text={child.text}
+                                                icon={<Icon icon={child.icon} />}
+                                            />
+                                        )}
+                                    </Nav.Sub>
+                                } else {
+                                    return <Nav.Item
+                                        key={item.itemKey}
+                                        itemKey={item.itemKey}
+                                        text={item.text}
+                                        icon={<Icon icon={item.icon} />}
+                                    />
+                                }
+                            })
+                        }
+                    </Nav>
+                </LangComponent>
+            </div>
         </div >
 
     );

@@ -1,5 +1,4 @@
-import { Popover, RadioGroup, } from "@douyinfe/semi-ui"
-import { Radio } from "@douyinfe/semi-ui/lib/es/radio";
+import { Popover, TabPane, Tabs, } from "@douyinfe/semi-ui"
 import Text from "@douyinfe/semi-ui/lib/es/typography/text"
 import { Fragment, memo, } from "react"
 import { IconSort } from '@douyinfe/semi-icons';
@@ -30,23 +29,16 @@ export const PopContent = memo(({ text, content, hover, showHover, }: { text: an
 
 const MoreSetting = memo(({ setParams, }: { setParams: Function, params: any }) => {
     // const { search } = params
-    return <div>
-        <div className=''>
-            <div className="flex" style={{ width: '99%', }}>
-                <div style={{ marginRight: '8px' }}><Text className='font-bold'>Time Range</Text></div>
-                <div>
-                    <RadioGroup
-                        defaultValue={1}
-                        onChange={(e) => {
-                            setParams('time_range', e.target.value || '')
-                        }}>
-                        <Radio value={1}>1 Day</Radio>
-                        <Radio value={3}>3 Day</Radio>
-                        <Radio value={7}>7 Day</Radio>
-                    </RadioGroup>
-                </div>
-            </div>
-        </div>
+    return <div className="flex more_setting" >
+        <Tabs
+            type="button"
+            onChange={(itemKey) => {
+                setParams('time_range', itemKey || '')
+            }}>
+            <TabPane tab="1 Day" itemKey="1" />
+            <TabPane tab="3 Day" itemKey="3" />
+            <TabPane tab="7 Day" itemKey="7" />
+        </Tabs>
     </div>
 })
 

@@ -1,18 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Collapsible, ConfigProvider, LocaleProvider, Table } from "@douyinfe/semi-ui";
+import { ConfigProvider, LocaleProvider, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
-import { Pagination } from '@douyinfe/semi-ui';
-import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
-import DefaultSetting from "./search-setting/DefaultSetting";
 import { useHistory } from "react-router";
 import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
-import LangComponent from "@/lang/local";
-import { FlowInDetailInterface, FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
-import FlowService from "@/services/flow";
+import { FlowInDetailInterface, FlowParamsInterface } from "@/services/flow/in_interface";
 import { formatUrl } from "@/utils/js_utils/format";
 import ConsistentService from "@/services/consistent";
 import loacl from "@/lang/semi-ui-local";

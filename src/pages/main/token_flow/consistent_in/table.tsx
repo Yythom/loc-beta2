@@ -5,13 +5,9 @@ import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import LangComponent from "../../../../lang/local";
 import { Pagination } from '@douyinfe/semi-ui';
-import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
-import DefaultSetting from "./search-setting/DefaultSetting";
+import MoreSetting from "@/components/table_component/MoreSetting";
 import { useHistory } from "react-router";
-import NumberUtils from "@/utils/js_utils/number";
-import { DashboardInterface, DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
-import RankingService, { initParams } from "@/services/ranking";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 import ConsistentService from "@/services/consistent";
 import { ConsistentOutListInterface } from "@/services/consistent/in_interface";
@@ -40,7 +36,7 @@ const TableComponent = memo(() => {
         const { sorter } = e;
         if (sorter) {
             const { sortOrder, dataIndex } = sorter;
-            const sortRet: DashboardParams['sort'] = {}
+            const sortRet: any = {}
             sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : '';
             setParams({
                 ...params,
@@ -104,13 +100,14 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <Collapsible isOpen={true}>
-            <MoreSetting
-                setParams={setSearchParams}
-                params={params}
-            />
-        </Collapsible>
+
         <div className='fb' style={{ justifyContent: 'flex-end' }}>
+            <Collapsible isOpen={true}>
+                <MoreSetting
+                    setParams={setSearchParams}
+                    params={params}
+                />
+            </Collapsible>
             <Pagination
                 showTotal
                 total={tableData?.total}

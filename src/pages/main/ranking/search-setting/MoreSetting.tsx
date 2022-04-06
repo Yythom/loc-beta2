@@ -1,5 +1,4 @@
-import { Popover, RadioGroup, } from "@douyinfe/semi-ui"
-import { Radio } from "@douyinfe/semi-ui/lib/es/radio";
+import { Popover, TabPane, Tabs, } from "@douyinfe/semi-ui"
 import Text from "@douyinfe/semi-ui/lib/es/typography/text"
 import { Fragment, memo, } from "react"
 import { IconSort } from '@douyinfe/semi-icons';
@@ -30,43 +29,38 @@ export const PopContent = memo(({ text, content, hover, showHover, }: { text: an
 
 const MoreSetting = memo(({ setParams, }: { setParams: Function, params: any }) => {
     // const { search } = params
-    return <div>
-        <div className=''>
-            <div className="flex" style={{ width: '99%', minHeight: '60px' }}>
-                <div style={{ marginRight: '8px' }}><Text className='font-bold flex'>
-                    Swap Times
-                    <PopContent
-                        text={`Number of times the account swaps with another account. For example, account A buys 10 ETH from account B. Then the Swap Num of account A is 1. `}
-                    />
-                </Text></div>
-                <div>
-                    <RadioGroup
-                        defaultValue={1}
-                        onChange={(e) => {
-                            setParams('swapTimes', e.target.value || '')
-                        }}>
-                        <Radio value={0}>All</Radio>
-                        <Radio value={1}>1 - 5</Radio>
-                        <Radio value={5}>5 - 50</Radio>
-                        <Radio value={50}>50 +</Radio>
-                    </RadioGroup>
-                </div>
-            </div>
+    return <div className='more_setting' style={{ width: '99%' }}>
+        <div className="flex" style={{ width: '99%', minHeight: '60px' }}>
+            <Tabs
+                defaultActiveKey="1"
+                type="button"
+                onChange={(itemKey) => {
+                    setParams('swapTimes', itemKey || '')
+                }}>
+                <TabPane tab="All" itemKey="0" />
+                <TabPane tab="1 - 5" itemKey="1" />
+                <TabPane tab="5 - 50" itemKey="5" />
+                <TabPane tab="50 +" itemKey="50" />
+            </Tabs>
+            <PopContent
+                text={`Number of times the account swaps with another account. For example, account A buys 10 ETH from account B. Then the Swap Num of account A is 1. `}
+            />
+        </div>
 
-            <div className="flex" style={{ width: '99%', }}>
-                <div style={{ marginRight: '8px' }}><Text className='font-bold'>Time Range</Text></div>
-                <div>
-                    <RadioGroup
-                        defaultValue={1}
-                        onChange={(e) => {
-                            setParams('timeRange', e.target.value || '')
-                        }}>
-                        <Radio value={1}>1 Day</Radio>
-                        <Radio value={7}>7 Day</Radio>
-                        <Radio value={30}>30 Day</Radio>
-                    </RadioGroup>
-                </div>
-            </div>
+        <div className="flex" style={{ width: '99%', }}>
+            <Tabs
+                defaultActiveKey="1"
+                type="button"
+                onChange={(itemKey) => {
+                    setParams('timeRange', itemKey || '')
+                }}>
+                <TabPane tab="1 Day" itemKey="1" />
+                <TabPane tab="3 Day" itemKey="3" />
+                <TabPane tab="7 Day" itemKey="7" />
+            </Tabs>
+            <PopContent
+                text={`Number of times the account swaps with another account. For example, account A buys 10 ETH from account B. Then the Swap Num of account A is 1.`}
+            />
         </div>
     </div>
 })

@@ -4,8 +4,6 @@ import { Collapsible, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import { Pagination } from '@douyinfe/semi-ui';
-import MoreSetting, { PopContent, } from "./search-setting/MoreSetting";
-import DefaultSetting from "./search-setting/DefaultSetting";
 import { useHistory } from "react-router";
 import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
@@ -15,6 +13,7 @@ import { FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interfa
 import FlowService from "@/services/flow";
 import ModalControl from "@/pro-modal/modal_control";
 import Storage from "@/utils/js_utils/storage";
+import MoreSetting from "@/components/table_component/MoreSetting";
 
 const TableComponent = memo(() => {
     const history = useHistory()
@@ -103,13 +102,14 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <Collapsible isOpen={true}>
-            <MoreSetting
-                setParams={setSearchParams}
-                params={params}
-            />
-        </Collapsible>
+
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
+            <Collapsible isOpen={true}>
+                <MoreSetting
+                    setParams={setSearchParams}
+                    params={params}
+                />
+            </Collapsible>
             <Pagination
                 showTotal
                 total={tableData?.total}
