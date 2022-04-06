@@ -10,12 +10,12 @@ class ConsistentService {
             data: {
                 "condition": {},
                 "search": {
-                    "source": "cex",
+                    "source": data?.source,
                     "time_range": data?.search?.time_range || 1,
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 30,
+                    "page_size": 10,
                     "all": false,
                     "total": true
                 },
@@ -47,12 +47,12 @@ class ConsistentService {
             data: {
                 "condition": {},
                 "search": {
-                    "source": "cex",
+                    "source": data?.source,
                     "time_range": data?.search?.time_range || 1,
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 30,
+                    "page_size": 10,
                     "all": false,
                     "total": true
                 },

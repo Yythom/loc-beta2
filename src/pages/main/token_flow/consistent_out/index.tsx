@@ -8,7 +8,7 @@ const ConsistentOut = memo(() => {
             <div className='content-head' style={{ marginBottom: '12px' }}>
                 <div className='desc' style={{ width: '80%', wordBreak: 'break-all', lineHeight: '24px' }}>
                     <Text>
-                        <h2>Consistent Out</h2>
+                        <h2>Consistent Token Inflow to CEX</h2>
                     </Text>
                 </div>
             </div>

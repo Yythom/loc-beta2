@@ -1,3 +1,11 @@
 .flow {
     overflow: scroll;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    >div {
+        flex: 1 1 45%;
+        flex-shrink: 0;
+        margin: 20px;
+    }
 }

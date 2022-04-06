@@ -24,7 +24,8 @@ const TableComponent = memo(() => {
         FlowService.get_flow_out_list,
         {
             initParams: {
-                page: 1
+                page: 1,
+                source: 'cex'
             }
         }
     )
@@ -112,7 +113,7 @@ const TableComponent = memo(() => {
                 showTotal
                 total={tableData?.total}
                 currentPage={params?.page}
-                pageSize={30}
+                pageSize={10}
                 onPageChange={page => setParams('page', page)}
                 size='small'
                 hoverShowPageSelect

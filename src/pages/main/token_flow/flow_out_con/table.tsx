@@ -5,14 +5,12 @@ import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import { Pagination } from '@douyinfe/semi-ui';
 import { useHistory } from "react-router";
-import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 import LangComponent from "@/lang/local";
 import { FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
 import FlowService from "@/services/flow";
 import ModalControl from "@/pro-modal/modal_control";
-import Storage from "@/utils/js_utils/storage";
 import MoreSetting from "@/components/table_component/MoreSetting";
 
 const TableComponent = memo(() => {
@@ -23,11 +21,11 @@ const TableComponent = memo(() => {
         tableData,
         loading
     } = useTable<FlowInInterface, FlowParamsInterface>(
-        FlowService.get_flow_in_list,
+        FlowService.get_flow_out_list,
         {
             initParams: {
                 page: 1,
-                source: 'cex'
+                source: 'SmartMoney'
             }
         }
     )
@@ -38,12 +36,12 @@ const TableComponent = memo(() => {
         const { sorter } = e;
         if (sorter) {
             const { sortOrder, dataIndex } = sorter;
-            const sortRet: DashboardParams['sort'] = {}
+            const sortRet: any = {}
             sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : '';
             setParams({
                 ...params,
                 page: 1,
-                // sort: sortRet
+                sort: sortRet
             })
             setSortProfit(dataIndex === "profitUsd" ? sortOrder : false);
         }
@@ -73,14 +71,14 @@ const TableComponent = memo(() => {
             },
 
             {
-                title: <>  Inflow($)  </>,
+                title: <>  Outflow($)  </>,
                 dataIndex: 'total',
                 render: (text: any, record: FlowInInterface['list'][0], index: any) => {
                     return <ModalControl bindKey="token_flow_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=in`)
+                        history.push(`/token-flow?id=${record?.id}&type=out`)
                     }}>
                         <div className='flex'  >
-                            <Text>$ {text}</Text>
+                            <Text>- $ {text}</Text>
                         </div>
                     </ModalControl>
                 },
@@ -90,7 +88,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <ModalControl bindKey="token_flow_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=in`)
+                        history.push(`/token-flow?id=${record?.id}&type=out`)
                     }}>
                         <div className='flex'  >
                             <Text>{text}</Text>

@@ -2,6 +2,7 @@ export interface ConsistentOutListParamsInterface {
     search?: Search;
     page?: number;
     sort?: Sort;
+    source?: 'SmartMoney' | 'cex'
 }
 
 interface Search {

@@ -8,7 +8,7 @@ const FlowOut = memo(() => {
             <div className='content-head' style={{ marginBottom: '12px' }}>
                 <div className='desc' style={{ width: '80%', wordBreak: 'break-all', lineHeight: '24px' }}>
                     <Text>
-                        <h2>Flow Out</h2>
+                        <h2>Token Outflow from CEX</h2>
                     </Text>
                 </div>
             </div>

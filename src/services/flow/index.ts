@@ -8,12 +8,12 @@ class FlowService {
             data: {
                 "condition": {},
                 "search": {
-                    "source": "SmartMoney",
+                    "source": data?.source,
                     "time_range": data?.search?.time_range || 1,
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 30,
+                    "page_size": 10,
                     "all": false,
                     "total": true
                 },
@@ -45,12 +45,12 @@ class FlowService {
             data: {
                 "condition": {},
                 "search": {
-                    "source": "SmartMoney",
+                    "source": data?.source,
                     "time_range": 1,
                 },
                 "page": {
                     "page": data?.page || 1,
-                    "page_size": 30,
+                    "page_size": 10,
                     "all": false,
                     "total": true
                 },

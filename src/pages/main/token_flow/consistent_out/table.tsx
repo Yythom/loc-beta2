@@ -25,7 +25,8 @@ const TableComponent = memo(() => {
         ConsistentService.get_consistent_out_list,
         {
             initParams: {
-                page: 1
+                page: 1,
+                source: 'cex'
             }
         }
     )
@@ -73,26 +74,30 @@ const TableComponent = memo(() => {
                 title: <>Outflow ($) </>,
                 dataIndex: 'total',
                 render: (text: any, record: any, index: any) => {
-                    return <ModalControl bindKey="consistent_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=out`)
-                    }}>
+                    return <div
+                        // bindKey="consistent_detail"
+                        onClick={() => {
+                            // history.push(`/token-flow?id=${record?.id}&type=in`)
+                        }}>
                         <div className='flex'  >
-                            <Text>- $ {text}</Text>
+                            <Text>- ${text}</Text>
                         </div>
-                    </ModalControl>;
+                    </div>;
                 },
             },
             {
                 title: <>address </>,
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
-                    return <ModalControl bindKey="consistent_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=out`)
-                    }}>
+                    return <div
+                        // bindKey="consistent_detail"
+                        onClick={() => {
+                            // history.push(`/token-flow?id=${record?.id}&type=in`)
+                        }}>
                         <div className='flex'  >
                             <Text>{text}</Text>
                         </div>
-                    </ModalControl>;
+                    </div>;
                 },
             },
         ]
@@ -112,7 +117,7 @@ const TableComponent = memo(() => {
                 showTotal
                 total={tableData?.total}
                 currentPage={params?.page}
-                pageSize={30}
+                pageSize={10}
                 onPageChange={page => setParams('page', page)}
                 size='small'
                 hoverShowPageSelect

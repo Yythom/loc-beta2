@@ -2,13 +2,13 @@ import './index.scss'
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import TableComponent from './table';
 import { memo } from 'react';
-const ConsistentIn = memo(() => {
+const ConsistentInCon = memo(() => {
     return (
         <div >
             <div className='content-head' style={{ marginBottom: '12px' }}>
                 <div className='desc' style={{ width: '80%', wordBreak: 'break-all', lineHeight: '24px' }}>
                     <Text>
-                        <h2>Consistent Token Inflow to CEX</h2>
+                        <h2>Consistent Token Inflow to Smart Money</h2>
                     </Text>
                 </div>
             </div>
@@ -17,7 +17,7 @@ const ConsistentIn = memo(() => {
     );
 })
 
-export default ConsistentIn;
+export default ConsistentInCon;
 
 
 
