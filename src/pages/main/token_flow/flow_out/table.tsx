@@ -25,7 +25,7 @@ const TableComponent = memo(() => {
         {
             initParams: {
                 page: 1,
-                source: 'cex'
+                source: 'CEX'
             }
         }
     )
