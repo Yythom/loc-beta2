@@ -76,7 +76,7 @@ class DexTrackServices {
                 "page": {
                     "page": data?.page,
                     "page_size": 20,
-                    "all": false,
+                    "all": true,
                     "total": true
                 },
                 "sort": {
@@ -86,6 +86,28 @@ class DexTrackServices {
         return result
     }
 
+    static get_dexTradeTrending_list = async (data: any) => {
+        const result: any = await request({
+            url: '/v1/user/dexTradeTrending/list',
+            data: {
+                "condition": {},
+                "search": {
+                    "source": data.source,
+                    "days": data?.search?.days || 1,
+                },
+                "page": {
+                    "page": data?.page,
+                    "page_size": 20,
+                    "all": false,
+                    "total": true
+                },
+                "sort": {
+                }
+            }
+        })
+
+        return result?.list || []
+    }
 
 }
 

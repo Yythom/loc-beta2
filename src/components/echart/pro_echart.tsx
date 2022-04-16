@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { memo } from "react";
-import useEchart, { useEchartOption } from "./useEchart";
+import useEchart, { sourceItem, useEchartOption } from "./useEchart";
 
 const ProEchart = memo(({
 	classname,
@@ -9,7 +9,7 @@ const ProEchart = memo(({
 }: {
 	classname: string;
 	option: useEchartOption;
-	dataSource: number[] | number[][],
+	dataSource: any
 }) => {
 
 	const [echart] = useEchart(classname, option, dataSource)

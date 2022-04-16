@@ -5,10 +5,14 @@ import { memo } from "react";
 import TokenBalanceofSmartMoney from "./token_balance_smartmoney";
 import './index.scss'
 import SmartMoneyDensity from "./SmartMoneyDensity";
+import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 
 const TokenBalance = memo(() => {
     return (
         <div className='wallet_balance' style={{ width: '100%', height: '100%', }}>
+            <Text>
+                <h2>Portfolio Overview </h2>
+            </Text>
             <ProEchart
                 classname='test1'
                 option={{
@@ -16,27 +20,44 @@ const TokenBalance = memo(() => {
                         name: 'X',
                         data: [1, 2, 3, 4, 5, 6, 7],
                     },
-                    y_option: {
-                        name: 'Y'
-                    },
                 }}
-                dataSource={[1, 2, 3]}
+                dataSource={[{
+                    name: 'x',
+                    list: [1, 2, 3]
+                }]}
             />
             <TokenBalanceofSmartMoney />
             <div style={{ height: '2rem' }}></div>
             <SmartMoneyDensity />
+
+            <div style={{ height: '2rem' }}></div>
+
+            <Text>
+                <h2>Smart Money  StableCoin & ETH vs All Coins</h2>
+            </Text>
             <ProEchart
                 classname='test2'
                 option={{
                     x_option: {
-                        name: 'X',
+                        name: '',
                         data: [1, 2, 3, 4, 5, 6, 7],
                     },
-                    y_option: {
-                        name: 'Y'
-                    },
                 }}
-                dataSource={[[1, 2, 3], [2, 3, 5]]}
+                dataSource={[
+                    [
+                        {
+                            name: '1',
+                            list: [1, 2, 3]
+                        },
+                    ],
+                    [
+                        {
+                            name: '2',
+                            list: [1, 4, 6]
+                        }
+                    ],
+                ]
+                }
             />
         </div >
     )
