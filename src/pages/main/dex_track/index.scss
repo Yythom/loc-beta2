@@ -1,1 +1,6 @@
-.dex_track {}
+.dex_track {
+    overflow: scroll;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+}

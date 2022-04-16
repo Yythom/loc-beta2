@@ -4,16 +4,18 @@ import useEchart, { useEchartOption } from "./useEchart";
 
 const ProEchart = memo(({
 	classname,
-	option
+	option,
+	dataSource,
 }: {
 	classname: string;
 	option: useEchartOption;
+	dataSource: number[] | number[][],
 }) => {
 
-	const [echart] = useEchart(classname, option)
+	const [echart] = useEchart(classname, option, dataSource)
 
 	return <div className={classname} style={{
-		width: '50rem',
+		width: '100%',
 		height: '40rem'
 	}}>
 

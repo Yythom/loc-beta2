@@ -15,18 +15,39 @@ export interface useEchartOption {
 		name?: string,
 		show?: boolean
 	}
-	dataSource: string[] | number[] | undefined
 }
+/** 
+ * @param option   
+ * splitLine 隐藏背景的网格线属性
+ */
 
-function useEchart(classname: string, option: useEchartOption,) {
+function useEchart(classname: string, option: useEchartOption, dataSoure: number[] | number[][],) {
 	const [chart, setEChart] = useState<echarts.ECharts>();
 
 	useEffect(() => {
 		const dom: HTMLElement | null = document.querySelector('.' + classname)
-		if (dom && option?.dataSource) {
-			let myChart = echarts.init(dom, echart_theme);
-			myChart.setOption({
+		if (dom && dataSoure) {
+			const series = []
+			if (Array.isArray(dataSoure[0])) {
+				dataSoure.forEach(e => {
+					series.push({
+						symbol: 'none',
+						data: e,
+						type: 'line',
+						smooth: true
+					})
+				})
+			} else {
+				series.push({
+					symbol: 'none',
+					data: dataSoure,
+					type: 'line',
+					smooth: true
+				})
+			}
 
+			const myChart = echarts.init(dom, echart_theme);
+			myChart.setOption({
 				title: {
 					text: option?.title || ''
 				},
@@ -41,14 +62,7 @@ function useEchart(classname: string, option: useEchartOption,) {
 						...option.y_option,
 					}
 				],
-				series: [
-					{
-						symbol: 'none',
-						data: option?.dataSource,
-						type: 'line',
-						smooth: true
-					}
-				],
+				series,
 				tooltip: {
 					trigger: 'axis',
 					//支持字符串模板和回调函数两种形式,模板变量有 {a}, {b}，{c}，{d}，{e}，分别表示系列名，数据名，数据值等
@@ -65,7 +79,7 @@ function useEchart(classname: string, option: useEchartOption,) {
 			});
 			setEChart(myChart);
 		}
-	}, [option?.dataSource])
+	}, [dataSoure])
 
 	return [
 		chart,

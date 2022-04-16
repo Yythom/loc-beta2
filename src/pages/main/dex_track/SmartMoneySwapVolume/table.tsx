@@ -1,18 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Collapsible, Table } from "@douyinfe/semi-ui";
-import { memo, useMemo, useState } from "react";
+import { memo, useMemo } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import { Pagination } from '@douyinfe/semi-ui';
 import { useHistory } from "react-router";
-import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
-import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 import LangComponent from "@/lang/local";
-import { FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
-import FlowService from "@/services/flow";
 import MoreSetting from "@/components/table_component/MoreSetting";
-import ModalControl from "@/pro-modal/modal_control";
+import TokenBalanceService from "@/services/token_balance";
+import DexTrackServices from "@/services/dex_track";
+import NumberUtils from "@/utils/js_utils/number";
 
 const TableComponent = memo(() => {
     const history = useHistory()
@@ -24,50 +22,50 @@ const TableComponent = memo(() => {
         handle: {
             setSearch
         }
-    } = useTable<FlowInInterface, FlowParamsInterface>(
-        FlowService.get_flow_in_list,
+    } = useTable<any, any>(
+        DexTrackServices.get_SmartMoneySwapVolume_list,
         {
             initParams: {
                 page: 1,
-                source: 'CEX'
             }
         }
     )
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
-                dataIndex: 'token_name',
+                title: <>Token in </>,
+                dataIndex: 'in_token_name',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{index}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },
             {
-                title: <>  Inflow($)  </>,
-                dataIndex: 'total',
-                render: (text: any, record: FlowInInterface['list'][0], index: any) => {
-                    return <ModalControl bindKey="token_flow_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=in`)
-                    }}>
-                        <div className='flex'  >
-                            <Text>$ {text}</Text>
-                        </div>
-                    </ModalControl>
+                title: <>Token out</>,
+                dataIndex: 'out_token_name',
+                render: (text: any, record: any, index: any) => {
+                    return <div className='flex' >
+                        <Text>{text}</Text>
+                    </div>;
                 },
             },
             {
-                title: <>address</>,
-                dataIndex: 'address_num',
+                title: <>Volume</>,
+                dataIndex: 'volume',
                 render: (text: any, record: any, index: any) => {
-                    return <ModalControl bindKey="token_flow_detail" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=in`)
-                    }}>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </ModalControl>
+                    return <div className='flex' >
+                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                    </div>;
+                },
+            },
+            {
+                title: <>Volume Change</>,
+                dataIndex: 'volume_change',
+                render: (text: any, record: any, index: any) => {
+                    return <div className='flex' >
+                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                    </div>;
                 },
             },
         ]
@@ -75,7 +73,6 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting

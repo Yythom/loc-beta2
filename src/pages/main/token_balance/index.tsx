@@ -1,18 +1,43 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { TabPane, Tabs } from "@douyinfe/semi-ui";
-import { memo, useState } from "react";
+import ProEchart from "@/components/echart/pro_echart";
+import { memo } from "react";
+import TokenBalanceofSmartMoney from "./token_balance_smartmoney";
 import './index.scss'
+import SmartMoneyDensity from "./SmartMoneyDensity";
 
 const TokenBalance = memo(() => {
-    const [tab, setTab] = useState('1')
-    const tabChange = async (e: any, data?: any) => {
-        setTab(e)
-    }
-
     return (
         <div className='wallet_balance' style={{ width: '100%', height: '100%', }}>
-            TokenBalance
+            <ProEchart
+                classname='test1'
+                option={{
+                    x_option: {
+                        name: 'X',
+                        data: [1, 2, 3, 4, 5, 6, 7],
+                    },
+                    y_option: {
+                        name: 'Y'
+                    },
+                }}
+                dataSource={[1, 2, 3]}
+            />
+            <TokenBalanceofSmartMoney />
+            <div style={{ height: '2rem' }}></div>
+            <SmartMoneyDensity />
+            <ProEchart
+                classname='test2'
+                option={{
+                    x_option: {
+                        name: 'X',
+                        data: [1, 2, 3, 4, 5, 6, 7],
+                    },
+                    y_option: {
+                        name: 'Y'
+                    },
+                }}
+                dataSource={[[1, 2, 3], [2, 3, 5]]}
+            />
         </div >
     )
 })
