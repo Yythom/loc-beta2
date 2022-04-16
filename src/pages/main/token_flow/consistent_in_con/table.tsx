@@ -20,7 +20,10 @@ const TableComponent = memo(() => {
         setParams,
         params,
         tableData,
-        loading
+        loading,
+        handle: {
+            setSearch
+        }
     } = useTable<ConsistentOutListInterface, ConsistentOutListParamsInterface>(
         ConsistentService.get_consistent_in_list,
         {
@@ -31,33 +34,6 @@ const TableComponent = memo(() => {
         }
     )
     const [isOpen, setOpen] = useState<boolean>(false);
-    const [sortProfit, setSortProfit] = useState<SortOrder>('descend') // Profi受控 默认排序是他
-
-    const onChange = (e: ChangeInfo<any>) => {
-        const { sorter } = e;
-        if (sorter) {
-            const { sortOrder, dataIndex } = sorter;
-            const sortRet: any = {}
-            sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : '';
-            setParams({
-                ...params,
-                page: 1,
-                // sort: sortRet
-            })
-            setSortProfit(dataIndex === "profitUsd" ? sortOrder : false);
-        }
-    };
-
-    const setSearchParams = (key: String, value: any) => {
-        params && setParams({
-            ...params,
-            page: 1,
-            search: {
-                ...params?.search,
-                [`${key}`]: value
-            }
-        })
-    }
 
     const columns = useMemo(() => {
         return [
@@ -101,7 +77,7 @@ const TableComponent = memo(() => {
                 },
             },
         ]
-    }, [params, sortProfit]);
+    }, [params,]);
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
@@ -109,7 +85,7 @@ const TableComponent = memo(() => {
         <div className='fb' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
-                    setParams={setSearchParams}
+                    setParams={setSearch}
                     params={params}
                 />
             </Collapsible>
@@ -127,7 +103,6 @@ const TableComponent = memo(() => {
         <div className='Portfolio card' style={{ marginTop: '20px' }}>
             <LangComponent>
                 <Table
-                    onChange={onChange}
                     loading={loading}
                     className='table'
                     pagination={false}

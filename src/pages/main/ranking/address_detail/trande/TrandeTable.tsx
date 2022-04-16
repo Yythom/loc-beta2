@@ -15,7 +15,6 @@ import HistoryItem from "./item";
 const TrandeTable = memo(() => {
     const [{ mode }] = useSlice<GlobalStateInterface>();
     const url: any = formatUrl();
-    const [total, setTotal] = useState(1);
 
     const {
         params,
@@ -34,12 +33,8 @@ const TrandeTable = memo(() => {
                         address: url.address
                     },
                 },
-                callback: (ret) => {
-                    setTotal(ret.total)
-                }
             }
         )
-
     const renderListData = useMemo(() => {
         if (!tableData) return []
         var dateTime: any = []
@@ -62,7 +57,7 @@ const TrandeTable = memo(() => {
             <div className='flex' style={{ justifyContent: 'flex-end' }}>
                 <Pagination
                     showTotal
-                    total={total}
+                    total={tableData?.total}
                     pageSize={30}
                     onPageChange={page => setParams('page', page)}
                     size='small'
@@ -73,7 +68,6 @@ const TrandeTable = memo(() => {
             <div className='_table'>
                 {
                     renderListData.map((e: any, i: number) => {
-                        // if()
                         return (
                             <Fragment key={`${e.id}`}>
                                 {

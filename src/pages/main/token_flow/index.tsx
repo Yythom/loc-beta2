@@ -13,10 +13,6 @@ import FlowOutCon from "./flow_out_con";
 import './index.scss'
 
 const TokenFlow = memo(() => {
-    const [tab, setTab] = useState('1')
-    const tabChange = async (e: any, data?: any) => {
-        setTab(e)
-    }
 
     return (
         <div className='flow flex' style={{ width: '100%', height: '100%', }}>
