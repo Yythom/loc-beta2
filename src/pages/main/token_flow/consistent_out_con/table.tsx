@@ -39,7 +39,7 @@ const TableComponent = memo(() => {
         return [
             {
                 title: <>Token </>,
-                dataIndex: 'contract_name',
+                dataIndex: 'token_name',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex'  >
                         <Text>{text}</Text>
@@ -47,8 +47,8 @@ const TableComponent = memo(() => {
                 },
             },
             {
-                title: <>Outflow ($) </>,
-                dataIndex: 'total',
+                title: <>Outflow times </>,
+                dataIndex: 'times',
                 render: (text: any, record: any, index: any) => {
                     return <div
                         // bindKey="consistent_detail"
@@ -56,13 +56,13 @@ const TableComponent = memo(() => {
                             // history.push(`/token-flow?id=${record?.id}&type=in`)
                         }}>
                         <div className='flex'  >
-                            <Text>- ${text}</Text>
+                            <Text> {text}</Text>
                         </div>
                     </div>;
                 },
             },
             {
-                title: <>address </>,
+                title: <>Address</>,
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <div
@@ -70,6 +70,28 @@ const TableComponent = memo(() => {
                         onClick={() => {
                             // history.push(`/token-flow?id=${record?.id}&type=in`)
                         }}>
+                        <div className='flex'  >
+                            <Text>{text}</Text>
+                        </div>
+                    </div>;
+                },
+            },
+            {
+                title: <>Avg Outflow Times</>,
+                dataIndex: 'avg_num',
+                render: (text: any, record: any, index: any) => {
+                    return <div>
+                        <div className='flex'  >
+                            <Text>{text}</Text>
+                        </div>
+                    </div>;
+                },
+            },
+            {
+                title: <>Volume</>,
+                dataIndex: 'volume',
+                render: (text: any, record: any, index: any) => {
+                    return <div>
                         <div className='flex'  >
                             <Text>{text}</Text>
                         </div>

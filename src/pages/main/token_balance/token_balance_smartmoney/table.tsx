@@ -68,7 +68,7 @@ const TableComponent = memo(() => {
                 },
             },
             {
-                title: <>address</>,
+                title: <>Address</>,
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >

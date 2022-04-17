@@ -58,7 +58,7 @@ const TableComponent = memo(() => {
                 },
             },
             {
-                title: <>address</>,
+                title: <>Address</>,
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <ModalControl bindKey="token_flow_detail" onClick={() => {
@@ -70,6 +70,7 @@ const TableComponent = memo(() => {
                     </ModalControl>
                 },
             },
+
         ]
     }, [params]);
 
