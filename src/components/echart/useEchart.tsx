@@ -44,11 +44,14 @@ function useEchart(classname: string, option: useEchartOption,
 		const dom: HTMLElement | null = document.querySelector('.' + classname)
 		if (dom && dataSoure) {
 			const series = []
+			const yAxis = []
+			const legend: any = []
 			if (Array.isArray(dataSoure[0])) {
 				dataSoure.forEach((e: any, i: number) => {
 					series.push({
 						symbol: 'none',
 						data: e[0].list,
+						name: e[0].name,
 						type: 'line',
 						yAxisIndex: i, // 两边y轴数据显示必须加
 						valueFormatter: function (value: any) {
@@ -56,32 +59,29 @@ function useEchart(classname: string, option: useEchartOption,
 						},
 						smooth: true
 					})
-				})
-			} else {
-				series.push({
-					symbol: 'none',
-					data: dataSoure[0].list,
-					type: 'line',
-					smooth: true
-				})
-			}
-			const yAxis = []
-			if (Array.isArray(dataSoure[0])) {
-				dataSoure.forEach((e: any, i: number) => {
 					yAxis.push({
 						type: 'value',
 						name: e[0].name,
 						splitLine: true,
 						...e[i]?.y_option,
 					})
+					legend.push(e[0].name)
 				})
 			} else {
+				series.push({
+					symbol: 'none',
+					name: dataSoure[0].name,
+					data: dataSoure[0].list,
+					type: 'line',
+					smooth: true
+				})
 				yAxis.push({
 					type: 'value',
 					name: dataSoure[0].name,
 					splitLine: true,
 					...dataSoure[0].y_option,
 				})
+				legend.push(dataSoure[0].name)
 			}
 
 			const myChart = echarts.init(dom, echart_theme);
@@ -95,9 +95,10 @@ function useEchart(classname: string, option: useEchartOption,
 						splitLine: true
 					}
 				],
-				// legend: { 提示线条是哪根
-				// 	data: ['22321', 'Temperature']
-				// },
+				// 提示线条是哪根
+				legend: {
+					data: legend
+				},
 				yAxis,
 				series,
 				tooltip: {

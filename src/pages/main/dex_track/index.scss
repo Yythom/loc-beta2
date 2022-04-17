@@ -3,4 +3,9 @@
     flex-wrap: wrap;
     align-items: flex-start;
 
+    >.flex {
+        >div {
+            width: calc(50% - 1.5rem);
+        }
+    }
 }

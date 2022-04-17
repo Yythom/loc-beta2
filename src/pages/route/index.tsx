@@ -28,11 +28,11 @@ export interface RouteItemInterface {
 
 const menu_route: RouteItemInterface[] = [
     // ranking
-    {
-        text: 'DEX Profit Ranking',
-        icon: 'iconshezhi',
-        itemKey: 'ranking',
-    },
+    // {
+    //     text: 'DEX Profit Ranking',
+    //     icon: 'iconshezhi',
+    //     itemKey: 'ranking',
+    // },
     {
         text: '',
         icon: '',

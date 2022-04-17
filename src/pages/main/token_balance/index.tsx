@@ -22,7 +22,7 @@ const TokenBalance = memo(() => {
                     },
                 }}
                 dataSource={[{
-                    name: 'x',
+                    name: 'y',
                     list: [1, 2, 3]
                 }]}
             />
