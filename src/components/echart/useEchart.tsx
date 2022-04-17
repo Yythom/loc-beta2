@@ -48,42 +48,48 @@ function useEchart(classname: string, option: useEchartOption,
 			const legend: any = []
 			if (Array.isArray(dataSoure[0])) {
 				dataSoure.forEach((e: any, i: number) => {
+					const list = e[0]?.list || []
+					const name = e[0]?.name || ''
 					series.push({
 						symbol: 'none',
-						data: e[0].list,
-						name: e[0].name,
+						data: list,
+						name,
 						type: 'line',
 						yAxisIndex: i, // 两边y轴数据显示必须加
 						valueFormatter: function (value: any) {
-							return value + e[0].name;
+							return value + name;
 						},
 						smooth: true
 					})
 					yAxis.push({
 						type: 'value',
-						name: e[0].name,
+						name,
 						splitLine: true,
 						...e[i]?.y_option,
 					})
-					legend.push(e[0].name)
+					legend.push(name)
 				})
 			} else {
-				series.push({
-					symbol: 'none',
-					name: dataSoure[0].name,
-					data: dataSoure[0].list,
-					type: 'line',
-					smooth: true
-				})
-				yAxis.push({
-					type: 'value',
-					name: dataSoure[0].name,
-					splitLine: true,
-					...dataSoure[0].y_option,
-				})
-				legend.push(dataSoure[0].name)
+				if (dataSoure[0]) {
+					const list = dataSoure[0]?.list || []
+					const name = dataSoure[0]?.name || ''
+					series.push({
+						symbol: 'none',
+						name: name,
+						data: list,
+						type: 'line',
+						smooth: true
+					})
+					yAxis.push({
+						type: 'value',
+						name: name,
+						splitLine: true,
+						...dataSoure[0].y_option,
+					})
+					legend.push(name)
+				}
 			}
-
+			if (!series[0]) return
 			const myChart = echarts.init(dom, echart_theme);
 			const opt = {
 				title: {

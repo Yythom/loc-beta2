@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeInfo } from "@douyinfe/semi-ui/lib/es/table";
-import { useLayoutEffect } from "react";
 import useRequest from "./useRequest";
 useTable.initPage = 1;
 
@@ -33,10 +32,6 @@ function useTable<T, P = undefined>(
         initParams: { ...option?.initParams, page: 1 },
         start_owner: option?.start_owner,
     })
-
-    useLayoutEffect(() => {
-        fetch();
-    }, []);
 
     async function initFetch() {
         const initParams = { ...option?.initParams, page: useTable.initPage } as any
