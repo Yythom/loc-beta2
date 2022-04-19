@@ -19,6 +19,7 @@ const TableComponent = memo(() => {
         params,
         tableData,
         loading,
+        BuildTable,
         handle: {
             setSearch
         }
@@ -35,11 +36,6 @@ const TableComponent = memo(() => {
             {
                 title: <>Address</>,
                 dataIndex: 'address',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{index}</Text>
-                    </div>;
-                },
             },
             {
                 title: <>Invest($)</>,
@@ -78,29 +74,20 @@ const TableComponent = memo(() => {
                 },
             },
         ]
-    }, [params]);
+    }, []);
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className='flex' style={{ justifyContent: 'flex-end' }}>
+        <div className='flex' >
             <Collapsible isOpen={true}>
                 <MoreSetting
                     setParams={setSearch}
                     params={params}
                 />
             </Collapsible>
-            <Pagination
-                showTotal
-                total={tableData?.total}
-                currentPage={params?.page}
-                pageSize={10}
-                onPageChange={page => setParams('page', page)}
-                size='small'
-                hoverShowPageSelect
-            />
         </div>
-
-        <div className='Portfolio card' style={{ marginTop: '20px' }}>
+        <BuildTable columns={columns} />
+        {/* <div className='Portfolio card' style={{ marginTop: '20px' }}>
             <LangComponent>
                 <Table
                     loading={loading}
@@ -110,7 +97,7 @@ const TableComponent = memo(() => {
                     dataSource={tableData?.list}
                 />
             </LangComponent>
-        </div>
+        </div> */}
     </div>
 
 })

@@ -21,7 +21,11 @@
     align-items: center;
     justify-content: center;
 }
-
+.flex-end{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
 .fb {
     display: flex;
     align-items: center;

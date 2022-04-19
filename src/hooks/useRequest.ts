@@ -22,13 +22,14 @@ function useRequest<T, P = undefined>(
     const [loading, setloading] = useState<boolean>(false);
     const [params, setParams] = useSearch<P>(option.initParams, {
         callback: (k, v) => {
-            if (k === 'page' || k === 'pageSize') {
-                fetch({ ...params, [k]: v })
+            if (k === 'page' || k === 'pageSize' || k === 'page_Size') {
+                option.start_owner && fetch({ ...params, [k]: v })
             }
         }
     });
     const fetch = useCallback(async (_params?: P) => {
         !loading && setloading(true);
+        _params && setParams({ ..._params });
         const res = await promise(_params || params);
         setloading(false);
         if (res) {
