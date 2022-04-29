@@ -22,6 +22,7 @@ const TableComponent = memo(() => {
         params,
         tableData,
         loading,
+        BuildTable,
         handle: {
             setSearch
         }
@@ -89,28 +90,9 @@ const TableComponent = memo(() => {
                     params={params}
                 />
             </Collapsible>
-            <Pagination
-                showTotal
-                total={tableData?.total}
-                currentPage={params?.page}
-                pageSize={10}
-                onPageChange={page => setParams('page', page)}
-                size='small'
-                hoverShowPageSelect
-            />
         </div>
 
-        <div className='Portfolio card' style={{ marginTop: '20px' }}>
-            <LangComponent>
-                <Table
-                    loading={loading}
-                    className='table'
-                    pagination={false}
-                    columns={columns}
-                    dataSource={tableData?.list}
-                />
-            </LangComponent>
-        </div>
+        <BuildTable columns={columns} />
     </div>
 
 })

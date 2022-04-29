@@ -87,17 +87,6 @@ const TableComponent = memo(() => {
             </Collapsible>
         </div>
         <BuildTable columns={columns} />
-        {/* <div className='Portfolio card' style={{ marginTop: '20px' }}>
-            <LangComponent>
-                <Table
-                    loading={loading}
-                    className='table'
-                    pagination={false}
-                    columns={columns}
-                    dataSource={tableData?.list}
-                />
-            </LangComponent>
-        </div> */}
     </div>
 
 })
