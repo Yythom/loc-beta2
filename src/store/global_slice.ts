@@ -1,8 +1,7 @@
+import { get_menu_route, RouteItemInterface } from '@/pages/route'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get_menu_route, RouteItemInterface } from '../pages/route';
 type mode = 'light' | 'dark' | string
 type lang = 'zh_CN' | 'en_US' | string
-
 export interface GlobalStateInterface {
     mode: mode,
     lang: lang,
@@ -19,12 +18,15 @@ const reducers = {
     setMode: (s: GlobalStateInterface, t: any) => {
         s.mode = t.payload;
     },
+    setLang: (s: GlobalStateInterface, t: any) => {
+        s.lang = t.payload;
+    },
 }
 
 // 登入
 const getMenuRouteAsync = createAsyncThunk(
     'global/get_menu_route',
-    async (cb?: Function, thunkAPI?: any) => { // data 微信获取到的信息
+    async (cb?: Function, thunkAPI?: any) => {
         let res = await get_menu_route();
         if (res) {
             cb && cb()

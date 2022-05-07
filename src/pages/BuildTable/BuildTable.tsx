@@ -1,5 +1,5 @@
-import LangComponent from '@/lang/local';
-import { Pagination, Table } from '@douyinfe/semi-ui';
+import loacl from '@/lang/semi-ui-local';
+import { ConfigProvider, LocaleProvider, Pagination, Table } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { Fragment, memo, } from 'react';
 
@@ -15,33 +15,33 @@ const BuildTable = memo((
     }) => {
 
     return (
-        <Fragment>
-            <div className='flex-end'>
-                {!hidePage && <div className="flex-end">
-                    <LangComponent>
-                        <Pagination
-                            total={100}
-                            onChange={(currentPage) => {
-                                setParams('page', currentPage)
-                            }}
-                            size="small"
-                            hoverShowPageSelect
+        <LocaleProvider locale={loacl['en_US']}>
+            <ConfigProvider locale={loacl['en_US']}>
+                <Fragment>
+                    <div className='flex-end'>
+                        {!hidePage && <div className="flex-end">
+                            <Pagination
+                                total={100}
+                                onChange={(currentPage) => {
+                                    setParams('page', currentPage)
+                                }}
+                                size="small"
+                                hoverShowPageSelect
+                            />
+                        </div>}
+                    </div>
+                    <div className="pro_table card">
+                        <Table
+                            onChange={onChange}
+                            loading={loading}
+                            dataSource={buildDataSource}
+                            columns={columns}
+                            pagination={false}
                         />
-                    </LangComponent>
-                </div>}
-            </div>
-            <div className="pro_table card">
-                <LangComponent>
-                    <Table
-                        onChange={onChange}
-                        loading={loading}
-                        dataSource={buildDataSource}
-                        columns={columns}
-                        pagination={false}
-                    />
-                </LangComponent>
-            </div>
-        </Fragment>
+                    </div>
+                </Fragment>
+            </ConfigProvider>
+        </LocaleProvider>
     )
 })
 export default BuildTable;

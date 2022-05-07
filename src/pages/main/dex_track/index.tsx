@@ -22,26 +22,7 @@ const DexTrack = memo(() => {
                 }
             }
         })
-    const data = useMemo(() => {
-        if (ret) {
-            const arr = [
-                ret?.map((e: any) => {
-                    return {
-                        name: 'Eth Price',
-                        list: ret?.map((e: any) => e.eth_price)
-                    }
-                })
-                ,
-                ret?.map((e: any) => {
-                    return {
-                        name: 'volume',
-                        list: ret?.map((e: any) => e.volume)
-                    }
-                })]
-            return arr
-        }
-        return []
-    }, [ret])
+
     return (
         <div className='dex_track' style={{ width: '100%', height: '100%', }}>
             <Text>
@@ -71,7 +52,18 @@ const DexTrack = memo(() => {
                                 data: ret?.map((e: any) => dayjs(e.tag * 1000).format('MM/DD YYYY')),
                             },
                         }}
-                        dataSource={data}
+                        dataSource={[
+                            [
+                                {
+                                    name: 'Eth Price',
+                                    list: ret?.map((e: any) => e.eth_price)
+                                },
+                                {
+                                    name: 'volume',
+                                    list: ret?.map((e: any) => e.volume)
+                                }
+                            ]
+                        ]}
                     />
                 }
             </div>

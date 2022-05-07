@@ -47,10 +47,20 @@ function debounce(func, threshold = 500, immediate = false) {
         // console.log(func);
     };
 }
-
+function getSubStr(_string) {
+    if (!_string) return ''
+    let str = _string
+    for (let i = 0; i < str.length; i++) {
+        let str1 = str.substr(0, 5)
+        let str2 = str.substr(str.length - 4, 8)
+        str = str1 + '...' + str2
+    }
+    return str
+}
 export {
     formatUrl,
     randomFrom,
+    getSubStr,
     isMobile,
     debounce,
 }

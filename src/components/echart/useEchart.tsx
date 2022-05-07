@@ -48,26 +48,31 @@ function useEchart(classname: string, option: useEchartOption,
 			const legend: any = []
 			if (Array.isArray(dataSoure[0])) {
 				dataSoure.forEach((e: any, i: number) => {
-					const list = e[0]?.list || []
-					const name = e[0]?.name || ''
-					series.push({
-						symbol: 'none',
-						data: list,
-						name,
-						type: 'line',
-						yAxisIndex: i, // 两边y轴数据显示必须加
-						valueFormatter: function (value: any) {
-							return value + name;
-						},
-						smooth: true
-					})
-					yAxis.push({
-						type: 'value',
-						name,
-						splitLine: true,
-						...e[i]?.y_option,
-					})
-					legend.push(name)
+					e.forEach((element: any) => {
+						const list = element?.list || []
+						const name = element?.name || ''
+						series.push({
+							// symbol: 'none',
+							showSymbol: false,
+							data: list,
+							name,
+							type: 'line',
+							yAxisIndex: i, // 两边y轴数据显示必须加
+							valueFormatter: function (value: any) {
+								return value + name;
+							},
+							smooth: true,
+							...element?.y_option,
+						})
+
+						yAxis.push({
+							type: 'value',
+							name,
+							splitLine: true,
+							...element?.y_option,
+						})
+						legend.push(name)
+					});
 				})
 			} else {
 				if (dataSoure[0]) {
@@ -78,7 +83,8 @@ function useEchart(classname: string, option: useEchartOption,
 						name: name,
 						data: list,
 						type: 'line',
-						smooth: true
+						smooth: true,
+						...dataSoure[0].y_option,
 					})
 					yAxis.push({
 						type: 'value',

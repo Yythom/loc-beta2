@@ -1,0 +1,11 @@
+.wallet_for_token {
+    overflow: scroll;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .editinfo {
+        .fdc {
+            flex: 1;
+        }
+    }
+}

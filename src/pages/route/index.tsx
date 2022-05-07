@@ -10,6 +10,7 @@ import TokenFlow from "../main/token_flow";
 import TokenBalance from "../main/token_balance";
 import WalletBalance from "../main/wallet_balance";
 import TokenAnalysis from "../main/token_analysis";
+import WalletForToken from "../main/wallet_for_token";
 export const basePath = '/';
 
 const setPagePath = (_path: string) => {
@@ -65,6 +66,11 @@ const menu_route: RouteItemInterface[] = [
         icon: 'iconshezhi',
         itemKey: 'token-analysis',
     },
+    {
+        text: 'Wallet for Token',
+        icon: 'iconshezhi',
+        itemKey: 'wallet-for-token',
+    }
 ];
 
 // 此处应为请求
@@ -135,6 +141,13 @@ const RouteComponentsMap: {
             component={TokenAnalysis}
         />
     },
+    'wallet-for-token': {
+        component: <Route
+            path={setPagePath('wallet-for-token')}
+            exact
+            component={WalletForToken}
+        />
+    }
 }
 
 export {
