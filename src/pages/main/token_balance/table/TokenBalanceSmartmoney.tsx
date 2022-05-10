@@ -10,7 +10,7 @@ import MoreSetting from "@/components/table_component/MoreSetting";
 import TokenBalanceService from "@/services/token_balance";
 import NumberUtils from "@/utils/js_utils/number";
 
-const TableComponent = memo(() => {
+const TokenBalanceSmartMoney = memo(() => {
     const history = useHistory()
     const {
         setParams,
@@ -90,7 +90,8 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className='flex'>
+        <div className="title">Token Balance Smart Money Density</div>
+        <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
                     setParams={setSearch}
@@ -104,4 +105,4 @@ const TableComponent = memo(() => {
 
 })
 
-export default TableComponent
+export default TokenBalanceSmartMoney

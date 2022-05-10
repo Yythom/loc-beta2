@@ -2,10 +2,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import ProEchart from "@/components/echart/pro_echart";
 import { memo } from "react";
-import TokenBalanceofSmartMoney from "./token_balance_smartmoney";
 import './index.scss'
-import SmartMoneyDensity from "./SmartMoneyDensity";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
+import SmartMoneyDensity from "./table/SmartMoneyDensity";
+import TokenBalanceSmartMoney from "./table/TokenBalanceSmartmoney";
 
 const TokenBalance = memo(() => {
     return (
@@ -26,7 +26,7 @@ const TokenBalance = memo(() => {
                     list: [1, 2, 3]
                 }]}
             />
-            <TokenBalanceofSmartMoney />
+            <TokenBalanceSmartMoney />
             <div style={{ height: '2rem' }}></div>
             <SmartMoneyDensity />
 
