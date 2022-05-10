@@ -9,6 +9,20 @@
     flex-direction: column;
 }
 
+.flex-1>div {
+    margin-top: 3rem;
+    flex: 1;
+    margin-right: 2rem;
+}
+
+.table {
+    margin-top: 3rem;
+}
+
+.flex-1>div:nth-last-of-type(1) {
+    margin-right: 0;
+}
+
 .fdc {
     display: flex;
     align-items: center;
@@ -21,11 +35,13 @@
     align-items: center;
     justify-content: center;
 }
-.flex-end{
+
+.flex-end {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
+
 .fb {
     display: flex;
     align-items: center;
