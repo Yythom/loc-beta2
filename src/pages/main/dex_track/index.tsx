@@ -6,13 +6,13 @@ import DexTrackServices from "@/services/dex_track";
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import dayjs from "dayjs";
-import { memo, useMemo } from "react";
-import DEXLeaderboard from "./DEXLeaderboard";
+import { Fragment, memo, useMemo } from "react";
 import './index.scss'
-import SmartMoneyconsistentSwapin from "./SmartMoneyconsistentSwapin";
-import SmartMoneyconsistentSwapout from "./SmartMoneyconsistentSwapout";
-import SmartMoneySwapVolume from "./SmartMoneySwapVolume";
-import SwapTransactions from "./SwapTransactions";
+import DEXLeaderboard from "./table/DEXLeaderboard";
+import SmartMoneyconsistentSwapin from "./table/SmartMoneyconsistentSwapin";
+import SmartMoneyconsistentSwapout from "./table/SmartMoneyconsistentSwapout";
+import SmartMoneySwapVolume from "./table/SmartMoneySwapVolume";
+import SwapTransactions from "./table/SwapTransactions";
 const DexTrack = memo(() => {
     const [ret, fetch,
         setParams,] = useRequest<any, any>(DexTrackServices.get_dexTradeTrending_list, {
@@ -25,48 +25,53 @@ const DexTrack = memo(() => {
 
     return (
         <div className='dex_track' style={{ width: '100%', height: '100%', }}>
-            <Text>
-                <h2>Smart Money DEX Trade Trending </h2>
-            </Text>
-            <div className="fd" style={{ alignItems: 'flex-end' }}>
-                <div className="flex more_setting"  >
-                    <Tabs
-                        type="button"
-                        defaultActiveKey="7"
-                        onChange={(itemKey) => {
-                            setParams('search', {
-                                days: itemKey || ''
-                            })
-                        }}>
-                        <TabPane tab="1 Day" itemKey="1" />
-                        <TabPane tab="3 Day" itemKey="3" />
-                        <TabPane tab="7 Day" itemKey="7" />
-                    </Tabs>
-                </div>
-                {
-                    ret && <ProEchart
-                        classname='test3'
-                        option={{
-                            x_option: {
-                                name: 'Date',
-                                data: ret?.map((e: any) => dayjs(e.tag * 1000).format('MM/DD YYYY')),
-                            },
-                        }}
-                        dataSource={[
-                            [
-                                {
-                                    name: 'Eth Price',
-                                    list: ret?.map((e: any) => e.eth_price)
-                                },
-                                {
-                                    name: 'volume',
-                                    list: ret?.map((e: any) => e.volume)
-                                }
-                            ]
-                        ]}
-                    />
-                }
-            </div>
+            {
+                ret && <Fragment>
+                    <Text>
+                        <h2>Smart Money DEX Trade Trending </h2>
+                    </Text>
+                    <div className="fd" style={{ alignItems: 'flex-end' }}>
+                        <div className="flex more_setting"  >
+                            <Tabs
+                                type="button"
+                                defaultActiveKey="7"
+                                onChange={(itemKey) => {
+                                    setParams('search', {
+                                        days: itemKey || ''
+                                    })
+                                }}>
+                                <TabPane tab="1 Day" itemKey="1" />
+                                <TabPane tab="3 Day" itemKey="3" />
+                                <TabPane tab="7 Day" itemKey="7" />
+                            </Tabs>
+                        </div>
+                        {
+                            ret && <ProEchart
+                                classname='test3'
+                                option={{
+                                    x_option: {
+                                        name: 'Date',
+                                        data: ret?.map((e: any) => dayjs(e.tag * 1000).format('MM/DD YYYY')),
+                                    },
+                                }}
+                                dataSource={[
+                                    [
+                                        {
+                                            name: 'Eth Price',
+                                            list: ret?.map((e: any) => e.eth_price)
+                                        },
+                                        {
+                                            name: 'volume',
+                                            list: ret?.map((e: any) => e.volume)
+                                        }
+                                    ]
+                                ]}
+                            />
+                        }
+                    </div>
+                </Fragment>
+            }
+
             <DEXLeaderboard />
 
             <div style={{ height: '2rem' }} />

@@ -12,7 +12,7 @@ import TokenBalanceService from "@/services/token_balance";
 import DexTrackServices from "@/services/dex_track";
 import NumberUtils from "@/utils/js_utils/number";
 
-const TableComponent = memo(() => {
+const SmartMoneyconsistentSwapin = memo(() => {
     const history = useHistory()
     const {
         setParams,
@@ -84,7 +84,8 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className='flex' >
+        <div className="title">Smart Money consistent Swap in</div>
+        <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
                     setParams={setSearch}
@@ -97,4 +98,4 @@ const TableComponent = memo(() => {
 
 })
 
-export default TableComponent
+export default SmartMoneyconsistentSwapin

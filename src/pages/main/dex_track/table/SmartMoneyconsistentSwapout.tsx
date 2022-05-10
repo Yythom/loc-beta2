@@ -12,7 +12,7 @@ import TokenBalanceService from "@/services/token_balance";
 import DexTrackServices from "@/services/dex_track";
 import NumberUtils from "@/utils/js_utils/number";
 
-const TableComponent = memo(() => {
+const SmartMoneyconsistentSwapout = memo(() => {
     const history = useHistory()
     const {
         setParams,
@@ -24,9 +24,10 @@ const TableComponent = memo(() => {
             setSearch
         }
     } = useTable<any, any>(
-        DexTrackServices.get_SmartMoneySwapVolume_list,
+        DexTrackServices.get_SmartMoneyconsistentSwap_list,
         {
             initParams: {
+                source: 'out',
                 page: 1,
             }
         }
@@ -34,30 +35,39 @@ const TableComponent = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token in </>,
-                dataIndex: 'in_token_name',
+                title: <>Token</>,
+                dataIndex: 'token_name',
             },
             {
-                title: <>Token out</>,
-                dataIndex: 'out_token_name',
+                title: <>Swap in Times</>,
+                dataIndex: 'times',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{text}</Text>
+                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
                     </div>;
                 },
             },
             {
-                title: <>Volume</>,
+                title: <>Address </>,
+                dataIndex: 'address_num',
+                render: (text: any, record: any, index: any) => {
+                    return <div className='flex' >
+                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                    </div>;
+                },
+            },
+            {
+                title: <>Avg Swap in Times</>,
+                dataIndex: 'avg_num',
+                render: (text: any, record: any, index: any) => {
+                    return <div className='flex' >
+                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                    </div>;
+                },
+            },
+            {
+                title: <>Swap in volume</>,
                 dataIndex: 'volume',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
-                    </div>;
-                },
-            },
-            {
-                title: <>Volume Change</>,
-                dataIndex: 'volume_change',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>${NumberUtils.numToFixed(text, 2)}</Text>
@@ -69,7 +79,8 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className='flex' >
+        <div className="title">Smart Money consistent Swap out</div>
+        <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
                     setParams={setSearch}
@@ -82,4 +93,4 @@ const TableComponent = memo(() => {
 
 })
 
-export default TableComponent
+export default SmartMoneyconsistentSwapout
