@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
+import ErrorBoundary from "@/components/Boundary";
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
 import { debounce } from "@/utils/js_utils/format";
@@ -90,17 +91,31 @@ const WalletBalance = memo(() => {
 
 
             <TokenContext.Provider value={{ token }} >
-                <TokenBalance />
+                <ErrorBoundary>
+                    <TokenBalance />
+                </ErrorBoundary>
                 <div className="fb flex-1">
-                    <TokenInflow />
-                    <TokenOutflow />
+                    <ErrorBoundary>
+                        <TokenInflow />
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <TokenOutflow />
+                    </ErrorBoundary>
                 </div>
                 <div className="fb flex-1" >
-                    <TokenInflowfromCEX />
-                    <TokenOutflowfromCEX />
+                    <ErrorBoundary>
+                        <TokenInflowfromCEX />
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <TokenOutflowfromCEX />
+                    </ErrorBoundary>
                 </div>
-                <ProfitinDEX />
-                <RecentTransactions />
+                <ErrorBoundary>
+                    <ProfitinDEX />
+                </ErrorBoundary>
+                <ErrorBoundary>
+                    <RecentTransactions />
+                </ErrorBoundary>
             </TokenContext.Provider>
         </div >
     )

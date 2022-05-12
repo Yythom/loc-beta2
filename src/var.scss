@@ -15,6 +15,10 @@ html {
     font-size: 20px;
 }
 
+iframe {
+    z-index: -99999 !important;
+    left: -999999px !important;
+}
 
 .hover {
     cursor: pointer;
