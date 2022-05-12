@@ -40,7 +40,7 @@ const TokenOutflow = memo(() => {
         return [
             {
                 title: 'Token',
-                dataIndex: '#',
+                dataIndex: 'token_name',
             },
             {
                 title: 'Outflow ',
