@@ -1,11 +1,86 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MoreSetting from '@/components/table_component/MoreSetting';
 import useTable from '@/hooks/useTable';
-import { memo, useContext, useMemo } from 'react';
+import WalletBalanceService from '@/services/wallet_balance';
+import NumberUtils from '@/utils/js_utils/number';
+import { ProModal } from '@/utils/ui_utils/toast';
+import { memo, useContext, useEffect, useMemo } from 'react';
 import { TokenContext } from '..';
 const TokenInflowfromCEX = memo(() => {
     const ctx = useContext(TokenContext)
+    const req = useMemo(() => {
+        return {
+            page: 1,
+            source: 'CEX',
+            type: 'in',
+            address: ctx?.token
+        }
+    }, [ctx.token])
+    const {
+        setParams,
+        params,
+        tableData,
+        loading,
+        BuildTable,
+        fetch,
+        handle: {
+            setSearch, //// table 自定义search
+            onTableChange,
+        }
+    } = useTable<any, any>(
+        WalletBalanceService.get_whiteTransaction_list,
+        {
+            listen_params: req
+        }
+    )
 
+    const columns = useMemo(() => {
+        return [
+            {
+                title: 'Token',
+                dataIndex: 'token_name',
+            },
+            {
+                title: 'Inflow ',
+                dataIndex: 'amount',
+                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
+            },
+            {
+                title: 'Inflow Value',
+                dataIndex: 'usd',
+                render: (text: any, rec: any, index: any) => {
+                    return (
+                        <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenModal />, 'Top 5')}>
+                            ${NumberUtils.numToFixed(text, 6)}
+                        </div>
+                    )
+                }
+            },
+            {
+                title: 'Inflow Price',
+                dataIndex: 'price',
+                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
+            },
+        ]
+    }, []);
+
+    return (
+        <div className='table'>
+            <div className='title'>Token Inflow from CEX</div>
+            <div className='flex' style={{ justifyContent: 'flex-end' }}>
+                <MoreSetting
+                    setParams={setSearch}
+                    params={params}
+                />
+            </div>
+            <BuildTable columns={columns} />
+        </div>
+    )
+})
+export default TokenInflowfromCEX;
+
+const TokenModal = memo(() => {
     const {
         setParams,
         params,
@@ -31,35 +106,24 @@ const TokenInflowfromCEX = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: 'Token',
+                title: 'No.',
                 dataIndex: '#',
+                render: (text: any, rec: any, index: any) => index
             },
             {
-                title: 'Inflow ',
+                title: 'Address ',
                 dataIndex: '##',
             },
             {
-                title: 'Inflow Value',
+                title: 'Inflow/Ouflow',
                 dataIndex: '###',
-            },
-            {
-                title: 'Inflow Price',
-                dataIndex: '####',
             },
         ]
     }, []);
 
     return (
-        <div className='table'>
-            <div className='title'>Token Inflow from CEX</div>
-            <div className='flex' style={{ justifyContent: 'flex-end' }}>
-                <MoreSetting
-                    setParams={setSearch}
-                    params={params}
-                />
-            </div>
+        <div className='table' style={{ width: '800px' }} >
             <BuildTable columns={columns} />
         </div>
     )
 })
-export default TokenInflowfromCEX;

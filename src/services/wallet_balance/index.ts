@@ -1,13 +1,18 @@
+
+
 import request from "../config";
 
-class TokenBalanceService {
-    static get_smartmoney_holding_list = async (data: any) => {
+class WalletBalanceService {
+    static get_whiteTransaction_list = async (data: any) => {
         const result = await request({
-            url: '/v1/user/smartMoneyHolding/list',
+            url: '/v1/user/whiteTransaction/list',
             data: {
                 "condition": {},
                 "search": {
-                    "time_range": data?.search?.time_range || 1,
+                    "source": data?.source, // 有 cex = CEX  SMARTMONEY
+                    "time_range": data?.search?.time_range || 1, // 天数
+                    "type": data?.type, // 类型 inflow = in  outflow = out
+                    address: data?.address,
                 },
                 "page": {
                     "page": data?.page,
@@ -21,14 +26,14 @@ class TokenBalanceService {
         })
         return result
     }
-
-    static get_smartMoneyDensity_list = async (data: any) => {
+    static get_tokenBalance_list = async (data: any) => {
         const result = await request({
-            url: '/v1/user/smartMoneyDensity/list',
+            url: '/v1/user/walletBalance/list',
             data: {
                 "condition": {},
                 "search": {
-                    // "time_range": data?.search?.time_range || 1,
+                    "time_range": data?.search?.time_range || 1, // 天数
+                    address: data?.address || '',
                 },
                 "page": {
                     "page": data?.page,
@@ -42,9 +47,7 @@ class TokenBalanceService {
         })
         return result
     }
-
-
 
 }
 
-export default TokenBalanceService;
+export default WalletBalanceService;

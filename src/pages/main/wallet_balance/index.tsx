@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
+import { debounce } from "@/utils/js_utils/format";
 import { IconSearch } from "@douyinfe/semi-icons";
 import { Input, TabPane, Tabs } from "@douyinfe/semi-ui";
 import dayjs from "dayjs";
@@ -15,10 +16,11 @@ import TokenInflowfromCEX from "./table/TokenInflowfromCEX";
 import TokenOutflow from "./table/TokenOutflow";
 import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 
-export const TokenContext = createContext<{ token: any }>({ token: null });
+const initToken = '0x0f4ee9631f4be0a63756515141281a3e2b293bbe'
+export const TokenContext = createContext<{ token: any }>({ token: initToken });
 
 const WalletBalance = memo(() => {
-    const [token, setToken] = useState({ token_name: '1231' })
+    const [token, setToken] = useState(initToken)
     const [ret, fetch,
         setParams,] = useRequest<any, any>(async function name(params) {
 
@@ -39,11 +41,18 @@ const WalletBalance = memo(() => {
                     <div className="flex">Token Name</div>
                 </div>
                 <div className="card fc" style={{ width: '49%', height: '100%' }}>
-                    <Input onChange={(e) => setToken({ token_name: e })} style={{ borderRadius: '200px' }} prefix={<IconSearch />} placeholder='Search for Token' ></Input>
+                    <Input
+                        value={token}
+                        onChange={(e) => {
+                            setToken(e)
+                        }}
+                        style={{ borderRadius: '200px' }}
+                        prefix={<IconSearch />} placeholder='Search for Token'
+                    />
                 </div>
             </div>
 
-            <Fragment>
+            {/* <Fragment>
                 <div className="title">Token Overview </div>
                 <div className="fd" style={{ color: '#fff', marginBottom: '3rem', alignItems: 'flex-end' }}>
                     <div className="flex more_setting">
@@ -76,7 +85,7 @@ const WalletBalance = memo(() => {
                         />
                     }
                 </div>
-            </Fragment>
+            </Fragment> */}
 
 
 

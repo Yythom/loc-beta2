@@ -36,6 +36,7 @@ function request<T>(config: AxiosRequestConfig): Promise<T | undefined> {
             if (res?.data) {
                 resolve(res?.data)
             } else {
+                resolve(undefined)
                 showNotic('error', { content: `${res?.message}` });
             }
         }).catch(err => {

@@ -25,7 +25,7 @@ const DexTrack = memo(() => {
 
     return (
         <div className='dex_track' style={{ width: '100%', height: '100%', }}>
-            {
+            {/* {
                 ret && <Fragment>
                     <Text>
                         <h2>Smart Money DEX Trade Trending </h2>
@@ -70,7 +70,7 @@ const DexTrack = memo(() => {
                         }
                     </div>
                 </Fragment>
-            }
+            } */}
 
             <DEXLeaderboard />
 

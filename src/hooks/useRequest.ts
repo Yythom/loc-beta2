@@ -27,9 +27,12 @@ function useRequest<T, P = undefined>(
             }
         }
     });
-    const fetch = useCallback(async (_params?: P) => {
+    const fetch = useCallback(async (_params?: P, noSetParams?: boolean) => {
         !loading && setloading(true);
-        _params && setParams({ ..._params });
+        if (_params && !noSetParams) {
+            setParams({ ..._params });
+        }
+
         const res = await promise(_params || params);
         setloading(false);
         if (res) {
@@ -46,8 +49,8 @@ function useRequest<T, P = undefined>(
 
     useEffect(() => {
         // 监听模式需要控制变量useMemo
-        if (option?.listen_params) fetch(option?.listen_params)
-    }, [option?.listen_params])
+        if (option?.listen_params && !option.start_owner) fetch({ ...params, ...option?.listen_params }, true)
+    }, [option?.listen_params, params])
 
     return [
         ret,

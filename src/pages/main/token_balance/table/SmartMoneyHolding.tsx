@@ -10,7 +10,7 @@ import MoreSetting from "@/components/table_component/MoreSetting";
 import TokenBalanceService from "@/services/token_balance";
 import NumberUtils from "@/utils/js_utils/number";
 
-const TokenBalanceSmartMoney = memo(() => {
+const SmartMoneyHolding = memo(() => {
     const history = useHistory()
     const {
         setParams,
@@ -90,7 +90,7 @@ const TokenBalanceSmartMoney = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className="title">Token Balance Smart Money Density</div>
+        <div className="title">Smart Money Holding</div>
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
@@ -105,4 +105,4 @@ const TokenBalanceSmartMoney = memo(() => {
 
 })
 
-export default TokenBalanceSmartMoney
+export default SmartMoneyHolding

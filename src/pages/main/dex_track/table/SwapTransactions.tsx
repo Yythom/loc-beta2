@@ -51,7 +51,7 @@ const SwapTransactions = memo(() => {
                 dataIndex: 'in_token_name',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{index}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },

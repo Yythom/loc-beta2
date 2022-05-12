@@ -1,30 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MoreSetting from '@/components/table_component/MoreSetting';
 import useTable from '@/hooks/useTable';
-import { memo, useContext, useMemo } from 'react';
+import WalletBalanceService from '@/services/wallet_balance';
+import NumberUtils from '@/utils/js_utils/number';
+import { memo, useContext, useEffect, useMemo } from 'react';
 import { TokenContext } from '..';
 const TokenBalance = memo(() => {
     const ctx = useContext(TokenContext)
+    const req = useMemo(() => {
+        return {
+            page: 1,
+            address: ctx?.token
+        }
+    }, [ctx.token])
 
     const {
         setParams,
         params,
         tableData,
         loading,
+        fetch,
         BuildTable,
         handle: {
             setSearch, //// table 自定义search
             onTableChange,
         }
     } = useTable<any, any>(
-        async function name() {
-
-        },
+        WalletBalanceService.get_tokenBalance_list,
         {
-            initParams: {
-                page: 1,
-                source: 'CEX'
-            }
+            listen_params: req
         }
     )
 
@@ -32,19 +37,22 @@ const TokenBalance = memo(() => {
         return [
             {
                 title: 'Token',
-                dataIndex: '#',
+                dataIndex: 'token_info',
+                render: (t: any, r: any, i: any) => <div>{t.name}</div>
             },
             {
                 title: 'Token Balance ',
-                dataIndex: '##',
+                dataIndex: 'price',
             },
             {
                 title: ' Current Value',
-                dataIndex: '###',
+                dataIndex: 'usd',
+                render: (t: any, r: any, i: any) => <div>${NumberUtils.numToFixed(t, 6)}</div>
             },
             {
                 title: '% of All Token',
-                dataIndex: '####',
+                dataIndex: 'all_average',
+                render: (t: any, r: any, i: any) => <div>{NumberUtils.numToFixed(t, 2)}%</div>
             },
         ]
     }, []);

@@ -27,7 +27,7 @@ const TokenAnalysis = memo(() => {
             <Fragment>
                 <TokenContext.Provider value={{ token, setToken }}>
                     <Tokeninfo />
-                    <Charts />
+                    {/* <Charts /> */}
 
                     <TopHolders />
                     <TopGainers />

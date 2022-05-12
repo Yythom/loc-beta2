@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeInfo, ColumnProps } from "@douyinfe/semi-ui/lib/es/table";
-import React, { memo, MemoExoticComponent, useLayoutEffect } from "react";
+import { memo, MemoExoticComponent, useLayoutEffect } from "react";
 import BuildTable from "@/pages/BuildTable/BuildTable";
 import useRequest from "./useRequest";
 useTable.initPage = 1;
@@ -8,7 +8,8 @@ function useTable<T, P = undefined>(
     promise: (data: any) => Promise<any>,
     option: {
         start_owner?: boolean,
-        initParams: {},
+        initParams?: {},
+        listen_params?: P | undefined
         // callback?:()
     },
 ): {
@@ -37,6 +38,7 @@ function useTable<T, P = undefined>(
     ] = useRequest<T, P>(promise, {
         initParams: { page: useTable.initPage, ...option?.initParams },
         start_owner: option?.start_owner,
+        listen_params: option?.listen_params,
     })
 
     useLayoutEffect(() => {

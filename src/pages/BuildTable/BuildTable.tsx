@@ -21,7 +21,9 @@ const BuildTable = memo((
                     <div className='flex-end'>
                         {!hidePage && <div className="flex-end">
                             <Pagination
-                                total={100}
+                                pageSize={ret?.page_size}
+                                total={ret?.total || 0}
+                                currentPage={ret?.page}
                                 onChange={(currentPage) => {
                                     setParams('page', currentPage)
                                 }}

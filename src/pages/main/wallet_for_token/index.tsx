@@ -37,7 +37,7 @@ const WalletForToken = memo(() => {
             <TokenContext.Provider value={{ token, setToken }}>
                 <Tokeninfo />
 
-                <Fragment>
+                {/* <Fragment>
                     <div className="title">Profit Over Time with Historical Price</div>
                     <div className="fd" style={{ color: '#fff', marginBottom: '3rem', alignItems: 'flex-end' }}>
                         <div className="flex more_setting">
@@ -70,7 +70,7 @@ const WalletForToken = memo(() => {
                             />
                         }
                     </div>
-                </Fragment>
+                </Fragment> */}
 
                 <Fragment >
                     <div className="flex flex-1">

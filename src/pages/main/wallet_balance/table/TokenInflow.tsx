@@ -1,12 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MoreSetting from '@/components/table_component/MoreSetting';
 import useTable from '@/hooks/useTable';
+import WalletBalanceService from '@/services/wallet_balance';
+import NumberUtils from '@/utils/js_utils/number';
 import { ProModal } from '@/utils/ui_utils/toast';
-import { memo, useContext, useMemo } from 'react';
+import { memo, useContext, useEffect, useMemo } from 'react';
 import { TokenContext } from '..';
 
 const TokenInflow = memo(() => {
     const ctx = useContext(TokenContext)
+
+    const req = useMemo(() => {
+        return {
+            page: 1,
+            source: 'SMARTMONEY',
+            type: 'in',
+            address: ctx?.token
+        }
+    }, [ctx.token])
 
     const {
         setParams,
@@ -14,19 +26,15 @@ const TokenInflow = memo(() => {
         tableData,
         loading,
         BuildTable,
+        fetch,
         handle: {
             setSearch, //// table 自定义search
             onTableChange,
         }
     } = useTable<any, any>(
-        async function name() {
-            return { list: [{}] }
-        },
+        WalletBalanceService.get_whiteTransaction_list,
         {
-            initParams: {
-                page: 1,
-                source: 'CEX'
-            }
+            listen_params: req
         }
     )
 
@@ -34,27 +42,28 @@ const TokenInflow = memo(() => {
         return [
             {
                 title: 'Token',
-                dataIndex: '#',
+                dataIndex: 'token_name',
             },
             {
                 title: 'Inflow ',
-                dataIndex: '##',
+                dataIndex: 'amount',
+                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
             },
             {
                 title: 'Inflow Value($)',
-                dataIndex: '###',
+                dataIndex: 'usd',
                 render: (text: any, rec: any, index: any) => {
                     return (
                         <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenInflowModal />, 'Top 5')}>
-                            {text || '--'}
+                            ${NumberUtils.numToFixed(text, 6)}
                         </div>
                     )
                 }
-
             },
             {
                 title: 'Inflow Price($)',
-                dataIndex: '####',
+                dataIndex: 'price',
+                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
             },
         ]
     }, []);
