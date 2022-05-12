@@ -9,7 +9,7 @@ function useRequest<T, P = undefined>(
         callback?: (data: T) => void,
         failCallBack?: () => void,
         initParams?: Object,
-        listen_params?: P, // 监听模式需要控制变量useMemo
+        listen_params?: Object, // 监听模式需要控制变量useMemo
     }
 ): [
         T | undefined,
