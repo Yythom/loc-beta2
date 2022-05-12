@@ -2,15 +2,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import { memo, useState } from "react";
-import ConsistentIn from "./consistent_in";
-import ConsistentInCon from "./consistent_in_con";
-import ConsistentOut from "./consistent_out";
-import ConsistentOutCon from "./consistent_out_con";
-import FlowIn from "./flow_in";
-import FlowInCon from "./flow_in_con";
-import FlowOut from "./flow_out";
-import FlowOutCon from "./flow_out_con";
 import './index.scss'
+import ConsistentIn from "./table/CEX/consistent_in";
+import ConsistentOut from "./table/CEX/consistent_out";
+import FlowIn from "./table/CEX/flow_in";
+import FlowOut from "./table/CEX/flow_out";
+import ConsistentInCon from "./table/SmartMoney/consistent_in_con";
+import ConsistentOutCon from "./table/SmartMoney/consistent_out_con";
+import FlowInCon from "./table/SmartMoney/flow_in_con";
+import FlowOutCon from "./table/SmartMoney/flow_out_con";
 
 const TokenFlow = memo(() => {
 

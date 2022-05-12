@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Collapsible, } from "@douyinfe/semi-ui";
+import { Collapsible, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import MoreSetting from "@/components/table_component/MoreSetting";
@@ -10,14 +10,14 @@ import ConsistentService from "@/services/consistent";
 import { ConsistentOutListInterface } from "@/services/consistent/in_interface";
 import { ConsistentOutListParamsInterface } from "@/services/consistent/out_interface";
 
-const TableComponent = memo(() => {
+const ConsistentOutCon = memo(() => {
     const history = useHistory()
     const {
         setParams,
         params,
         tableData,
-        loading,
         BuildTable,
+        loading,
         handle: {
             setSearch
         }
@@ -26,7 +26,7 @@ const TableComponent = memo(() => {
         {
             initParams: {
                 page: 1,
-                source: 'CEX'
+                source: 'SmartMoney'
             }
         }
     )
@@ -59,7 +59,7 @@ const TableComponent = memo(() => {
                 },
             },
             {
-                title: <>Address </>,
+                title: <>Address</>,
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <div
@@ -73,7 +73,6 @@ const TableComponent = memo(() => {
                     </div>;
                 },
             },
-
             {
                 title: <>Avg Outflow Times</>,
                 dataIndex: 'avg_num',
@@ -101,7 +100,7 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-
+        <div className="title"> Consistent Token Outflow to Smart Money</div>
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
@@ -116,4 +115,4 @@ const TableComponent = memo(() => {
 
 })
 
-export default TableComponent
+export default ConsistentOutCon

@@ -26,7 +26,7 @@ const ProModal = (Content, title, cb = function () { }, Footer = null,) => {
 		title,
 		content: <Fragment>
 			{Content}
-			<div style={{ height: '2rem' }}></div>
+			<div style={{ height: '2rem', minWidth: '800px' }}></div>
 		</Fragment>,
 		footer: Footer ? () => {
 			return Footer;

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Collapsible, Table } from "@douyinfe/semi-ui";
+import { Collapsible, } from "@douyinfe/semi-ui";
 import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import MoreSetting from "@/components/table_component/MoreSetting";
@@ -10,45 +10,45 @@ import ConsistentService from "@/services/consistent";
 import { ConsistentOutListInterface } from "@/services/consistent/in_interface";
 import { ConsistentOutListParamsInterface } from "@/services/consistent/out_interface";
 
-const TableComponent = memo(() => {
+const ConsistentIn = memo(() => {
     const history = useHistory()
     const {
         setParams,
         params,
         tableData,
-        BuildTable,
         loading,
+        BuildTable,
         handle: {
-            setSearch
+            setSearch, //// table 自定义search
+            onTableChange,
         }
     } = useTable<ConsistentOutListInterface, ConsistentOutListParamsInterface>(
-        ConsistentService.get_consistent_out_list,
+        ConsistentService.get_consistent_in_list,
         {
             initParams: {
                 page: 1,
-                source: 'SmartMoney'
+                source: 'CEX'
             }
         }
     )
     const [isOpen, setOpen] = useState<boolean>(false);
-
     const columns = useMemo(() => {
         return [
             {
                 title: <>Token </>,
                 dataIndex: 'token_name',
                 render: (text: any, record: any, index: any) => {
-                    return <div className='flex'  >
+                    return <div className='flex' >
                         <Text>{text}</Text>
                     </div>;
                 },
             },
             {
-                title: <>Outflow times </>,
+                title: <>Inflow times </>,
                 dataIndex: 'times',
                 render: (text: any, record: any, index: any) => {
                     return <div
-                        // bindKey="consistent_detail"
+                        // bindKey="consistent_detail" 
                         onClick={() => {
                             // history.push(`/token-flow?id=${record?.id}&type=in`)
                         }}>
@@ -59,7 +59,7 @@ const TableComponent = memo(() => {
                 },
             },
             {
-                title: <>Address</>,
+                title: <>Address </>,
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <div
@@ -74,7 +74,7 @@ const TableComponent = memo(() => {
                 },
             },
             {
-                title: <>Avg Outflow Times</>,
+                title: <>Avg Inflow Times</>,
                 dataIndex: 'avg_num',
                 render: (text: any, record: any, index: any) => {
                     return <div>
@@ -85,7 +85,7 @@ const TableComponent = memo(() => {
                 },
             },
             {
-                title: <>Volume</>,
+                title: <>volume</>,
                 dataIndex: 'volume',
                 render: (text: any, record: any, index: any) => {
                     return <div>
@@ -100,7 +100,7 @@ const TableComponent = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-
+        <div className="title">Consistent Token Inflow to CEX</div>
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
@@ -108,11 +108,11 @@ const TableComponent = memo(() => {
                     params={params}
                 />
             </Collapsible>
-
         </div>
+
         <BuildTable columns={columns} />
     </div>
 
 })
 
-export default TableComponent
+export default ConsistentIn
