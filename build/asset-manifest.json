@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.101f0d7c.chunk.css",
-    "main.js": "/static/js/main.d15305aa.chunk.js",
+    "main.js": "/static/js/main.f4a6de01.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.7d30430f.js",
     "static/css/2.284e3ee5.chunk.css": "/static/css/2.284e3ee5.chunk.css",
     "static/js/2.e32e4e4b.chunk.js": "/static/js/2.e32e4e4b.chunk.js",
     "index.html": "/index.html",
     "static/js/2.e32e4e4b.chunk.js.LICENSE.txt": "/static/js/2.e32e4e4b.chunk.js.LICENSE.txt",
-    "static/js/main.d15305aa.chunk.js.LICENSE.txt": "/static/js/main.d15305aa.chunk.js.LICENSE.txt",
+    "static/js/main.f4a6de01.chunk.js.LICENSE.txt": "/static/js/main.f4a6de01.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/static/media/PlusJakartaDisplay-Regular.e8f6d2bd.woff2",
     "static/media/logo.jpg": "/static/media/logo.244415e6.jpg"
   },
@@ -16,6 +16,6 @@
     "static/css/2.284e3ee5.chunk.css",
     "static/js/2.e32e4e4b.chunk.js",
     "static/css/main.101f0d7c.chunk.css",
-    "static/js/main.d15305aa.chunk.js"
+    "static/js/main.f4a6de01.chunk.js"
   ]
 }
