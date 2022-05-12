@@ -43,6 +43,7 @@ const TokenBalance = memo(() => {
             {
                 title: 'Token Balance ',
                 dataIndex: 'price',
+                render: (t: any, r: any, i: any) => <div>${NumberUtils.numToFixed(t, 6)}</div>
             },
             {
                 title: ' Current Value',
