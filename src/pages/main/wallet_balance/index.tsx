@@ -88,7 +88,7 @@ const WalletBalance = memo(() => {
 
                     <div style={{ marginTop: '6px' }}>
                         {
-                            wallet_lables?.list.map((e: any) => (
+                            wallet_lables?.list?.map((e: any) => (
                                 <Tag style={{ marginRight: '10px' }} key={e.name}>
                                     {e.name}
                                 </Tag>
@@ -100,7 +100,7 @@ const WalletBalance = memo(() => {
                     <AutoComplete
                         loading={loading}
                         value={params?.address || params?.name}
-                        data={tokenInfoList?.list.map((e: any) => e.name + "--" + e.address)}
+                        data={tokenInfoList?.list?.map((e: any) => e.name + "--" + e.address)}
                         showClear
                         prefix={<IconSearch />}
                         placeholder='Search for Token'
