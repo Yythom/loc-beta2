@@ -13,6 +13,7 @@ import { GlobalStateInterface } from "@/store/global_slice";
 import useSlice from "@/hooks/useSlice";
 import ThemeMode from "@/global-component/theme_mode";
 import RouteComponentsMap, { basePath } from "@/pages/route";
+import DexTrack from "./pages/main/dex_track";
 // import ProBreadcrumb from "@/global-component/pro_breadcrumb";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const header = memo(() =>
@@ -50,6 +51,8 @@ const App = () => {
           <div className="main">
             {/* <Route path='/' exact component={Login} /> */}
             {/* <Route path={basePath} component={ProBreadcrumb} /> */}
+            <Route path='/' exact component={DexTrack} />
+
             {
               global_slice?.user_route.map(e => {
                 return <Fragment key={e.itemKey}>

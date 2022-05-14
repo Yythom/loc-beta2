@@ -106,7 +106,6 @@ const RouteComponentsMap: {
             component={AddressDetail}
         />
     },
-
     'dex-track': {
         component: <Route
             path={setPagePath('dex-track')}
