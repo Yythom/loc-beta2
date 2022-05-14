@@ -2,19 +2,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MoreSetting from '@/components/table_component/MoreSetting';
 import useTable from '@/hooks/useTable';
-import WalletBalanceService from '@/services/wallet_balance';
-import NumberUtils from '@/utils/js_utils/number';
+import TokenFlowServices from '@/services/token_flow';
 import { ProModal } from '@/utils/ui_utils/toast';
-import { memo, useContext, useEffect, useMemo } from 'react';
+import { memo, useContext, useMemo } from 'react';
 import { TokenContext } from '..';
+
 const TokenOutflowfromCEX = memo(() => {
     const ctx = useContext(TokenContext)
     const req = useMemo(() => {
         return {
             page: 1,
-            source: 'CEX',
-            type: 'out',
-            address: ctx?.token
+            search: {
+                source: 'CEX',
+                direction: 'out',
+                address: ctx?.token
+            }
         }
     }, [ctx.token])
     const {
@@ -29,7 +31,7 @@ const TokenOutflowfromCEX = memo(() => {
             onTableChange,
         }
     } = useTable<any, any>(
-        WalletBalanceService.get_whiteTransaction_list,
+        TokenFlowServices.get_list,
         {
             listen_params: req
         }
@@ -43,12 +45,12 @@ const TokenOutflowfromCEX = memo(() => {
             },
             {
                 title: 'Outflow ',
-                dataIndex: 'amount',
+                dataIndex: 'total_amount',
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
             {
                 title: 'Outflow Value',
-                dataIndex: 'usd',
+                dataIndex: 'volumes',
                 render: (text: any, rec: any, index: any) => {
                     return (
                         <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenModal />, 'Top 5')}>
@@ -59,7 +61,7 @@ const TokenOutflowfromCEX = memo(() => {
             },
             {
                 title: 'Outflow Price',
-                dataIndex: 'price',
+                dataIndex: 'average_price',
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
         ]

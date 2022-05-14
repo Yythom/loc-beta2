@@ -11,10 +11,9 @@ import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
 import LangComponent from "@/lang/local";
-import { FlowInDetailInterface, FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
-import FlowService from "@/services/flow";
 import { formatUrl } from "@/utils/js_utils/format";
 import loacl from "@/lang/semi-ui-local";
+import TokenFlowServices from "@/services/token_flow";
 
 const TableComponent = memo(() => {
     const history = useHistory()
@@ -25,8 +24,8 @@ const TableComponent = memo(() => {
         params,
         tableData,
         loading
-    } = useTable<FlowInDetailInterface, FlowParamsInterface>(
-        FlowService.get_flow_out_detail,
+    } = useTable<any, any>(
+        TokenFlowServices.get_flow_out_detail,
         {
             initParams: {
                 id: _url_params?.id

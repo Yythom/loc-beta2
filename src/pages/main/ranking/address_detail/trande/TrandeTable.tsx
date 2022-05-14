@@ -22,19 +22,17 @@ const TrandeTable = memo(() => {
         tableData,
         fetch,
         loading
-    } = useTable<
-        TransactionInterface,
-        TransactionParams>(
-            AddressService.getTransactions,
-            {
-                initParams: {
-                    page: 1,
-                    search: {
-                        address: url.address
-                    },
+    } = useTable<TransactionInterface, any>(
+        AddressService.getTransactions,
+        {
+            initParams: {
+                page: 1,
+                search: {
+                    address: url.address
                 },
-            }
-        )
+            },
+        }
+    )
     const renderListData = useMemo(() => {
         if (!tableData) return []
         var dateTime: any = []

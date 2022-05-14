@@ -82,9 +82,8 @@ const DexTrack = memo(() => {
 
             <SmartMoneySwapVolume />
 
-            <div className="flex" style={{ marginTop: '2rem' }}>
+            <div className="flex flex-1" style={{ marginTop: '2rem' }}>
                 <SmartMoneyconsistentSwapin />
-                <div style={{ width: '3rem' }} />
                 <SmartMoneyconsistentSwapout />
             </div>
 

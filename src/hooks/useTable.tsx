@@ -8,7 +8,7 @@ function useTable<T, P = undefined>(
     promise: (data: any) => Promise<any>,
     option: {
         start_owner?: boolean,
-        initParams?: {},
+        initParams?: P,
         listen_params?: {}
         // callback?:()
     },
@@ -56,7 +56,8 @@ function useTable<T, P = undefined>(
             ...params,
             page: useTable.initPage,
             search: {
-                ...origin?.search,
+                ...(params as any)?.search,
+                ...(option?.listen_params as any)?.search
             }
         }
         if (typeof key === 'object') {

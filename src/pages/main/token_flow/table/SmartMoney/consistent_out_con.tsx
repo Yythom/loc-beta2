@@ -6,9 +6,7 @@ import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import MoreSetting from "@/components/table_component/MoreSetting";
 import { useHistory } from "react-router";
 import useTable from "@/hooks/useTable";
-import ConsistentService from "@/services/consistent";
-import { ConsistentOutListInterface } from "@/services/consistent/in_interface";
-import { ConsistentOutListParamsInterface } from "@/services/consistent/out_interface";
+import TokenFlowServices, { TokenFlowInterface } from "@/services/token_flow";
 
 const ConsistentOutCon = memo(() => {
     const history = useHistory()
@@ -21,79 +19,42 @@ const ConsistentOutCon = memo(() => {
         handle: {
             setSearch
         }
-    } = useTable<ConsistentOutListInterface, ConsistentOutListParamsInterface>(
-        ConsistentService.get_consistent_out_list,
+    } = useTable<any, TokenFlowInterface>(
+        TokenFlowServices.get_list,
         {
             initParams: {
                 page: 1,
-                source: 'SmartMoney'
+                search: {
+                    direction: 'OUT',
+                    source: 'SMARTMONEY',
+                    consistent: true,
+                    time_range: 1
+                }
             }
         }
     )
-    const [isOpen, setOpen] = useState<boolean>(false);
 
     const columns = useMemo(() => {
         return [
             {
                 title: <>Token </>,
                 dataIndex: 'token_name',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex'  >
-                        <Text>{text}</Text>
-                    </div>;
-                },
             },
             {
                 title: <>Outflow times </>,
-                dataIndex: 'times',
-                render: (text: any, record: any, index: any) => {
-                    return <div
-                        // bindKey="consistent_detail"
-                        onClick={() => {
-                            // history.push(`/token-flow?id=${record?.id}&type=in`)
-                        }}>
-                        <div className='flex'  >
-                            <Text> {text}</Text>
-                        </div>
-                    </div>;
-                },
+                dataIndex: 'total_times',
             },
             {
-                title: <>Address</>,
+                title: <>Address </>,
                 dataIndex: 'address_num',
-                render: (text: any, record: any, index: any) => {
-                    return <div
-                        // bindKey="consistent_detail"
-                        onClick={() => {
-                            // history.push(`/token-flow?id=${record?.id}&type=in`)
-                        }}>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </div>;
-                },
             },
             {
-                title: <>Avg Outflow Times</>,
-                dataIndex: 'avg_num',
-                render: (text: any, record: any, index: any) => {
-                    return <div>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </div>;
-                },
+                title: <>Avg Inflow Times</>,
+                dataIndex: 'average_times',
             },
             {
-                title: <>Volume</>,
-                dataIndex: 'volume',
-                render: (text: any, record: any, index: any) => {
-                    return <div>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </div>;
-                },
+                title: <>volume</>,
+                dataIndex: 'volumes',
             },
         ]
     }, [params]);

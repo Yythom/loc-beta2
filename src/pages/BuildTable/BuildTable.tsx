@@ -1,7 +1,8 @@
 import loacl from '@/lang/semi-ui-local';
+import goTokenEthScan from '@/utils/ui_utils/goTokenEthScan';
 import { ConfigProvider, LocaleProvider, Pagination, Table } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
-import { Fragment, memo, } from 'react';
+import { Fragment, memo, useMemo, } from 'react';
 
 const BuildTable = memo((
     { buildDataSource, columns, loading, setParams, ret, onChange, hidePage, }: {
@@ -13,6 +14,23 @@ const BuildTable = memo((
         onChange?: any
         hidePage?: boolean
     }) => {
+
+    const _columns = useMemo(() => {
+        if (columns) {
+            return columns.map(e => {
+                const copyFn: any = e?.render
+                if (e?.dataIndex?.includes('token_name')) {
+                    e.render = (text: any, record: any, index: any) =>
+                        <div
+                            className={record?.token_address ? 'hover' : ''}
+                            onClick={() => record?.token_address && goTokenEthScan(record?.token_address)}>
+                            {copyFn?.(text, record, index) || text}
+                        </div>
+                }
+                return e
+            })
+        }
+    }, [columns])
 
     return (
         <LocaleProvider locale={loacl['en_US']}>
@@ -39,7 +57,7 @@ const BuildTable = memo((
                             onChange={onChange}
                             loading={loading}
                             dataSource={buildDataSource}
-                            columns={columns}
+                            columns={_columns}
                             pagination={false}
                         />
                     </div>

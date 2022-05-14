@@ -5,11 +5,10 @@ import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import { useHistory } from "react-router";
 import useTable from "@/hooks/useTable";
-import { FlowInDetailInterface, FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
-import FlowService from "@/services/flow";
 import MoreSetting from "@/components/table_component/MoreSetting";
 import { formatUrl } from "@/utils/js_utils/format";
 import { ProModal } from "@/utils/ui_utils/toast";
+import TokenFlowServices, { TokenFlowInterface } from "@/services/token_flow";
 
 const FlowInCon = memo(() => {
     const history = useHistory()
@@ -22,12 +21,17 @@ const FlowInCon = memo(() => {
         handle: {
             setSearch
         }
-    } = useTable<FlowInInterface, FlowParamsInterface>(
-        FlowService.get_flow_in_list,
+    } = useTable<any, TokenFlowInterface>(
+        TokenFlowServices.get_list,
         {
             initParams: {
                 page: 1,
-                source: 'SmartMoney'
+                search: {
+                    direction: 'IN',
+                    source: 'SMARTMONEY',
+                    consistent: false,
+                    time_range: 1
+                }
             }
         }
     )
@@ -48,8 +52,8 @@ const FlowInCon = memo(() => {
 
             {
                 title: <>  Inflow($)  </>,
-                dataIndex: 'total',
-                render: (text: any, record: FlowInInterface['list'][0], index: any) => {
+                dataIndex: 'volumes',
+                render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
                         history.push(`/token-flow?id=${record?.id}&type=in`)
                     }}>
@@ -107,8 +111,8 @@ const FlowInModal = memo(() => {
         tableData,
         BuildTable,
         loading
-    } = useTable<FlowInDetailInterface, FlowParamsInterface>(
-        FlowService.get_flow_in_detail,
+    } = useTable<any, any>(
+        TokenFlowServices.get_flow_in_detail,
         {
             initParams: {
                 id: _url_params?.id
@@ -131,9 +135,9 @@ const FlowInModal = memo(() => {
             {
                 title: <> Address  </>,
                 dataIndex: 'address',
-                render: (text: any) => {
-                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
-                        <Text>{text}</Text>
+                render: (text: any, r: any) => {
+                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
+                        <Text>{r.name || r.address}</Text>
                     </div>;
                 },
             },

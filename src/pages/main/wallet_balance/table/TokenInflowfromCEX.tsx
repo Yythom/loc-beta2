@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MoreSetting from '@/components/table_component/MoreSetting';
 import useTable from '@/hooks/useTable';
+import TokenFlowServices from '@/services/token_flow';
 import WalletBalanceService from '@/services/wallet_balance';
 import NumberUtils from '@/utils/js_utils/number';
 import { ProModal } from '@/utils/ui_utils/toast';
@@ -12,9 +13,11 @@ const TokenInflowfromCEX = memo(() => {
     const req = useMemo(() => {
         return {
             page: 1,
-            source: 'CEX',
-            type: 'in',
-            address: ctx?.token
+            search: {
+                source: 'CEX',
+                direction: 'in',
+                address: ctx?.token
+            }
         }
     }, [ctx.token])
     const {
@@ -29,7 +32,7 @@ const TokenInflowfromCEX = memo(() => {
             onTableChange,
         }
     } = useTable<any, any>(
-        WalletBalanceService.get_whiteTransaction_list,
+        TokenFlowServices.get_list,
         {
             listen_params: req
         }
@@ -43,12 +46,12 @@ const TokenInflowfromCEX = memo(() => {
             },
             {
                 title: 'Inflow ',
-                dataIndex: 'amount',
+                dataIndex: 'total_amount',
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
             {
                 title: 'Inflow Value',
-                dataIndex: 'usd',
+                dataIndex: 'volumes',
                 render: (text: any, rec: any, index: any) => {
                     return (
                         <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenModal />, 'Top 5')}>
@@ -59,7 +62,7 @@ const TokenInflowfromCEX = memo(() => {
             },
             {
                 title: 'Inflow Price',
-                dataIndex: 'price',
+                dataIndex: 'average_price',
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
         ]

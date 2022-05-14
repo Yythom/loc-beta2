@@ -1,10 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MoreSetting from '@/components/table_component/MoreSetting';
 import useTable from '@/hooks/useTable';
+import WalletBalanceService from '@/services/wallet_balance';
 import { memo, useContext, useMemo } from 'react';
 import { TokenContext } from '..';
 const ProfitinDEX = memo(() => {
     const ctx = useContext(TokenContext)
+
+    const req = useMemo(() => {
+        return {
+            page: 1,
+            search: {
+                address: ctx?.token
+            }
+        }
+    }, [ctx])
 
     const {
         setParams,
@@ -17,14 +27,9 @@ const ProfitinDEX = memo(() => {
             onTableChange,
         }
     } = useTable<any, any>(
-        async function name() {
-
-        },
+        WalletBalanceService.get_profit_list,
         {
-            initParams: {
-                page: 1,
-                source: 'CEX'
-            }
+            listen_params: req
         }
     )
 
@@ -32,23 +37,27 @@ const ProfitinDEX = memo(() => {
         return [
             {
                 title: 'Token',
-                dataIndex: '#',
+                dataIndex: 'token_name',
             },
             {
                 title: 'Invest($)',
-                dataIndex: '##',
+                dataIndex: 'invest_usd',
+                render: (e: any) => '$' + e
             },
             {
                 title: 'Return($)',
-                dataIndex: '###',
+                dataIndex: 'return_usd',
+                render: (e: any) => '$' + e
             },
             {
                 title: 'Profit($)',
-                dataIndex: '####',
+                dataIndex: 'profit_usd',
+                render: (e: any) => '$' + e
             },
             {
                 title: 'ROI',
-                dataIndex: '#####',
+                dataIndex: 'profit_rate',
+                render: (e: any) => e + '%'
             },
         ]
     }, []);

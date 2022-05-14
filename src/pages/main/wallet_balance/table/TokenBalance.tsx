@@ -7,8 +7,6 @@ import NumberUtils from '@/utils/js_utils/number';
 import { memo, useContext, useEffect, useMemo } from 'react';
 import { TokenContext } from '..';
 const TokenBalance = memo(() => {
-    console.log('ip');
-
     const ctx = useContext(TokenContext)
     const req = useMemo(() => {
         return {

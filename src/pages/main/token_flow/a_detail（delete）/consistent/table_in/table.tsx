@@ -7,9 +7,8 @@ import { useHistory } from "react-router";
 import { DashboardParams } from "@/services/ranking/interface";
 import useTable from "@/hooks/useTable";
 import { ChangeInfo, SortOrder } from "@douyinfe/semi-ui/lib/es/table";
-import { FlowInDetailInterface, FlowParamsInterface } from "@/services/flow/in_interface";
 import { formatUrl } from "@/utils/js_utils/format";
-import ConsistentService from "@/services/consistent";
+import TokenFlowServices from "@/services/token_flow";
 import loacl from "@/lang/semi-ui-local";
 
 const TableComponent = memo(() => {
@@ -21,8 +20,8 @@ const TableComponent = memo(() => {
         params,
         tableData,
         loading
-    } = useTable<FlowInDetailInterface, FlowParamsInterface>(
-        ConsistentService.get_consistent_in_detail,
+    } = useTable<any, any>(
+        TokenFlowServices.get_consistent_in_detail,
         {
             initParams: {
                 id: _url_params?.id

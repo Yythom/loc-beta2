@@ -5,11 +5,10 @@ import { memo, useMemo, useState } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import { useHistory } from "react-router";
 import useTable from "@/hooks/useTable";
-import { FlowInDetailInterface, FlowInInterface, FlowParamsInterface } from "@/services/flow/in_interface";
-import FlowService from "@/services/flow";
 import MoreSetting from "@/components/table_component/MoreSetting";
 import { formatUrl } from "@/utils/js_utils/format";
 import { ProModal } from "@/utils/ui_utils/toast";
+import TokenFlowServices, { TokenFlowInterface } from "@/services/token_flow";
 
 const FlowOut = memo(() => {
     const history = useHistory()
@@ -22,12 +21,17 @@ const FlowOut = memo(() => {
         handle: {
             setSearch
         }
-    } = useTable<FlowInInterface, FlowParamsInterface>(
-        FlowService.get_flow_out_list,
+    } = useTable<any, TokenFlowInterface>(
+        TokenFlowServices.get_list,
         {
             initParams: {
                 page: 1,
-                source: 'CEX'
+                search: {
+                    direction: 'OUT',
+                    source: 'CEX',
+                    consistent: false,
+                    time_range: 1
+                }
             }
         }
     )
@@ -47,14 +51,14 @@ const FlowOut = memo(() => {
 
             {
                 title: <>  Outflow($)  </>,
-                dataIndex: 'total',
-                render: (text: any, record: FlowInInterface['list'][0], index: any) => {
+                dataIndex: 'volumes',
+                render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
                         history.push(`/token-flow?id=${record?.id}&type=out`);
                         ProModal(<FlowOutModal />, 'Token Flow Out')
                     }}>
                         <div className='flex'  >
-                            <Text>- $ {text}</Text>
+                            <Text> $ {text}</Text>
                         </div>
                     </div>
                 },
@@ -105,8 +109,8 @@ const FlowOutModal = memo(() => {
         tableData,
         BuildTable,
         loading
-    } = useTable<FlowInDetailInterface, FlowParamsInterface>(
-        FlowService.get_flow_out_detail,
+    } = useTable<any, any>(
+        TokenFlowServices.get_flow_out_detail,
         {
             initParams: {
                 id: _url_params?.id,
@@ -128,9 +132,9 @@ const FlowOutModal = memo(() => {
             {
                 title: <> Address  </>,
                 dataIndex: 'address',
-                render: (text: any) => {
-                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
-                        <Text>{text}</Text>
+                render: (text: any, r: any) => {
+                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
+                        <Text>{r.name || r.address}</Text>
                     </div>;
                 },
             },

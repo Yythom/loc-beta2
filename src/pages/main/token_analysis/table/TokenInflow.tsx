@@ -36,9 +36,9 @@ const TokenInflow = memo(() => {
             {
                 title: 'Address',
                 dataIndex: '1',
-                render: (text: any) => {
-                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
-                        <Text>{text}</Text>
+                render: (text: any, r: any) => {
+                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
+                        <Text>{r.name || r.address}</Text>
                     </div>;
                 },
             },

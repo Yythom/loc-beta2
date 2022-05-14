@@ -6,9 +6,7 @@ import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import MoreSetting from "@/components/table_component/MoreSetting";
 import { useHistory } from "react-router";
 import useTable from "@/hooks/useTable";
-import ConsistentService from "@/services/consistent";
-import { ConsistentOutListInterface } from "@/services/consistent/in_interface";
-import { ConsistentOutListParamsInterface } from "@/services/consistent/out_interface";
+import TokenFlowServices, { TokenFlowInterface } from "@/services/token_flow";
 
 const ConsistentOut = memo(() => {
     const history = useHistory()
@@ -21,17 +19,20 @@ const ConsistentOut = memo(() => {
         handle: {
             setSearch
         }
-    } = useTable<ConsistentOutListInterface, ConsistentOutListParamsInterface>(
-        ConsistentService.get_consistent_out_list,
+    } = useTable<any, TokenFlowInterface>(
+        TokenFlowServices.get_list,
         {
             initParams: {
                 page: 1,
-                source: 'CEX'
+                search: {
+                    direction: 'OUT',
+                    source: 'CEX',
+                    consistent: true,
+                    time_range: 1
+                }
             }
         }
     )
-    const [isOpen, setOpen] = useState<boolean>(false);
-
     const columns = useMemo(() => {
         return [
             {
@@ -45,34 +46,19 @@ const ConsistentOut = memo(() => {
             },
             {
                 title: <>Outflow times </>,
-                dataIndex: 'times',
+                dataIndex: 'total_times',
             },
             {
                 title: <>Address </>,
                 dataIndex: 'address_num',
             },
-
             {
-                title: <>Avg Outflow Times</>,
-                dataIndex: 'avg_num',
-                render: (text: any, record: any, index: any) => {
-                    return <div>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </div>;
-                },
+                title: <>Avg Inflow Times</>,
+                dataIndex: 'average_times',
             },
             {
-                title: <>Volume</>,
-                dataIndex: 'volume',
-                render: (text: any, record: any, index: any) => {
-                    return <div>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </div>;
-                },
+                title: <>volume</>,
+                dataIndex: 'volumes',
             },
         ]
     }, [params]);
