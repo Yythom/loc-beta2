@@ -126,17 +126,14 @@ const FlowOutModal = memo(() => {
                 },
             },
             {
-                title: <>
-                    Address
-                </>,
+                title: <> Address  </>,
                 dataIndex: 'address',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
+                render: (text: any) => {
+                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
                         <Text>{text}</Text>
                     </div>;
                 },
             },
-
             {
                 title: <>
                     Outflow

@@ -46,32 +46,10 @@ const ConsistentIn = memo(() => {
             {
                 title: <>Inflow times </>,
                 dataIndex: 'times',
-                render: (text: any, record: any, index: any) => {
-                    return <div
-                        // bindKey="consistent_detail" 
-                        onClick={() => {
-                            // history.push(`/token-flow?id=${record?.id}&type=in`)
-                        }}>
-                        <div className='flex'  >
-                            <Text> {text}</Text>
-                        </div>
-                    </div>;
-                },
             },
             {
-                title: <>Address </>,
+                title: <>Address Num</>,
                 dataIndex: 'address_num',
-                render: (text: any, record: any, index: any) => {
-                    return <div
-                        // bindKey="consistent_detail"
-                        onClick={() => {
-                            // history.push(`/token-flow?id=${record?.id}&type=in`)
-                        }}>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
-                    </div>;
-                },
             },
             {
                 title: <>Avg Inflow Times</>,

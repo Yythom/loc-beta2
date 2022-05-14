@@ -36,6 +36,11 @@ const SwapTransactions = memo(() => {
             {
                 title: <>Address</>,
                 dataIndex: 'address',
+                render: (text: any) => {
+                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
+                        <Text>{text}</Text>
+                    </div>;
+                },
             },
             {
                 title: <>Time</>,
@@ -60,7 +65,7 @@ const SwapTransactions = memo(() => {
                 dataIndex: 'amount_in',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },
@@ -78,7 +83,7 @@ const SwapTransactions = memo(() => {
                 dataIndex: 'amount_out',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },
@@ -87,7 +92,7 @@ const SwapTransactions = memo(() => {
                 dataIndex: 'volume',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },

@@ -7,6 +7,8 @@ import NumberUtils from '@/utils/js_utils/number';
 import { memo, useContext, useEffect, useMemo } from 'react';
 import { TokenContext } from '..';
 const TokenBalance = memo(() => {
+    console.log('ip');
+
     const ctx = useContext(TokenContext)
     const req = useMemo(() => {
         return {
@@ -43,17 +45,17 @@ const TokenBalance = memo(() => {
             {
                 title: 'Token Balance ',
                 dataIndex: 'price',
-                render: (t: any, r: any, i: any) => <div>${NumberUtils.numToFixed(t, 6)}</div>
+                render: (t: any, r: any, i: any) => <div>${t}</div>
             },
             {
                 title: ' Current Value',
                 dataIndex: 'usd',
-                render: (t: any, r: any, i: any) => <div>${NumberUtils.numToFixed(t, 6)}</div>
+                render: (t: any, r: any, i: any) => <div>${t}</div>
             },
             {
                 title: '% of All Token',
                 dataIndex: 'all_average',
-                render: (t: any, r: any, i: any) => <div>{NumberUtils.numToFixed(t, 2)}%</div>
+                render: (t: any, r: any, i: any) => <div>{t}%</div>
             },
         ]
     }, []);

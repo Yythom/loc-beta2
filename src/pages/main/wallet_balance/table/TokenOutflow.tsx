@@ -45,7 +45,7 @@ const TokenOutflow = memo(() => {
             {
                 title: 'Outflow ',
                 dataIndex: 'amount',
-                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
+                render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
             {
                 title: 'Outflow Value($)',
@@ -53,7 +53,7 @@ const TokenOutflow = memo(() => {
                 render: (text: any, rec: any, index: any) => {
                     return (
                         <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenModal />, 'Top 5')}>
-                            ${NumberUtils.numToFixed(text, 6)}
+                            ${text}
                         </div>
                     )
                 }
@@ -61,7 +61,7 @@ const TokenOutflow = memo(() => {
             {
                 title: 'Outflow Price($)',
                 dataIndex: 'price',
-                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
+                render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
         ]
     }, []);

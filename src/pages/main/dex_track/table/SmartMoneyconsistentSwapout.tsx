@@ -43,25 +43,20 @@ const SmartMoneyconsistentSwapout = memo(() => {
                 dataIndex: 'times',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },
             {
-                title: <>Address </>,
+                title: <>Address</>,
                 dataIndex: 'address_num',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
-                    </div>;
-                },
             },
             {
                 title: <>Avg Swap in Times</>,
                 dataIndex: 'avg_num',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },
@@ -70,7 +65,7 @@ const SmartMoneyconsistentSwapout = memo(() => {
                 dataIndex: 'volume',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },

@@ -3,11 +3,12 @@
 import ErrorBoundary from "@/components/Boundary";
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
-import { debounce } from "@/utils/js_utils/format";
-import { IconSearch } from "@douyinfe/semi-icons";
-import { Input, TabPane, Tabs } from "@douyinfe/semi-ui";
+import { debounce, formatUrl } from "@/utils/js_utils/format";
+import { IconCopy, IconSearch } from "@douyinfe/semi-icons";
+import { Input, TabPane, Tabs, Toast } from "@douyinfe/semi-ui";
 import dayjs from "dayjs";
 import { createContext, Fragment, memo, useMemo, useState } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
 import './index.scss'
 import ProfitinDEX from "./table/ProfitinDEX";
 import RecentTransactions from "./table/RecentTransactions";
@@ -17,35 +18,70 @@ import TokenInflowfromCEX from "./table/TokenInflowfromCEX";
 import TokenOutflow from "./table/TokenOutflow";
 import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 
-const initToken = '0x0f4ee9631f4be0a63756515141281a3e2b293bbe'
-export const TokenContext = createContext<{ token: any }>({ token: initToken });
+const initTokenAddress = '0x0f4ee9631f4be0a63756515141281a3e2b293bbe'
+export const TokenContext = createContext<{ token: any }>({ token: '' });
 
 const WalletBalance = memo(() => {
-    const [token, setToken] = useState(initToken)
-    const [ret, fetch,
-        setParams,] = useRequest<any, any>(async function name(params) {
+    const initAddr: any = formatUrl()
+    const JumpAddress = useMemo(() => initAddr?.address || '', [])
 
-        }, {
-            initParams: {
-                search: {
-                    days: 7
-                }
+    const [token, setToken] = useState(JumpAddress) // address
+
+    const [tokenInfo, fetchToken, setTokenName] = useRequest<any, any>(async function name(params) {
+        console.log(params, 'pp');
+    }, {
+        initParams: {
+            search: {
+                token_name: 'token_name'
             }
-        })
+        },
+        start_owner: true,
+        callback: (ret) => {
+            const addr = ret?.addr
+            if (addr) {
+                console.log('SHEZHI TOKEN ADDR');
+                setToken(addr)
+            }
+        }
+    })
 
+    // const [ret, fetch, setParams,] = useRequest<any, any>(async function name(params) { }, {
+    //     initParams: {
+    //         search: {
+    //             days: 7
+    //         }
+    //     }
+    // })
+
+    // const [v, setv] = useState(JumpAddress);
     return (
         <div className='token_balance' style={{ width: '100%', height: '100%', }}>
             <div style={{ height: '40px' }}></div>
-            <div className="fb" style={{ color: '#fff', height: '100px', marginBottom: '3rem' }}>
-                <div className="card fdc" style={{ width: '49%', height: '100%' }} >
+            <div className="fb card" style={{ color: '#fff', height: '100px', marginBottom: '3rem' }}>
+                <div className="card fd" style={{ width: '49%', height: '100%' }} >
                     <div className="title">Wallet labels</div>
-                    <div className="flex">Token Name</div>
+                    <CopyToClipboard text={token} onCopy={() => Toast.success('copy success')} >
+                        <div className="flex">
+                            Token Name
+
+                            <IconCopy />
+                        </div>
+                    </CopyToClipboard>
                 </div>
                 <div className="card fc" style={{ width: '49%', height: '100%' }}>
                     <Input
-                        value={token}
+                        maxLength={42}
+                        // value={v}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') fetchToken()
+                        }}
                         onChange={(e) => {
-                            setToken(e)
+                            // setv(e)
+                            if (e.slice(0, 2) === '0x' && e.length === 42) {
+                                setToken(e)
+                            } else {
+                                setTokenName(e)
+                            }
                         }}
                         style={{ borderRadius: '200px' }}
                         prefix={<IconSearch />} placeholder='Search for Token'
@@ -88,34 +124,18 @@ const WalletBalance = memo(() => {
                 </div>
             </Fragment> */}
 
-
-
             <TokenContext.Provider value={{ token }} >
-                <ErrorBoundary>
-                    <TokenBalance />
-                </ErrorBoundary>
+                <TokenBalance />
                 <div className="fb flex-1">
-                    <ErrorBoundary>
-                        <TokenInflow />
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <TokenOutflow />
-                    </ErrorBoundary>
+                    <TokenInflow />
+                    <TokenOutflow />
                 </div>
                 <div className="fb flex-1" >
-                    <ErrorBoundary>
-                        <TokenInflowfromCEX />
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <TokenOutflowfromCEX />
-                    </ErrorBoundary>
+                    <TokenInflowfromCEX />
+                    <TokenOutflowfromCEX />
                 </div>
-                <ErrorBoundary>
-                    <ProfitinDEX />
-                </ErrorBoundary>
-                <ErrorBoundary>
-                    <RecentTransactions />
-                </ErrorBoundary>
+                <ProfitinDEX />
+                <RecentTransactions />
             </TokenContext.Provider>
         </div >
     )

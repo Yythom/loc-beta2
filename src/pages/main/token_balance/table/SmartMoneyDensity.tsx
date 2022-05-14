@@ -41,7 +41,7 @@ const SmartMoneyDensity = memo(() => {
                 dataIndex: 'market_cap',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -50,7 +50,7 @@ const SmartMoneyDensity = memo(() => {
                 dataIndex: 'total_value',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -59,7 +59,7 @@ const SmartMoneyDensity = memo(() => {
                 dataIndex: 'market_cap_of_ratio',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)} %</Text>
+                        <Text>{text} %</Text>
                     </div>;
                 },
             },
@@ -68,7 +68,7 @@ const SmartMoneyDensity = memo(() => {
                 dataIndex: 'market_cap_change_ratio',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)} %</Text>
+                        <Text>{text} %</Text>
                     </div>;
                 },
             },

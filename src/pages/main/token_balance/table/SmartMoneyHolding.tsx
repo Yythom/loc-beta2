@@ -40,7 +40,7 @@ const SmartMoneyHolding = memo(() => {
                 dataIndex: 'token_balance',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },
@@ -49,7 +49,7 @@ const SmartMoneyHolding = memo(() => {
                 dataIndex: 'current_value',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -58,7 +58,7 @@ const SmartMoneyHolding = memo(() => {
                 dataIndex: 'current_of_all',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)} %</Text>
+                        <Text>{text} %</Text>
                     </div>;
                 },
             },
@@ -71,7 +71,7 @@ const SmartMoneyHolding = memo(() => {
                 dataIndex: 'value_change',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -80,7 +80,7 @@ const SmartMoneyHolding = memo(() => {
                 dataIndex: 'current_change',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },

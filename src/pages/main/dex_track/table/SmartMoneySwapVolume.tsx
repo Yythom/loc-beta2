@@ -51,7 +51,7 @@ const SmartMoneySwapVolume = memo(() => {
                 dataIndex: 'volume',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -60,7 +60,7 @@ const SmartMoneySwapVolume = memo(() => {
                 dataIndex: 'volume_change',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },

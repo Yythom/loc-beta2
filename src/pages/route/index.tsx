@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import CacheRoute from "react-router-cache-route";
 import CacheRoute from "react-router-cache-route";
 import {
@@ -61,16 +62,16 @@ const menu_route: RouteItemInterface[] = [
         icon: 'iconshezhi',
         itemKey: 'wallet-balance',
     },
-    {
-        text: 'Token Analysis',
-        icon: 'iconshezhi',
-        itemKey: 'token-analysis',
-    },
-    {
-        text: 'Wallet for Token',
-        icon: 'iconshezhi',
-        itemKey: 'wallet-for-token',
-    }
+    // {
+    //     text: 'Token Analysis',
+    //     icon: 'iconshezhi',
+    //     itemKey: 'token-analysis',
+    // },
+    // {
+    //     text: 'Wallet for Token',
+    //     icon: 'iconshezhi',
+    //     itemKey: 'wallet-for-token',
+    // }
 ];
 
 // 此处应为请求
@@ -134,20 +135,20 @@ const RouteComponentsMap: {
             component={WalletBalance}
         />
     },
-    'token-analysis': {
-        component: <Route
-            path={setPagePath('token-analysis')}
-            exact
-            component={TokenAnalysis}
-        />
-    },
-    'wallet-for-token': {
-        component: <Route
-            path={setPagePath('wallet-for-token')}
-            exact
-            component={WalletForToken}
-        />
-    }
+    // 'token-analysis': {
+    //     component: <Route
+    //         path={setPagePath('token-analysis')}
+    //         exact
+    //         component={TokenAnalysis}
+    //     />
+    // },
+    // 'wallet-for-token': {
+    //     component: <Route
+    //         path={setPagePath('wallet-for-token')}
+    //         exact
+    //         component={WalletForToken}
+    //     />
+    // }
 }
 
 export {

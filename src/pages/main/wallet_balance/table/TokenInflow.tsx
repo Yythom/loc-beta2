@@ -47,7 +47,7 @@ const TokenInflow = memo(() => {
             {
                 title: 'Inflow ',
                 dataIndex: 'amount',
-                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
+                render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
             {
                 title: 'Inflow Value($)',
@@ -55,7 +55,7 @@ const TokenInflow = memo(() => {
                 render: (text: any, rec: any, index: any) => {
                     return (
                         <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenInflowModal />, 'Top 5')}>
-                            ${NumberUtils.numToFixed(text, 6)}
+                            ${text}
                         </div>
                     )
                 }
@@ -63,7 +63,7 @@ const TokenInflow = memo(() => {
             {
                 title: 'Inflow Price($)',
                 dataIndex: 'price',
-                render: (text: any, rec: any, index: any) => <div>${NumberUtils.numToFixed(text, 6)}</div>,
+                render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
         ]
     }, []);

@@ -36,13 +36,18 @@ const DEXLeaderboard = memo(() => {
             {
                 title: <>Address</>,
                 dataIndex: 'address',
+                render: (text: any) => {
+                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
+                        <Text>{text}</Text>
+                    </div>;
+                },
             },
             {
                 title: <>Invest($)</>,
                 dataIndex: 'invest_usd',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -51,7 +56,7 @@ const DEXLeaderboard = memo(() => {
                 dataIndex: 'return_usd',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -60,7 +65,7 @@ const DEXLeaderboard = memo(() => {
                 dataIndex: 'profit_usd',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>${NumberUtils.numToFixed(text, 2)}</Text>
+                        <Text>${text}</Text>
                     </div>;
                 },
             },
@@ -69,7 +74,7 @@ const DEXLeaderboard = memo(() => {
                 dataIndex: 'profit_rate',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>{NumberUtils.numToFixed(text, 2)}%</Text>
+                        <Text>{text}%</Text>
                     </div>;
                 },
             },

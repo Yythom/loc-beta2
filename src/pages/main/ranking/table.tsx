@@ -93,7 +93,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'investUsd',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex'>
-                        {NumberUtils.numToFixed(text, 6)}
+                        {text}
                     </div>;
                 },
                 sorter: true,
@@ -122,7 +122,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'returnUsd',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex'>
-                        {NumberUtils.numToFixed(text, 6)}
+                        {text}
                     </div>;
                 },
                 sorter: true,
@@ -151,7 +151,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'profitUsd',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex'>
-                        {NumberUtils.numToFixed(text, 6)}
+                        {text}
                     </div>;
                 },
                 sorter: true,
@@ -166,7 +166,7 @@ const TableComponent = memo(() => {
                 dataIndex: 'profitRate',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex'>
-                        {NumberUtils.numToFixed(text, 6)}%
+                        {text}%
                     </div>;
                 },
                 sorter: true
