@@ -27,6 +27,8 @@ class WalletBalanceService {
         return result
     }
     static get_tokenBalance_list = async (data: any) => {
+        console.log(data, 'DADA');
+
         const result = await request({
             url: '/v1/user/walletBalance/list',
             data: {

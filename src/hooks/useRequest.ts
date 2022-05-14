@@ -49,7 +49,7 @@ function useRequest<T, P = undefined>(
 
     useEffect(() => {
         // 监听模式需要控制变量useMemo
-        if (option?.listen_params && !option.start_owner) fetch({ ...params, ...option?.listen_params }, true)
+        if (option?.listen_params && !option.start_owner) fetch({ ...option?.listen_params, ...params, }, true)
     }, [option?.listen_params, params])
 
     return [

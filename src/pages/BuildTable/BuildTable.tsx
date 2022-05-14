@@ -25,6 +25,8 @@ const BuildTable = memo((
                                 total={ret?.total || 0}
                                 currentPage={ret?.page}
                                 onChange={(currentPage) => {
+                                    console.log(currentPage, 'currentPage');
+
                                     setParams('page', currentPage)
                                 }}
                                 size="small"
