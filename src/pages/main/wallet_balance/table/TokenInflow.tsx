@@ -11,15 +11,17 @@ const TokenInflow = memo(() => {
     const ctx = useContext(TokenContext)
 
     const req = useMemo(() => {
+        if (!ctx.wallet || !ctx?.token) return null
         return {
             page: 1,
+            address: ctx.wallet,
             search: {
                 source: 'SMARTMONEY',
                 direction: 'in',
-                address: ctx?.token
+                token_address: ctx?.token
             }
         }
-    }, [ctx.token])
+    }, [ctx.token, ctx.wallet])
 
     const {
         setParams,

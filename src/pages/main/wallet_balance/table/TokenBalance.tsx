@@ -9,11 +9,15 @@ import { TokenContext } from '..';
 const TokenBalance = memo(() => {
     const ctx = useContext(TokenContext)
     const req = useMemo(() => {
+        if (!ctx.wallet || !ctx?.token) return null
         return {
             page: 1,
-            address: ctx?.token
+            address: ctx.wallet,
+            search: {
+                token_address: ctx?.token,
+            }
         }
-    }, [ctx.token])
+    }, [ctx.token, ctx.wallet])
 
     const {
         setParams,

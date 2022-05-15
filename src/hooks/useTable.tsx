@@ -9,7 +9,7 @@ function useTable<T, P = undefined>(
     option: {
         start_owner?: boolean,
         initParams?: P,
-        listen_params?: {}
+        listen_params?: P | undefined | null
         // callback?:()
     },
 ): {

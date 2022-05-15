@@ -28,7 +28,6 @@ class WalletBalanceService {
     }
 
     static get_walletTransaction_list = async (data: any) => {
-        if (!data?.address && !data?.search?.token_address) return false
         const result = await request({
             url: '/v1/user/walletTransaction/list',
             data: {
@@ -58,7 +57,8 @@ class WalletBalanceService {
                 "condition": {},
                 "search": {
                     "time_range": data?.search?.time_range || 1, // 天数
-                    address: data?.address || '',
+                    address: data?.address,
+                    token_address: data?.search?.token_address,
                 },
                 "page": {
                     "page": data?.page,
@@ -74,6 +74,7 @@ class WalletBalanceService {
     }
 
     static get_tokenInfo = async (data: any) => {
+        // if (!data?.address && !data?.name) return false
         const result = await request({
             url: '/v1/user/tokenWhiteList/list',
             data: {
@@ -117,15 +118,13 @@ class WalletBalanceService {
     }
 
     static get_profit_list = async (data: any) => {
-        // console.log(data, 'data?.search?.address');
-
-        if (!data?.search?.address) return false
         const result = await request({
             url: '/v1/user/dexLeaderboardToken/list',
             data: {
                 "condition": {},
                 "search": {
-                    address: data?.search?.address,
+                    address: data?.address,
+                    token_address: data?.search?.token_address,
                     "time_range": data?.search?.time_range || 1, // 天数
                 },
                 "page": {

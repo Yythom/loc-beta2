@@ -89,7 +89,8 @@ class TokenFlowServices {
                     "source": data?.search?.source,
                     "time_range": data?.search?.time_range || 1,
                     "consistent": data?.search?.consistent,
-                    "address": data?.search?.address,
+                    "address": data?.address,
+                    token_address: data?.search?.token_address
                 },
                 "page": {
                     "page": data?.page || 1,
@@ -135,12 +136,13 @@ class TokenFlowServices {
 
 export interface TokenFlowInterface {
     page?: number,
+    "address"?: string,
     search?: Partial<{
         "direction": 'IN' | 'OUT',
         "source": 'SMARTMONEY' | 'CEX',
         "time_range": number | string,
         "consistent": boolean,
-        "address"?: string,
+        "token_address": string
     }>
 }
 export default TokenFlowServices

@@ -27,7 +27,6 @@ const WalletBalance = memo(() => {
     const initAddr: any = formatUrl()
     const JumpAddress = useMemo(() => initAddr?.address || '', [])
 
-    const [token, setToken] = useState(JumpAddress) // address
 
     const [tokenInfoList, fetchToken, setTokenName, loading, params] = useRequest<any, any>(WalletBalanceService.get_tokenInfo, {
         initParams: {
@@ -59,24 +58,23 @@ const WalletBalance = memo(() => {
         <div className='wallet_balance' style={{ width: '100%', height: '100%', }}>
             <div style={{ height: '40px' }}></div>
             <div className="fb card" style={{ color: '#fff', height: '120px', marginBottom: '3rem' }}>
-                <div className="card fd" style={{ width: '49%', height: '100%' }} >
-                    <div className="title">
-                        <Input
-                            maxLength={42}
-                            value={wallet_address}
-                            onKeyPress={(e) => {
-                                if (e.key === 'Enter') fetchToken()
-                            }}
-                            onChange={(e) => {
-                                setWalletAddress(e)
-                                localStorage.setItem('WalletAddress', e)
-                                setTokenTagParams({ address: e })
-                            }}
-                            style={{ borderRadius: '200px', width: '400px', marginBottom: '6px' }}
-                            prefix={<IconSearch />} placeholder='Search for Wallet Address'
-                        />
-                    </div>
-                    {
+                <div className="card fd" style={{ width: '49%', height: '100%', justifyContent: 'center' }} >
+                    <Input
+                        maxLength={42}
+                        value={wallet_address}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') fetchToken()
+                        }}
+                        onChange={(e) => {
+                            setWalletAddress(e)
+                            localStorage.setItem('WalletAddress', e)
+                            setTokenTagParams({ address: e })
+                        }}
+                        style={{ borderRadius: '200px', width: '500px' }}
+                        prefix='Wallet Address'
+                        placeholder='Search for Wallet Address'
+                    />
+                    {/* {
                         token && <div className="flex" style={{ width: 'max-content' }}>
                             <CopyToClipboard text={token} onCopy={() => Toast.success('copyed Token Address')} ><div className="flex hover" style={{ fontSize: '16px' }}>
                                 {params?.name || params?.address}
@@ -84,25 +82,27 @@ const WalletBalance = memo(() => {
                             </div>
                             </CopyToClipboard>
                         </div>
-                    }
+                    } */}
 
-                    <div style={{ marginTop: '6px' }}>
-                        {
-                            wallet_lables?.list?.map((e: any) => (
-                                <Tag style={{ marginRight: '10px' }} key={e.name}>
-                                    {e.name}
-                                </Tag>
-                            ))
-                        }
-                    </div>
+                    {
+                        wallet_lables?.list?.length > 0 && < div style={{ marginTop: '6px' }}>
+                            {
+                                wallet_lables?.list?.map((e: any) => (
+                                    <Tag style={{ marginRight: '10px' }} key={e.name}>
+                                        {e.name}
+                                    </Tag>
+                                ))
+                            }
+                        </div>
+                    }
                 </div>
                 <div className="card fc" style={{ width: '49%', height: '100%' }}>
                     <AutoComplete
                         loading={loading}
                         value={params?.address || params?.name}
-                        data={tokenInfoList?.list?.map((e: any) => e.name + "--" + e.address)}
+                        data={tokenInfoList?.list?.length > 0 ? tokenInfoList?.list?.map((e: any) => e.name + "--" + e.address) : ['No result']}
                         showClear
-                        prefix={<IconSearch />}
+                        prefix='Token Address'
                         placeholder='Search for Token'
                         onSearch={(e: any) => {
                             if (e.slice(0, 2) === '0x' && e.length === 42) {
@@ -116,7 +116,6 @@ const WalletBalance = memo(() => {
                             console.log(itm, 'select');
                             const _name = itm.split('--')[0];
                             const _addr = itm.split('--')[1];
-                            setToken(_addr);
                             setTokenName({ address: _addr, name: _name })
                         }}
                         renderSelectedItem={(itm: any) => {

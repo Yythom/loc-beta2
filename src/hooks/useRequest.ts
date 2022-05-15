@@ -9,7 +9,7 @@ function useRequest<T, P = undefined>(
         callback?: (data: T) => void,
         failCallBack?: () => void,
         initParams?: Object,
-        listen_params?: Object, // 监听模式需要控制变量useMemo
+        listen_params?: Record<string, any> | null | undefined, // 监听模式需要控制变量useMemo
     }
 ): [
         T | undefined,
@@ -42,14 +42,16 @@ function useRequest<T, P = undefined>(
     }, [params, option?.listen_params]);
 
     useEffect(() => {
-        if (params && !option.start_owner && !option.listen_params) {
+        if (params && !option.start_owner && typeof option.listen_params === 'undefined') {
             fetch()
         }
     }, [params]);
 
     useEffect(() => {
         // 监听模式需要控制变量useMemo
-        if (option?.listen_params && !option.start_owner) fetch({ ...option?.listen_params, ...params, }, true)
+        if (option?.listen_params && !option.start_owner) {
+            fetch({ ...option?.listen_params, ...params, }, true)
+        }
     }, [option?.listen_params, params])
 
     return [

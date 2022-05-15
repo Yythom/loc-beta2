@@ -10,15 +10,17 @@ import { TokenContext } from '..';
 const TokenOutflowfromCEX = memo(() => {
     const ctx = useContext(TokenContext)
     const req = useMemo(() => {
+        if (!ctx.wallet || !ctx?.token) return null
         return {
             page: 1,
+            address: ctx.wallet,
             search: {
                 source: 'CEX',
                 direction: 'out',
-                address: ctx?.token
+                token_address: ctx?.token
             }
         }
-    }, [ctx.token])
+    }, [ctx.token, ctx.wallet])
     const {
         setParams,
         params,
