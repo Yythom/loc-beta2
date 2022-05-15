@@ -54,7 +54,7 @@ const FlowOutCon = memo(() => {
                 dataIndex: 'volumes',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=out`)
+                        history.push(`/token-flow?token_address=${record?.token_address}&type=out`)
                         ProModal(<FlowOutModal />, 'Token Flow Out')
                     }}>
                         <div className='flex'  >
@@ -68,7 +68,7 @@ const FlowOutCon = memo(() => {
                 dataIndex: 'address_num',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
-                        history.push(`/token-flow?id=${record?.id}&type=out`)
+                        history.push(`/token-flow?token_address=${record?.token_address}&type=out`)
                         ProModal(<FlowOutModal />, 'Token Flow Out')
                     }}>
                         <div className='flex'  >
@@ -110,11 +110,10 @@ const FlowOutModal = memo(() => {
         BuildTable,
         loading
     } = useTable<any, any>(
-        TokenFlowServices.get_flow_out_detail,
+        TokenFlowServices.get_flow_detail,
         {
             initParams: {
-                id: _url_params?.id,
-                // source: 'SmartMoney'
+                token_address: _url_params?.token_address,
             }
         }
     )
@@ -142,10 +141,10 @@ const FlowOutModal = memo(() => {
                 title: <>
                     Outflow
                 </>,
-                dataIndex: 'total_usd',
+                dataIndex: 'amount',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
-                        <Text>- $ {text}</Text>
+                        <Text>$ {text}</Text>
                     </div>;
                 },
             },

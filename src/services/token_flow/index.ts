@@ -120,13 +120,14 @@ class TokenFlowServices {
     }
 
 
-    static get_flow_in_detail = async (data: { id: string }) => {
+    static get_flow_detail = async (data: any) => {
         const res = await request<any>({
-            url: `/v1/user/tokenInFlow/detail`,
+            url: `/v1/user/addressTransaction/list`,
             data: {
                 "condition": {},
                 "search": {
-                    "id": data.id
+                    "token_address": data?.token_address,
+                    "address": data?.address || ''
                 }
             }
         })
