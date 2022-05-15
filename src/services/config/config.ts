@@ -2,7 +2,8 @@
 
 // export const baseURL = 'https://lookonchain.com/api'
 export const baseURL = process.env.NODE_ENV === "development" ?
-    'http://47.242.64.229:9501/api' :
+    'https://api.lookonchain.com/api' :
+    // 'http://47.242.64.229:9501/api' : 
     'https://api.lookonchain.com/api'
 
 //接口地址

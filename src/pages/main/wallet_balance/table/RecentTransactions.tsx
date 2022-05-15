@@ -9,7 +9,7 @@ import { TokenContext } from '..';
 const RecentTransactions = memo(() => {
     const ctx = useContext(TokenContext)
     const req = useMemo(() => {
-        if (!ctx.wallet || !ctx?.token) return null
+        if (!ctx?.wallet) return null
         return {
             page: 1,
             address: ctx.wallet,
@@ -51,7 +51,7 @@ const RecentTransactions = memo(() => {
                 title: 'From',
                 dataIndex: '###',
                 render: (t: any, r: any) => {
-                    return r?.form_type?.value === 1 ?
+                    return r?.from_type?.value === 1 ?
                         <div >
                             <div>{r.from_amount}</div>
                             <div>{r.from_info}</div>

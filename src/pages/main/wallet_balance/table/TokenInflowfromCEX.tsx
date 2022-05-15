@@ -11,7 +11,7 @@ import { TokenContext } from '..';
 const TokenInflowfromCEX = memo(() => {
     const ctx = useContext(TokenContext)
     const req = useMemo(() => {
-        if (!ctx.wallet || !ctx?.token) return null
+        if (!ctx?.wallet) return null
         return {
             page: 1,
             address: ctx.wallet,

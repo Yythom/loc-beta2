@@ -23,14 +23,13 @@ const initTokenAddress = '0x0f4ee9631f4be0a63756515141281a3e2b293bbe'
 export const TokenContext = createContext<{ token: any, wallet: any }>({ token: '', wallet: '' });
 
 const WalletBalance = memo(() => {
-    const [wallet_address, setWalletAddress] = useState(localStorage.getItem('WalletAddress') || '')
     const initAddr: any = formatUrl()
     const JumpAddress = useMemo(() => initAddr?.address || '', [])
-
+    const [wallet_address, setWalletAddress] = useState(JumpAddress || localStorage.getItem('WalletAddress') || '')
 
     const [tokenInfoList, fetchToken, setTokenName, loading, params] = useRequest<any, any>(WalletBalanceService.get_tokenInfo, {
         initParams: {
-            address: JumpAddress,
+            address: '',
             name: ''
         },
         // start_owner: true,

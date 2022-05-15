@@ -8,7 +8,7 @@ const ProfitinDEX = memo(() => {
     const ctx = useContext(TokenContext)
 
     const req = useMemo(() => {
-        if (!ctx?.token) return null
+        if (!ctx?.wallet) return null
         return {
             page: 1,
             address: ctx.wallet,
