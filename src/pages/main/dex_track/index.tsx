@@ -2,26 +2,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
-import DexTrackServices from "@/services/dex_track";
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import dayjs from "dayjs";
 import { Fragment, memo, useMemo } from "react";
 import './index.scss'
-import DEXLeaderboard from "./table/DEXLeaderboard";
-import SmartMoneyconsistentSwapin from "./table/SmartMoneyconsistentSwapin";
-import SmartMoneyconsistentSwapout from "./table/SmartMoneyconsistentSwapout";
-import SmartMoneySwapVolume from "./table/SmartMoneySwapVolume";
-import SwapTransactions from "./table/SwapTransactions";
+import DEXLeaderboard from "./table/DEXLeaderboard"; 
+
 const DexTrack = memo(() => {
-    const [ret, fetch,
-        setParams,] = useRequest<any, any>(DexTrackServices.get_dexTradeTrending_list, {
-            initParams: {
-                search: {
-                    days: 7
-                }
-            }
-        })
+    // const [ret, fetch,
+    //     setParams,] = useRequest<any, any>(DexTrackServices.get_dexTradeTrending_list, {
+    //         initParams: {
+    //             search: {
+    //                 days: 7
+    //             }
+    //         }
+    //     })
 
     return (
         <div className='dex_track' style={{ width: '100%', height: '100%', }}>
@@ -74,7 +70,7 @@ const DexTrack = memo(() => {
 
             <DEXLeaderboard />
 
-            <div style={{ height: '2rem' }} />
+            {/* <div style={{ height: '2rem' }} />
 
             <SwapTransactions />
 
@@ -85,7 +81,7 @@ const DexTrack = memo(() => {
             <div className="flex flex-1" style={{ marginTop: '2rem' }}>
                 <SmartMoneyconsistentSwapin />
                 <SmartMoneyconsistentSwapout />
-            </div>
+            </div> */}
 
             <div style={{ height: '2rem' }} />
         </div >

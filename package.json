@@ -49,7 +49,7 @@
   "devDependencies": {
     "@types/react-copy-to-clipboard": "^5.0.2",
     "@types/react-router-dom": "^5.3.3",
-    "ts-gear": "^4.7.1"
+    "ts-gear": "^4.7.4"
   },
   "browserslist": {
     "production": [

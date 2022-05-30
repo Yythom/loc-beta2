@@ -19,7 +19,13 @@
 
 
 <body theme-mode='dark'>
+  <script src="./config.js"></script>
+  <script>
+    window.getGlobalConfig = function () {
+      return JSON.parse(JSON.stringify(config))
+    }
 
+  </script>
   <!-- <body> -->
   <div id="root"></div>
 </body>

@@ -8,9 +8,8 @@ import { useHistory } from "react-router";
 import useTable from "@/hooks/useTable";
 import LangComponent from "@/lang/local";
 import MoreSetting from "@/components/table_component/MoreSetting";
-import TokenBalanceService from "@/services/token_balance";
-import DexTrackServices from "@/services/dex_track";
 import NumberUtils from "@/utils/js_utils/number";
+import { postMainApiV1DexTraceDexLeaderBoardList } from "@/service/loc-services";
 
 const DEXLeaderboard = memo(() => {
     const history = useHistory()
@@ -24,7 +23,7 @@ const DEXLeaderboard = memo(() => {
             setSearch
         }
     } = useTable<any, any>(
-        DexTrackServices.get_DEXLeaderboard_list,
+        postMainApiV1DexTraceDexLeaderBoardList,
         {
             initParams: {
                 page: 1,
