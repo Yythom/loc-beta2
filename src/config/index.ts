@@ -36,6 +36,8 @@ function request<T>(url: string, config: any): Promise<T | undefined> {
     return new Promise((resolve, reject) => {
         const conf = { url, ...config, data: config.body }
         delete conf.body;
+        console.log(config);
+
         instance(conf).then((res: any) => {
             if (res) {
                 let opts = {

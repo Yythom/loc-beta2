@@ -33,7 +33,7 @@ function useRequest<T, P = undefined>(
             setParams({ ..._params });
         }
 
-        const res = await promise(_params || params);
+        const res = await promise({ body: _params || params });
         setloading(false);
         if (res) {
             setRet(res);
