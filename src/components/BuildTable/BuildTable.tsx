@@ -1,3 +1,4 @@
+import useTable from '@/hooks/useTable';
 import loacl from '@/lang/semi-ui-local';
 import goTokenEthScan from '@/utils/ui_utils/goTokenEthScan';
 import { ConfigProvider, LocaleProvider, Pagination, Table } from '@douyinfe/semi-ui';
@@ -24,7 +25,7 @@ const BuildTable = memo((
                         <div
                             className={record?.token_address ? 'hover' : ''}
                             onClick={() => record?.token_address && goTokenEthScan(record?.token_address)}>
-                            {copyFn?.(text, record, index) || text}
+                            {copyFn?.(record?.token, record, index) || record?.token?.token_name}
                         </div>
                 }
                 return e
@@ -43,9 +44,10 @@ const BuildTable = memo((
                                 total={ret?.total || 0}
                                 currentPage={ret?.page}
                                 onChange={(currentPage) => {
-                                    console.log(currentPage, 'currentPage');
-
-                                    setParams('page', currentPage)
+                                    setParams('page', {
+                                        page: currentPage,
+                                        page_size: ret?.page_size
+                                    })
                                 }}
                                 size="small"
                                 hoverShowPageSelect

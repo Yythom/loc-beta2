@@ -33,11 +33,11 @@ const MoreSetting = memo(({ setParams, }: { setParams: Function, params: any }) 
         <Tabs
             type="button"
             onChange={(itemKey) => {
-                setParams('time_range', itemKey || '')
+                setParams('period', Number(itemKey) || '')
             }}>
             <TabPane tab="1 Day" itemKey="1" />
-            <TabPane tab="3 Day" itemKey="3" />
-            <TabPane tab="7 Day" itemKey="7" />
+            <TabPane tab="3 Day" itemKey="2" />
+            <TabPane tab="7 Day" itemKey="3" />
         </Tabs>
     </div>
 })

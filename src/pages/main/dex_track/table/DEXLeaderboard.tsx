@@ -26,7 +26,17 @@ const DEXLeaderboard = memo(() => {
         postMainApiV1DexTraceDexLeaderBoardList,
         {
             initParams: {
-                page: 1,
+                "sort": {
+                    "profit": "asc",
+                    "roi": "asc"
+                },
+                "page": {
+                    "page_size": 10,
+                    "page": 1,
+                },
+                "search": {
+                    "period": "1"
+                }
             }
         }
     )

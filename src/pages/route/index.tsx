@@ -8,7 +8,8 @@ import DexTrack from "../main/dex_track";
 // import AddressDetail from "../main/ranking/address_detail";
 // import DexTrack from "../main/dex_track";
 // import Ranking from "../main/ranking";
-// import TokenFlow from "../main/token_flow";
+import TokenFlow from "../main/token_flow";
+import WalletBalance from "../main/wallet_balance";
 // import TokenBalance from "../main/token_balance";
 // import WalletBalance from "../main/wallet_balance";
 // import TokenAnalysis from "../main/token_analysis";
@@ -47,22 +48,22 @@ const menu_route: RouteItemInterface[] = [
         icon: 'iconshezhi',
         itemKey: 'dex-track',
     },
-    // {
-    //     text: 'Token Flow',
-    //     icon: 'iconshezhi',
-    //     itemKey: 'token-flow',
-    // },
+    {
+        text: 'Token Flow',
+        icon: 'iconshezhi',
+        itemKey: 'token-flow',
+    },
 
     // {
     //     text: 'Token Balance',
     //     icon: 'iconshezhi',
     //     itemKey: 'token-balance',
     // },
-    // {
-    //     text: 'Wallet Balance',
-    //     icon: 'iconshezhi',
-    //     itemKey: 'wallet-balance',
-    // },
+    {
+        text: 'Wallet Balance',
+        icon: 'iconshezhi',
+        itemKey: 'wallet-balance',
+    },
     // {
     //     text: 'Token Analysis',
     //     icon: 'iconshezhi',
@@ -114,13 +115,13 @@ const RouteComponentsMap: {
             component={DexTrack}
         />
     },
-    // 'token-flow': {
-    //     component: <Route
-    //         path={setPagePath('token-flow')}
-    //         exact
-    //         component={TokenFlow}
-    //     />
-    // },
+    'token-flow': {
+        component: <Route
+            path={setPagePath('token-flow')}
+            exact
+            component={TokenFlow}
+        />
+    },
     // 'token-balance': {
     //     component: <Route
     //         path={setPagePath('token-balance')}
@@ -128,13 +129,13 @@ const RouteComponentsMap: {
     //         component={TokenBalance}
     //     />
     // },
-    // 'wallet-balance': {
-    //     component: <Route
-    //         path={setPagePath('wallet-balance')}
-    //         exact
-    //         component={WalletBalance}
-    //     />
-    // },
+    'wallet-balance': {
+        component: <Route
+            path={setPagePath('wallet-balance')}
+            exact
+            component={WalletBalance}
+        />
+    },
     // 'token-analysis': {
     //     component: <Route
     //         path={setPagePath('token-analysis')}

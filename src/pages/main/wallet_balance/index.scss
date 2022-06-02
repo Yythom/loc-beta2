@@ -1,0 +1,12 @@
+.wallet_balance {
+    overflow: scroll;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .semi-autocomplete {
+        .semi-input-wrapper {
+            width: 500px;
+            border-radius: 200px;
+        }
+    }
+}
