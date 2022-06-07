@@ -27,15 +27,14 @@ const DEXLeaderboard = memo(() => {
         {
             initParams: {
                 "sort": {
-                    "profit": "asc",
-                    "roi": "asc"
+                    "create_at": "desc",
                 },
                 "page": {
                     "page_size": 10,
                     "page": 1,
                 },
                 "search": {
-                    "period": "1"
+                    "period": 1
                 }
             }
         }
@@ -44,16 +43,16 @@ const DEXLeaderboard = memo(() => {
         return [
             {
                 title: <>Address</>,
-                dataIndex: 'address',
+                dataIndex: 'wallet_address',
                 render: (text: any, r: any) => {
-                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
-                        <Text>{r.name || r.address}</Text>
+                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
+                        <Text>{text}</Text>
                     </div>;
                 },
             },
             {
                 title: <>Invest($)</>,
-                dataIndex: 'invest_usd',
+                dataIndex: 'invest_value',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>${text}</Text>
@@ -62,7 +61,7 @@ const DEXLeaderboard = memo(() => {
             },
             {
                 title: <>Return($)</>,
-                dataIndex: 'return_usd',
+                dataIndex: 'return_value',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>${text}</Text>
@@ -71,7 +70,7 @@ const DEXLeaderboard = memo(() => {
             },
             {
                 title: <>Profit($)</>,
-                dataIndex: 'profit_usd',
+                dataIndex: 'profit',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>${text}</Text>
@@ -80,7 +79,7 @@ const DEXLeaderboard = memo(() => {
             },
             {
                 title: <>ROI</>,
-                dataIndex: 'profit_rate',
+                dataIndex: 'roi',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>{text}%</Text>

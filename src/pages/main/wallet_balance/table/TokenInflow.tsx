@@ -12,9 +12,9 @@ const TokenInflow = memo(() => {
     const ctx = useContext(TokenContext)
 
     const req = useMemo(() => {
-        console.log(ctx);
+        console.log(ctx, 'ctx');
 
-        if (!ctx?.wallet) return null
+        if (!ctx?.wallet || !ctx?.token) return null
         return {
             "sort": {
                 "create_at": "desc"

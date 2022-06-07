@@ -20,7 +20,8 @@ import TokenInflow from "./table/TokenInflow";
 // import TokenOutflow from "./table/TokenOutflow";
 // import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 
-const initTokenAddress = '0x0000000000000000000000000000000000000000'
+const initTokenAddress = ''
+// 0x0000000000000000000000000000000000000000
 export const TokenContext = createContext<{ token: any, wallet: any }>({ token: '', wallet: '' });
 
 const WalletBalance = memo(() => {
