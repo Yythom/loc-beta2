@@ -3,6 +3,7 @@
 import ErrorBoundary from "@/components/Boundary";
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
+import { postMainApiV1TokenList } from "@/service/loc-services";
 // import WalletBalanceService from "@/services/wallet_balance";
 import { debounce, formatUrl } from "@/utils/js_utils/format";
 import { IconCopy, IconSearch } from "@douyinfe/semi-icons";
@@ -19,7 +20,7 @@ import TokenInflow from "./table/TokenInflow";
 // import TokenOutflow from "./table/TokenOutflow";
 // import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 
-const initTokenAddress = '0x0f4ee9631f4be0a63756515141281a3e2b293bbe'
+const initTokenAddress = '0x0000000000000000000000000000000000000000'
 export const TokenContext = createContext<{ token: any, wallet: any }>({ token: '', wallet: '' });
 
 const WalletBalance = memo(() => {
@@ -27,11 +28,17 @@ const WalletBalance = memo(() => {
     const JumpAddress = useMemo(() => initAddr?.address || '', [])
     const [wallet_address, setWalletAddress] = useState(JumpAddress || localStorage.getItem('WalletAddress') || '')
 
-    const [tokenInfoList, fetchToken, setTokenName, loading, params] = useRequest<any, any>(async function name(params) {
-    }, {
+    const [tokenInfoList, fetchToken, setTokenName, loading, params] = useRequest<any, any>(postMainApiV1TokenList, {
         initParams: {
-            address: '',
-            name: ''
+            "sort": {
+                "create_at": "desc"
+            },
+            "search": {
+                "search": initTokenAddress
+            },
+            "page": {
+                "all": true,
+            }
         },
         // start_owner: true,
         // callback: (ret) => {
@@ -100,24 +107,25 @@ const WalletBalance = memo(() => {
                 <div className="card fc" style={{ width: '49%', height: '100%' }}>
                     <AutoComplete
                         loading={loading}
-                        value={params?.address || params?.name}
-                        data={tokenInfoList?.list?.length > 0 ? tokenInfoList?.list?.map((e: any) => e.name + "--" + e.address) : ['No result']}
+                        value={params?.search?.search}
+                        data={tokenInfoList?.list?.length > 0 ? tokenInfoList?.list?.map((e: any) => e.token_name + "--" + e.token_address) : ['No result']}
                         showClear
                         prefix='Token Address'
                         placeholder='Search for Token'
                         onSearch={(e: any) => {
                             if (e.slice(0, 2) === '0x' && e.length === 42) {
                                 // setToken(e)
-                                setTokenName({ address: e })
+                                //address
+                                setTokenName('search', { search: e })
                             } else {
-                                setTokenName({ name: e })
+                                setTokenName('search', { search: e })
                             }
                         }}
                         onSelect={(itm: any) => {
                             console.log(itm, 'select');
                             const _name = itm.split('--')[0];
                             const _addr = itm.split('--')[1];
-                            setTokenName({ address: _addr, name: _name })
+                            setTokenName('search', { search: _name })
                         }}
                         renderSelectedItem={(itm: any) => {
                             return itm?.value?.split('--')[1]
@@ -186,14 +194,14 @@ const WalletBalance = memo(() => {
                     }
                 </div>
             </Fragment> */}
-
             <TokenContext.Provider value={{ token: params?.address || '', wallet: wallet_address }} >
-                {/* <TokenBalance /> */}
+                <TokenInflow />
+                {/* <TokenBalance />
                 <div className="fb flex-1">
                     <TokenInflow />
-                    {/* <TokenOutflow /> */}
+                      <TokenOutflow />
                 </div>
-                {/* <div className="fb flex-1" >
+                <div className="fb flex-1" >
                     <TokenInflowfromCEX />
                     <TokenOutflowfromCEX />
                 </div>

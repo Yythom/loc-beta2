@@ -12,6 +12,8 @@ const TokenInflow = memo(() => {
     const ctx = useContext(TokenContext)
 
     const req = useMemo(() => {
+        console.log(ctx);
+
         if (!ctx?.wallet) return null
         return {
             "sort": {
@@ -20,9 +22,9 @@ const TokenInflow = memo(() => {
             "search": {
                 "period": "4",
                 "token_address": ctx?.token,
-                "is_out": 67,
-                "is_in": 65,
-                "is_cex": 99,
+                "is_out": 0,
+                "is_in": 1,
+                "is_cex": 0,
                 "wallet_address": ctx.wallet
             },
         }
