@@ -60,10 +60,10 @@ const TokenBalanceChart = memo((props) => {
                     defaultActiveKey="1"
                     onChange={(itemKey) => {
                         setParamsTotal('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
                         setParamsStable('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
 
                     }}>
@@ -81,7 +81,7 @@ const TokenBalanceChart = memo((props) => {
                     },
                 }}
                 dataSource={[{
-                    name: 'balance_volumes',
+                    name: 'Eth Price ($)',
                     list: totalList?.list?.map((e: any) => e.balance_volumes) || [],
                 }]}
             />
@@ -100,10 +100,10 @@ const TokenBalanceChart = memo((props) => {
                     defaultActiveKey="1"
                     onChange={(itemKey) => {
                         setParamsTotal('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
                         setParamsStable('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
 
                     }}>

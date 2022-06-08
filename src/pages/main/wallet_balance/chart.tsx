@@ -17,7 +17,8 @@ const WalletChart = memo(() => {
                 },
                 "search": {
                     "period": 1,
-                    "wallet_address": "0xea5abc1a1689984ebfdc41130886bdaeb5c24078"
+                    // "wallet_address": "0xea5abc1a1689984ebfdc41130886bdaeb5c24078"
+                    "wallet_address": ctx.wallet
                 }
             }
         })
@@ -29,9 +30,11 @@ const WalletChart = memo(() => {
                     "all": true
                 },
                 "search": {
-                    "token_address": "0x4e15361fd6b4bb609fa63c81a2be19d873717870",
+                    // "token_address": "0x4e15361fd6b4bb609fa63c81a2be19d873717870",
+                    "token_address": ctx.token,
                     "period": 1,
-                    "wallet_address": "0xdbf5e9c5206d0db70a90108bf936da60221dc080"
+                    // "wallet_address": "0xdbf5e9c5206d0db70a90108bf936da60221dc080"
+                    "wallet_address": ctx.wallet
                 }
             }
         })
@@ -64,13 +67,13 @@ const WalletChart = memo(() => {
                     defaultActiveKey="1"
                     onChange={(itemKey) => {
                         setParamsTotal('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
                         setParamsTokens('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
                         setParamsHistoryTokens('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
                     }}>
                     <TabPane tab="1 Day" itemKey="1" />

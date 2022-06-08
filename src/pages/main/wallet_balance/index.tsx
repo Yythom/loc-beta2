@@ -14,6 +14,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import WalletChart from "./chart";
 import './index.scss'
 import ProfitinDEX from "./table/ProfitinDEX";
+import RecentTransactions from "./table/RecentTransactions";
 import TokenBalance from "./table/TokenBalance";
 // import ProfitinDEX from "./table/ProfitinDEX";
 // import RecentTransactions from "./table/RecentTransactions";
@@ -171,22 +172,22 @@ const WalletBalance = memo(() => {
                 </div>
             </Fragment> */}
             <TokenContext.Provider value={{ token: params?.search?.search, wallet: wallet_address }} >
-                <WalletChart />
+                {/* <WalletChart /> */}
                 {/* <TokenInflow /> */}
                 {/* <ProfitinDEX /> */}
                 {/* <TokenBalance /> */}
 
-                {/* <TokenBalance />
+                <TokenBalance />
                 <div className="fb flex-1">
                     <TokenInflow />
-                      <TokenOutflow />
+                    <TokenOutflow />
                 </div>
                 <div className="fb flex-1" >
                     <TokenInflowfromCEX />
                     <TokenOutflowfromCEX />
                 </div>
                 <ProfitinDEX />
-                <RecentTransactions /> */}
+                <RecentTransactions />
             </TokenContext.Provider>
         </div >
     )

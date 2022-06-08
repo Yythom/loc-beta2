@@ -52,10 +52,10 @@ const DexChart = memo(() => {
                     defaultActiveKey="1"
                     onChange={(itemKey) => {
                         setParamsVolumes('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
                         setParamsTokens('search', {
-                            period: Number(itemKey || '')
+                            period: Number(itemKey)
                         })
 
                     }}>
