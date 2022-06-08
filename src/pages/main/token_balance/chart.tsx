@@ -76,7 +76,7 @@ const TokenBalanceChart = memo((props) => {
                 classname='Portfolio'
                 option={{
                     x_option: {
-                        name: 'Date',
+                        name: ' Date',
                         data: totalList?.list?.map((e: any) => `111`) || [],
                     },
                 }}
@@ -116,7 +116,7 @@ const TokenBalanceChart = memo((props) => {
                 classname='StableCoin'
                 option={{
                     x_option: {
-                        name: 'Date',
+                        name: ' Date',
                         data: stableList?.list?.map((e: any) => `111`) || [],
                     },
                 }}
