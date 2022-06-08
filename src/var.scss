@@ -22,9 +22,10 @@ iframe {
 
 .hover {
     cursor: pointer;
+    transition: 100ms;
 
     &:hover {
-        opacity: .6;
+        color: #e14eca;
     }
 }
 

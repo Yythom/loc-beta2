@@ -36,7 +36,6 @@ function request<T>(url: string, config: any): Promise<T | undefined> {
     return new Promise((resolve, reject) => {
         const conf = { url, ...config, data: config.body }
         delete conf.body;
-        console.log(config);
 
         instance(conf).then((res: any) => {
             if (res) {
@@ -45,11 +44,12 @@ function request<T>(url: string, config: any): Promise<T | undefined> {
                     duration: 2,
                 };
                 if (res?.code === 0) {
-                    resolve(res.data)
+                    return resolve(res.data)
                 } else {
                     Toast.warning(opts);
                 }
             }
+            resolve(undefined);
         }).catch(err => {
             if (err.response) {
 

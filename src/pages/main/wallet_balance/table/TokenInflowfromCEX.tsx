@@ -4,15 +4,11 @@ import MoreSetting from '@/components/table_component/MoreSetting';
 import useTable from '@/hooks/useTable';
 import { postMainApiV1WalletBalanceTokenFlow, } from '@/service/loc-services';
 import { ProModal } from '@/utils/ui_utils/toast';
-import { memo, useContext, useMemo } from 'react';
+import { memo, useContext, useEffect, useMemo } from 'react';
 import { TokenContext } from '..';
-
-const TokenInflow = memo(() => {
+const TokenInflowfromCEX = memo(() => {
     const ctx = useContext(TokenContext)
-
     const req = useMemo(() => {
-        console.log(ctx);
-
         if (!ctx?.wallet || !ctx?.token) return null
         return {
             "sort": {
@@ -23,7 +19,7 @@ const TokenInflow = memo(() => {
                 "token_address": ctx?.token,
                 "is_out": 0,
                 "is_in": 1,
-                "is_cex": 0,
+                "is_cex": 1,
                 "wallet_address": ctx.wallet
             },
         }
@@ -59,18 +55,18 @@ const TokenInflow = memo(() => {
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
             {
-                title: 'Inflow Value($)',
+                title: 'Inflow Value',
                 dataIndex: 'in_volumes',
                 render: (text: any, rec: any, index: any) => {
                     return (
-                        <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenInflowModal />, 'Top 5')}>
+                        <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenModal />, 'Top 5')}>
                             ${text}
                         </div>
                     )
                 }
             },
             {
-                title: 'Inflow Price($)',
+                title: 'Inflow Price',
                 dataIndex: 'in_average_price',
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
@@ -78,8 +74,8 @@ const TokenInflow = memo(() => {
     }, []);
 
     return (
-        <div className='table' >
-            <div className='title'>Token Inflow</div>
+        <div className='table'>
+            <div className='title'>Token Inflow from CEX</div>
             <div className='flex' style={{ justifyContent: 'flex-end' }}>
                 <MoreSetting
                     setParams={setSearch}
@@ -90,10 +86,9 @@ const TokenInflow = memo(() => {
         </div>
     )
 })
+export default TokenInflowfromCEX;
 
-export default TokenInflow;
-
-const TokenInflowModal = memo(() => {
+const TokenModal = memo(() => {
     const {
         setParams,
         params,

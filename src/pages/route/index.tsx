@@ -5,6 +5,7 @@ import {
     Route,
 } from "react-router-dom";
 import DexTrack from "../main/dex_track";
+import TokenBalance from "../main/token_balance";
 // import AddressDetail from "../main/ranking/address_detail";
 // import DexTrack from "../main/dex_track";
 // import Ranking from "../main/ranking";
@@ -53,12 +54,11 @@ const menu_route: RouteItemInterface[] = [
         icon: 'iconshezhi',
         itemKey: 'token-flow',
     },
-
-    // {
-    //     text: 'Token Balance',
-    //     icon: 'iconshezhi',
-    //     itemKey: 'token-balance',
-    // },
+    {
+        text: 'Token Balance',
+        icon: 'iconshezhi',
+        itemKey: 'token-balance',
+    },
     {
         text: 'Wallet Balance',
         icon: 'iconshezhi',
@@ -122,13 +122,13 @@ const RouteComponentsMap: {
             component={TokenFlow}
         />
     },
-    // 'token-balance': {
-    //     component: <Route
-    //         path={setPagePath('token-balance')}
-    //         exact
-    //         component={TokenBalance}
-    //     />
-    // },
+    'token-balance': {
+        component: <Route
+            path={setPagePath('token-balance')}
+            exact
+            component={TokenBalance}
+        />
+    },
     'wallet-balance': {
         component: <Route
             path={setPagePath('wallet-balance')}

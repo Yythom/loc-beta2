@@ -32,8 +32,8 @@ function useRequest<T, P = undefined>(
         if (_params && !noSetParams) {
             setParams({ ..._params });
         }
-
         const res = await promise({ body: _params || params });
+
         setloading(false);
         if (res) {
             setRet(res);

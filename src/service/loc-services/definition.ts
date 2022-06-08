@@ -43,6 +43,8 @@ export type TokenPriceHistoryListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressBalanceHistoryListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
+export type WalletAddressBalanceListSearchPeriod =
+  SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressFlowListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressFlowItemPeriod =
@@ -399,7 +401,13 @@ export interface TokenCondition {}
  * @description
  *   搜索参数
  */
-export interface TokenListSearch {}
+export interface TokenListSearch {
+  /**
+   * @description
+   *   搜索字段
+   */
+  search?: string;
+}
 
 /**
  * @description
@@ -811,11 +819,6 @@ export interface WalletAddressProfitItem {
    *   创建日期
    */
   create_date?: number;
-  /**
-   * @description
-   *   创建日期
-   */
-  create_hour?: number;
 }
 
 export interface WalletAddressProfitListResponse {
@@ -1296,9 +1299,9 @@ export interface WalletAddressBalanceHistoryListRequest {
 export interface WalletAddressBalanceHistoryItem {
   /**
    * @description
-   *   余额
+   *   价值
    */
-  amount?: string;
+  volumes?: string;
   /**
    * @description
    *   日期
@@ -1349,6 +1352,12 @@ export interface WalletAddressBalanceListSearch {
   wallet_address?: string;
   /**
    * @description
+   *   周期
+   * @default null
+   */
+  period?: WalletAddressBalanceListSearchPeriod;
+  /**
+   * @description
    *   token地址
    * @default null
    */
@@ -1397,11 +1406,6 @@ export interface WalletAddressBalanceItem {
    *   日期
    */
   create_date?: number;
-  /**
-   * @description
-   *   小时
-   */
-  create_hour?: number;
 }
 
 export interface WalletAddressBalanceListResponse {
@@ -1488,6 +1492,7 @@ export interface WalletAddressFlowItem {
    *   token地址
    */
   token_address?: string;
+  token?: TokenItem;
   /**
    * @description
    *   精度
@@ -1672,11 +1677,6 @@ export interface WalletAddressTokenProfitItem {
    *   创建日期
    */
   create_date?: number;
-  /**
-   * @description
-   *   创建日期
-   */
-  create_hour?: number;
 }
 
 export interface WalletAddressTokenProfitListResponse {
@@ -1939,35 +1939,6 @@ export interface TokenPriceItem {
    *   市值
    */
   market_cap?: string;
-  /**
-   * @description
-   *   市值变化率(24h)
-   */
-  market_cap_change24h?: string;
-  /**
-   * @description
-   *   流通量
-   */
-  circulating_supply?: string;
-  /**
-   * @description
-   *   24小时交易量
-   */
-  volumes?: string;
-  /**
-   * @description
-   *   日期
-   */
-  create_date?: number;
-  /**
-   * @description
-   *   小时
-   */
-  create_hour?: number;
-  /** @description */
-  create_at?: number;
-  /** @description */
-  update_at?: number;
 }
 
 export interface TokenPriceListResponse {
@@ -2029,33 +2000,4 @@ export interface TokenPriceDetailResponse {
    *   市值
    */
   market_cap?: string;
-  /**
-   * @description
-   *   市值变化率(24h)
-   */
-  market_cap_change24h?: string;
-  /**
-   * @description
-   *   流通量
-   */
-  circulating_supply?: string;
-  /**
-   * @description
-   *   24小时交易量
-   */
-  volumes?: string;
-  /**
-   * @description
-   *   日期
-   */
-  create_date?: number;
-  /**
-   * @description
-   *   小时
-   */
-  create_hour?: number;
-  /** @description */
-  create_at?: number;
-  /** @description */
-  update_at?: number;
 }

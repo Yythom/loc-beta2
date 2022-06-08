@@ -115,15 +115,13 @@ function useEchart(classname: string, option: useEchartOption,
 				series,
 				tooltip: {
 					trigger: 'axis',
+
 					//支持字符串模板和回调函数两种形式,模板变量有 {a}, {b}，{c}，{d}，{e}，分别表示系列名，数据名，数据值等
-					// formatter: "{c0}",
+					// formatter: "{a0}{b0}",
 					// formatter: (p: any[]) => {
-					// 	const str = p.map(e => {
-					// 		const x = `${option?.x_option?.name || ''}: ${e.axisValue}`;
-					// 		const y = `${e.value}`;
-					// 		return `${x}`
-					// 	}).join(' ')
-					// 	return str
+					// 	console.log(p);
+
+					// 	return '1231'
 					// },
 				},
 			}

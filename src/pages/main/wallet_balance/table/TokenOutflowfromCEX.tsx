@@ -7,13 +7,10 @@ import { ProModal } from '@/utils/ui_utils/toast';
 import { memo, useContext, useMemo } from 'react';
 import { TokenContext } from '..';
 
-const TokenInflow = memo(() => {
+const TokenOutflowfromCEX = memo(() => {
     const ctx = useContext(TokenContext)
-
     const req = useMemo(() => {
-        console.log(ctx);
-
-        if (!ctx?.wallet || !ctx?.token) return null
+        if (!ctx?.wallet) return null
         return {
             "sort": {
                 "create_at": "desc"
@@ -21,14 +18,13 @@ const TokenInflow = memo(() => {
             "search": {
                 "period": 1,
                 "token_address": ctx?.token,
-                "is_out": 0,
-                "is_in": 1,
-                "is_cex": 0,
+                "is_out": 1,
+                "is_in": 0,
+                "is_cex": 1,
                 "wallet_address": ctx.wallet
             },
         }
     }, [ctx.token, ctx.wallet])
-
     const {
         setParams,
         params,
@@ -54,32 +50,32 @@ const TokenInflow = memo(() => {
                 dataIndex: 'token_name',
             },
             {
-                title: 'Inflow ',
-                dataIndex: 'in_amount',
+                title: 'Outflow ',
+                dataIndex: 'out_amount',
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
             {
-                title: 'Inflow Value($)',
-                dataIndex: 'in_volumes',
+                title: 'Outflow Value',
+                dataIndex: 'out_volumes',
                 render: (text: any, rec: any, index: any) => {
                     return (
-                        <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenInflowModal />, 'Top 5')}>
+                        <div style={{ cursor: 'pointer' }} onClick={() => ProModal(<TokenModal />, 'Top 5')}>
                             ${text}
                         </div>
                     )
                 }
             },
             {
-                title: 'Inflow Price($)',
-                dataIndex: 'in_average_price',
+                title: 'Outflow Price',
+                dataIndex: 'out_average_price',
                 render: (text: any, rec: any, index: any) => <div>${text}</div>,
             },
         ]
     }, []);
 
     return (
-        <div className='table' >
-            <div className='title'>Token Inflow</div>
+        <div className='table'>
+            <div className='title'>Token Outflow to CEX</div>
             <div className='flex' style={{ justifyContent: 'flex-end' }}>
                 <MoreSetting
                     setParams={setSearch}
@@ -90,10 +86,9 @@ const TokenInflow = memo(() => {
         </div>
     )
 })
+export default TokenOutflowfromCEX;
 
-export default TokenInflow;
-
-const TokenInflowModal = memo(() => {
+const TokenModal = memo(() => {
     const {
         setParams,
         params,

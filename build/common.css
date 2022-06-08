@@ -8,9 +8,11 @@
     justify-content: center;
     flex-direction: column;
 }
-.flex-1{
-    align-items: flex-start;
+
+.flex-1 {
+    align-items: flex-start !important;
 }
+
 .flex-1>div {
     margin-top: 3rem;
     flex: 1;

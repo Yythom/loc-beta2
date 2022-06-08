@@ -11,16 +11,22 @@ import { AutoComplete, Input, TabPane, Tabs, Tag, Toast } from "@douyinfe/semi-u
 import dayjs from "dayjs";
 import { createContext, Fragment, memo, ReactChild, ReactFragment, ReactPortal, useMemo, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
+import WalletChart from "./chart";
 import './index.scss'
+import ProfitinDEX from "./table/ProfitinDEX";
+import TokenBalance from "./table/TokenBalance";
 // import ProfitinDEX from "./table/ProfitinDEX";
 // import RecentTransactions from "./table/RecentTransactions";
 // import TokenBalance from "./table/TokenBalance";
 import TokenInflow from "./table/TokenInflow";
+import TokenInflowfromCEX from "./table/TokenInflowfromCEX";
+import TokenOutflow from "./table/TokenOutflow";
+import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 // import TokenInflowfromCEX from "./table/TokenInflowfromCEX";
 // import TokenOutflow from "./table/TokenOutflow";
 // import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 
-const initTokenAddress = ''
+const initTokenAddress = '0x0000000000000000000000000000000000000000'
 // 0x0000000000000000000000000000000000000000
 export const TokenContext = createContext<{ token: any, wallet: any }>({ token: '', wallet: '' });
 
@@ -41,21 +47,8 @@ const WalletBalance = memo(() => {
                 "all": true,
             }
         },
-        // start_owner: true,
-        // callback: (ret) => {
-        //     const addr = ret?.addr
-        //     if (addr) {
-        //         console.log('SHEZHI TOKEN ADDR');
-        //         setToken(addr)
-        //         const v = params?.address
-        //         if (v.slice(0, 2) === '0x' && v.length === 42) {
-        //             setToken(v)
-        //         }
-        //     }
-        // }
     })
 
-    // 0x0f4ee9631f4be0a63756515141281a3e2b293bbe
     const [wallet_lables, f, setTokenTagParams] = useRequest<any, any>(async function name(params) {
     }, {
         initParams: {
@@ -140,24 +133,6 @@ const WalletBalance = memo(() => {
                             )
                         }}
                     />
-
-                    {/* 
-                    <Input
-                        maxLength={42}
-                        // value={v}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') fetchToken()
-                        }}
-                        onChange={(e) => {
-                            // setv(e)
-                            if (e.slice(0, 2) === '0x' && e.length === 42) {
-                                setToken(e)
-                            }
-                            setTokenName({ address: e })
-                        }}
-                        style={{ borderRadius: '200px' }}
-                        prefix={<IconSearch />} placeholder='Search for Token'
-                    /> */}
                 </div>
             </div>
 
@@ -195,8 +170,12 @@ const WalletBalance = memo(() => {
                     }
                 </div>
             </Fragment> */}
-            <TokenContext.Provider value={{ token: params?.address || '', wallet: wallet_address }} >
-                <TokenInflow />
+            <TokenContext.Provider value={{ token: params?.search?.search, wallet: wallet_address }} >
+                <WalletChart />
+                {/* <TokenInflow /> */}
+                {/* <ProfitinDEX /> */}
+                {/* <TokenBalance /> */}
+
                 {/* <TokenBalance />
                 <div className="fb flex-1">
                     <TokenInflow />

@@ -1,4 +1,3 @@
-import useTable from '@/hooks/useTable';
 import loacl from '@/lang/semi-ui-local';
 import goTokenEthScan from '@/utils/ui_utils/goTokenEthScan';
 import { ConfigProvider, LocaleProvider, Pagination, Table } from '@douyinfe/semi-ui';
@@ -58,6 +57,7 @@ const BuildTable = memo((
                         <Table
                             onChange={onChange}
                             loading={loading}
+
                             dataSource={buildDataSource}
                             columns={_columns}
                             pagination={false}

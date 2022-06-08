@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeInfo, ColumnProps } from "@douyinfe/semi-ui/lib/es/table";
-import { memo, MemoExoticComponent, useLayoutEffect, useState } from "react";
+import { memo, MemoExoticComponent, useLayoutEffect, } from "react";
 import BuildTable from "@/components/BuildTable/BuildTable";
 import useRequest from "./useRequest";
 useTable.initPage = { page: 1, page_size: 10 };
