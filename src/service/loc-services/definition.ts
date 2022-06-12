@@ -12,10 +12,21 @@ export type SmartMoneyBalanceHistoryListSearchPeriod =
   | 7;
 export type SmartMoneyStableCoinPositionRecordListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
+export type SmartMoneyEthPositionRecordListSearchPeriod =
+  SmartMoneyBalanceHistoryListSearchPeriod;
 export type BaseSortCreateAt = "asc" | "desc";
 export type SmartMoneyTokenFlowListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type SmartMoneyTokenFlowSortVolumes = BaseSortCreateAt;
+export type WalletAddressFlowListSearchPeriod =
+  SmartMoneyBalanceHistoryListSearchPeriod;
+export type WalletAddressFlowSortInAveragePrice = BaseSortCreateAt;
+export type WalletAddressFlowSortOutAveragePrice = BaseSortCreateAt;
+export type WalletAddressFlowSortInTimes = BaseSortCreateAt;
+export type WalletAddressFlowSortOutTimes = BaseSortCreateAt;
+export type WalletAddressFlowSortVolumes = BaseSortCreateAt;
+export type WalletAddressFlowItemPeriod =
+  SmartMoneyBalanceHistoryListSearchPeriod;
 export type SmartMoneySwapVolumesHistoryListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressProfitListSearchPeriod =
@@ -45,9 +56,7 @@ export type WalletAddressBalanceHistoryListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressBalanceListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
-export type WalletAddressFlowListSearchPeriod =
-  SmartMoneyBalanceHistoryListSearchPeriod;
-export type WalletAddressFlowItemPeriod =
+export type WalletAddressFlowDetailSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressTokenProfitListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
@@ -345,11 +354,6 @@ export interface SmartMoneyStableCoinPositionRecordListRequest {
 export interface SmartMoneyStableCoinPositionRecordItem {
   /**
    * @description
-   *   持仓价值
-   */
-  position_volumes?: string;
-  /**
-   * @description
    *   持仓占比
    */
   percentage?: string;
@@ -371,6 +375,67 @@ export interface SmartMoneyStableCoinPositionRecordListResponse {
    *   列表
    */
   list?: Array<SmartMoneyStableCoinPositionRecordItem>;
+  /**
+   * @description
+   *   页码
+   * @default 0
+   */
+  page?: number;
+  /**
+   * @description
+   *   分类名称
+   * @default 0
+   */
+  page_size?: number;
+  /**
+   * @description
+   *   总数
+   * @default 0
+   */
+  total?: number;
+}
+
+/**
+ * @description
+ *   搜索参数
+ */
+export interface SmartMoneyEthPositionRecordListSearch {
+  /**
+   * @description
+   *   周期
+   */
+  period?: SmartMoneyEthPositionRecordListSearchPeriod;
+}
+
+export interface SmartMoneyEthPositionRecordListRequest {
+  search?: SmartMoneyEthPositionRecordListSearch;
+  page?: Page;
+}
+
+export interface SmartMoneyEthPositionRecordItem {
+  /**
+   * @description
+   *   持仓占比
+   */
+  percentage?: string;
+  /**
+   * @description
+   *   日期
+   */
+  create_date?: number;
+  /**
+   * @description
+   *   时间
+   */
+  create_hour?: number;
+}
+
+export interface SmartMoneyEthPositionRecordListResponse {
+  /**
+   * @description
+   *   列表
+   */
+  list?: Array<SmartMoneyEthPositionRecordItem>;
   /**
    * @description
    *   页码
@@ -625,6 +690,196 @@ export interface SmartMoneyTokenFlowListResponse {
    *   列表
    */
   list?: Array<SmartMoneyTokenFlowItem>;
+  /**
+   * @description
+   *   页码
+   * @default 0
+   */
+  page?: number;
+  /**
+   * @description
+   *   分类名称
+   * @default 0
+   */
+  page_size?: number;
+  /**
+   * @description
+   *   总数
+   * @default 0
+   */
+  total?: number;
+}
+
+/**
+ * @description
+ *   搜索参数
+ */
+export interface WalletAddressFlowListSearch {
+  /**
+   * @description
+   *   钱包地址
+   * @default null
+   */
+  wallet_address?: string;
+  /**
+   * @description
+   *   周期
+   */
+  period?: WalletAddressFlowListSearchPeriod;
+  /**
+   * @description
+   *   token地址
+   * @default null
+   */
+  token_address?: string;
+  /**
+   * @description
+   *   是否中心化交易所
+   * @default 0
+   */
+  is_cex?: number;
+  /**
+   * @description
+   *   是否流出
+   * @default 0
+   */
+  is_out?: number;
+  /**
+   * @description
+   *   是否流入
+   * @default 0
+   */
+  is_in?: number;
+}
+
+/**
+ * @description
+ *   排序参数
+ */
+export interface WalletAddressFlowSort {
+  /**
+   * @description
+   *   流入平均价
+   * @default null
+   */
+  in_average_price?: WalletAddressFlowSortInAveragePrice;
+  /**
+   * @description
+   *   流出平均价
+   * @default null
+   */
+  out_average_price?: WalletAddressFlowSortOutAveragePrice;
+  /**
+   * @description
+   *   流入次数
+   * @default null
+   */
+  in_times?: WalletAddressFlowSortInTimes;
+  /**
+   * @description
+   *   流出次数
+   * @default null
+   */
+  out_times?: WalletAddressFlowSortOutTimes;
+  /**
+   * @description
+   *   当前价值
+   * @default null
+   */
+  volumes?: WalletAddressFlowSortVolumes;
+}
+
+export interface WalletAddressFlowListRequest {
+  search?: WalletAddressFlowListSearch;
+  page?: Page;
+  sort?: WalletAddressFlowSort;
+}
+
+export interface WalletAddressFlowItem {
+  /**
+   * @description
+   *   钱包地址
+   */
+  wallet_address?: string;
+  /**
+   * @description
+   *   token地址
+   */
+  token_address?: string;
+  token?: TokenItem;
+  /**
+   * @description
+   *   精度
+   */
+  decimals?: number;
+  /**
+   * @description
+   *   数量
+   */
+  amount?: string;
+  /**
+   * @description
+   *   价值
+   */
+  volumes?: string;
+  /**
+   * @description
+   *   流入数量
+   */
+  in_amount?: string;
+  /**
+   * @description
+   *   流入交易额（历史值）
+   */
+  in_volumes?: string;
+  /**
+   * @description
+   *   流入交易次数
+   */
+  in_times?: number;
+  /**
+   * @description
+   *   流入平均价格
+   */
+  in_average_price?: string;
+  /**
+   * @description
+   *   流出数量
+   */
+  out_amount?: string;
+  /**
+   * @description
+   *   流出交易额（历史值）
+   */
+  out_volumes?: string;
+  /**
+   * @description
+   *   流出交易次数
+   */
+  out_times?: number;
+  /**
+   * @description
+   *   流出平均价格
+   */
+  out_average_price?: string;
+  /**
+   * @description
+   *   周期
+   */
+  period?: WalletAddressFlowItemPeriod;
+  /**
+   * @description
+   *   创建时间
+   */
+  create_date?: number;
+}
+
+export interface WalletAddressFlowListResponse {
+  /**
+   * @description
+   *   列表
+   */
+  list?: Array<WalletAddressFlowItem>;
   /**
    * @description
    *   页码
@@ -1393,6 +1648,11 @@ export interface WalletAddressBalanceItem {
   decimals?: number;
   /**
    * @description
+   *   价值
+   */
+  volumes?: string;
+  /**
+   * @description
    *   当前价格
    */
   current_price?: string;
@@ -1438,7 +1698,7 @@ export interface WalletAddressBalanceListResponse {
  * @description
  *   搜索参数
  */
-export interface WalletAddressFlowListSearch {
+export interface WalletAddressFlowDetailSearch {
   /**
    * @description
    *   钱包地址
@@ -1446,15 +1706,14 @@ export interface WalletAddressFlowListSearch {
   wallet_address?: string;
   /**
    * @description
-   *   周期
-   */
-  period?: WalletAddressFlowListSearchPeriod;
-  /**
-   * @description
    *   token地址
-   * @default null
    */
   token_address?: string;
+  /**
+   * @description
+   *   周期
+   */
+  period?: WalletAddressFlowDetailSearchPeriod;
   /**
    * @description
    *   是否中心化交易所
@@ -1475,115 +1734,8 @@ export interface WalletAddressFlowListSearch {
   is_in?: number;
 }
 
-export interface WalletAddressFlowListRequest {
-  search?: WalletAddressFlowListSearch;
-  page?: Page;
-  sort?: BaseSort;
-}
-
-export interface WalletAddressFlowItem {
-  /**
-   * @description
-   *   钱包地址
-   */
-  wallet_address?: string;
-  /**
-   * @description
-   *   token地址
-   */
-  token_address?: string;
-  token?: TokenItem;
-  /**
-   * @description
-   *   精度
-   */
-  decimals?: number;
-  /**
-   * @description
-   *   数量
-   */
-  amount?: string;
-  /**
-   * @description
-   *   价值
-   */
-  volumes?: string;
-  /**
-   * @description
-   *   流入数量
-   */
-  in_amount?: string;
-  /**
-   * @description
-   *   流入交易额（历史值）
-   */
-  in_volumes?: string;
-  /**
-   * @description
-   *   流入交易次数
-   */
-  in_times?: number;
-  /**
-   * @description
-   *   流入平均价格
-   */
-  in_average_price?: string;
-  /**
-   * @description
-   *   流出数量
-   */
-  out_amount?: string;
-  /**
-   * @description
-   *   流出交易额（历史值）
-   */
-  out_volumes?: string;
-  /**
-   * @description
-   *   流出交易次数
-   */
-  out_times?: number;
-  /**
-   * @description
-   *   流出平均价格
-   */
-  out_average_price?: string;
-  /**
-   * @description
-   *   周期
-   */
-  period?: WalletAddressFlowItemPeriod;
-  /**
-   * @description
-   *   创建时间
-   */
-  create_date?: number;
-}
-
-export interface WalletAddressFlowListResponse {
-  /**
-   * @description
-   *   列表
-   */
-  list?: Array<WalletAddressFlowItem>;
-  /**
-   * @description
-   *   页码
-   * @default 0
-   */
-  page?: number;
-  /**
-   * @description
-   *   分类名称
-   * @default 0
-   */
-  page_size?: number;
-  /**
-   * @description
-   *   总数
-   * @default 0
-   */
-  total?: number;
+export interface WalletAddressFlowDetailRequest {
+  search?: WalletAddressFlowDetailSearch;
 }
 
 /**
@@ -1866,23 +2018,6 @@ export interface WalletAddressListResponse {
   total?: number;
 }
 
-/**
- * @description
- *   搜索参数
- */
-export interface WalletAddressSearch {
-  /**
-   * @description
-   *   钱包地址
-   */
-  wallet_address?: string;
-}
-
-export interface WalletAddressDetailRequest {
-  condition?: WalletAddressCondition;
-  search?: WalletAddressSearch;
-}
-
 export interface WalletAddressDetailResponse {
   /**
    * @description
@@ -1939,6 +2074,11 @@ export interface TokenPriceItem {
    *   市值
    */
   market_cap?: string;
+  /**
+   * @description
+   *   时间
+   */
+  create_at?: number;
 }
 
 export interface TokenPriceListResponse {
@@ -2000,4 +2140,9 @@ export interface TokenPriceDetailResponse {
    *   市值
    */
   market_cap?: string;
+  /**
+   * @description
+   *   时间
+   */
+  create_at?: number;
 }

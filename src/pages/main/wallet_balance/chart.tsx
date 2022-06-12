@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
 import { postMainApiV1DexTraceTotalSwapVolumesList, postMainApiV1TokenPriceHistoryList, postMainApiV1WalletBalanceTokenList, postMainApiV1WalletBalanceTotalList } from "@/service/loc-services";
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
-import { Fragment, memo, useContext } from "react";
+import dayjs from "dayjs";
+import { Fragment, memo, useContext, useMemo } from "react";
 import { TokenContext } from ".";
 
 const WalletChart = memo(() => {
@@ -49,12 +51,56 @@ const WalletChart = memo(() => {
                     "create_at": "desc"
                 },
                 "search": {
-                    "token_address": "0x0000000000000000000000000000000000000000",
+                    "token_address": ctx.token,
                     "period": 1
                 },
                 "condition": {}
             }
         })
+
+    const charts: any = useMemo(() => {
+        const Ethprice = [
+            {
+                name: 'Eth Price',
+                list: walletBalances?.list?.map((e: any) => e.current_price) || [],
+                y_option: {
+                    min: 'dataMin', //取最小值为最小刻度  
+                }
+            },
+        ]
+        const base: any[] = [
+            [
+                {
+                    name: 'Price History',
+                    list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
+                    y_option: {
+                        axisLabel: {
+                            show: true
+                        },
+                        min: 'dataMin', //取最小值为最小刻度 
+                    }
+                },
+            ]
+        ]
+        const volume = [
+            {
+                name: 'volumes',
+                list: walletBalanceTotal?.list?.map((e: any) => e.volumes) || [],
+                y_option: {
+                    min: 'dataMin', //取最小值为最小刻度  
+                }
+            },
+        ]
+
+        if (Ethprice[0].list?.[0]) {
+            base.unshift(Ethprice)
+        }
+        if (volume[0].list?.[0]) {
+            base.push(volume)
+        }
+        return base
+    }, [walletBalances, walletBalanceTotal, tokenHistoryList, ctx])
+
 
     return <Fragment>
         <Text>
@@ -86,34 +132,10 @@ const WalletChart = memo(() => {
                 option={{
                     x_option: {
                         name: 'Date',
-                        data: tokenHistoryList?.list?.map((e: any) => `111`) || [],
+                        data: tokenHistoryList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YYYY-MM-DD')) || [],
                     },
                 }}
-                dataSource={[
-                    [
-                        {
-                            name: 'Eth Price',
-                            list: walletBalances?.list?.map((e: any) => e.current_price) || []
-                        },
-                    ],
-                    [
-                        {
-                            name: '',
-                            list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
-                            y_option: {
-                                axisLabel: {
-                                    show: false
-                                }
-                            }
-                        },
-                    ],
-                    [
-                        {
-                            name: 'volume',
-                            list: walletBalanceTotal?.list?.map((e: any) => e.volumes) || []
-                        },
-                    ],
-                ]}
+                dataSource={charts}
             />
         </div>
     </Fragment>

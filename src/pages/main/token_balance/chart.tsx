@@ -1,14 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
-import { postMainApiV1DexTraceTotalSwapVolumesList, postMainApiV1TokenBalanceStableList, postMainApiV1TokenBalanceTotalList, postMainApiV1TokenPriceHistoryList } from "@/service/loc-services";
+import { postMainApiV1DexTraceTotalSwapVolumesList, postMainApiV1TokenBalanceEthList, postMainApiV1TokenBalanceStableList, postMainApiV1TokenBalanceTotalList, postMainApiV1TokenPriceHistoryList } from "@/service/loc-services";
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
+import dayjs from "dayjs";
 import { Fragment, memo } from "react";
 
 const TokenBalanceChart = memo((props) => {
     const [totalList, fetch,
         setParamsTotal,] = useRequest<any, any>(postMainApiV1TokenBalanceTotalList, {
+            initParams: {
+                "search": {
+                    "period": 1
+                },
+                "page": {
+                    "total": false,
+                    "all": true
+                }
+            }
+        })
+
+    const [ethList, fff,
+        setParamsEthList,] = useRequest<any, any>(postMainApiV1TokenBalanceEthList, {
             initParams: {
                 "search": {
                     "period": 1
@@ -77,11 +91,11 @@ const TokenBalanceChart = memo((props) => {
                 option={{
                     x_option: {
                         name: ' Date',
-                        data: totalList?.list?.map((e: any) => `111`) || [],
+                        data: totalList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YYYY-MM-DD')) || [],
                     },
                 }}
                 dataSource={[{
-                    name: 'Eth Price ($)',
+                    name: 'Smart Money Holding',
                     list: totalList?.list?.map((e: any) => e.balance_volumes) || [],
                 }]}
             />
@@ -125,28 +139,33 @@ const TokenBalanceChart = memo((props) => {
                     [
                         {
                             name: 'Eth Price ($)',
-                            list: tokenHistoryList?.list?.map((e: any) => e.price) || []
-                        },
-                    ],
-                    [
-                        {
-                            name: '',
-                            list: totalList?.list?.map((e: any) => e.balance_volumes) || [],
+                            list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
                             y_option: {
-                                axisLabel: {
-                                    show: false
-                                }
+                                min: 'dataMin', //取最小值为最小刻度 
                             }
                         },
                     ],
                     [
                         {
-                            name: 'percentage (%)',
+                            name: 'Eth percentage (%)',
+                            list: ethList?.list?.map((e: any) => e.percentage) || [],
+                            y_option: {
+                                axisLabel: {
+                                    show: false
+                                },
+                                min: 'dataMin', //取最小值为最小刻度 
+                            }
+                        },
+                    ],
+                    [
+                        {
+                            name: 'Stable percentage (%)',
                             list: stableList?.list?.map((e: any) => e.percentage) || [],
                             y_option: {
                                 "axisTick": {       //y轴刻度线
                                     "show": false
                                 },
+                                min: 'dataMin', //取最小值为最小刻度 
                             }
                         },
                     ]

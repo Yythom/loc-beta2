@@ -57,9 +57,9 @@ const RecentTransactions = memo(() => {
             },
             // {
             //     title: 'From',
-            //     dataIndex: 'from',
+            //     dataIndex: 'from_info',
             //     render: (t: any, r: any) => {
-            //         return r?.from_type?.value === 1 ?
+            //         return r?.type === 1 ?
             //             <div >
             //                 <div>{r.from_amount}</div>
             //                 <div>{r.from_info}</div>
@@ -72,11 +72,11 @@ const RecentTransactions = memo(() => {
             // },
             // {
             //     title: 'To',
-            //     dataIndex: '####',
+            //     dataIndex: 'to_info',
             //     render: (t: any, r: any) => {
-            //         return r?.to_type?.value === 1 ?
+            //         return r?.type === 1 ?
             //             <div >
-            //                 <div>{r.to_amount}</div>
+            //                 <div>'r.to_amount'</div>
             //                 <div>{r.to_info}</div>
             //             </div> :
             //             <div>

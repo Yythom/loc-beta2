@@ -45,16 +45,16 @@ const SwapTransactions = memo(() => {
         return [
             {
                 title: <>Address</>,
-                dataIndex: 'address',
-                render: (text: any, r: any) => {
-                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
-                        <Text>{r.wallet_address_name || r.wallet_address}</Text>
-                    </div>;
-                },
+                dataIndex: 'wallet_address',
+                // render: (text: any, r: any) => {
+                //     return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
+                //         <Text>{r.wallet_address_name || r.wallet_address}</Text>
+                //     </div>;
+                // },
             },
             {
                 title: <>Time</>,
-                dataIndex: 'block_signed_at',
+                dataIndex: 'create_at',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >
                         <Text>{dayjs(text * 1000).format('MM-DD-YYYY HH:mm:ss')}</Text>

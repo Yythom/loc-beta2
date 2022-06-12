@@ -8,7 +8,7 @@ import useTable from "@/hooks/useTable";
 import MoreSetting from "@/components/table_component/MoreSetting";
 import { formatUrl } from "@/utils/js_utils/format";
 import { ProModal } from "@/utils/ui_utils/toast";
-import { postMainApiV1TokenFlowList } from "@/service/loc-services";
+import { postMainApiV1TokenFlowAddressList, postMainApiV1TokenFlowList } from "@/service/loc-services";
 
 const FlowIn = memo(() => {
     const history = useHistory()
@@ -50,7 +50,7 @@ const FlowIn = memo(() => {
                 dataIndex: 'volumes',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
-                        history.push(`/token-flow?token_address=${record?.token_address}&type=in`)
+                        history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
                         ProModal(<FlowInModal />, 'Token Flow in')
                     }}>
                         <div className='flex'  >
@@ -64,12 +64,10 @@ const FlowIn = memo(() => {
                 dataIndex: 'wallet_address_count',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
-                        history.push(`/token-flow?token_address=${record?.token_address}&type=in`)
+                        history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
                         ProModal(<FlowInModal />, 'Token Flow in')
                     }}>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
+                        <Text>{text}</Text>
                     </div>
                 },
             },
@@ -104,12 +102,26 @@ const FlowInModal = memo(() => {
         BuildTable,
         loading
     } = useTable<any, any>(
-        async function name(params) {
-            // TODO
-        },
+        postMainApiV1TokenFlowAddressList,
         {
             initParams: {
-                token_address: _url_params?.token_address
+                "sort": {
+                    "volumes": "desc"
+                },
+                "search": {
+                    "token_address": _url_params?.token_address,
+                    "period": Number(_url_params?.period),
+                    "is_consistent": 0,
+                    "is_in": 1,
+                    "is_out": 0,
+                    "is_cex": 1
+                },
+                "page": {
+                    "page": 1,
+                    "page_size": 5,
+                    "total": true,
+                    "all": false
+                }
             }
         }
     )
@@ -127,24 +139,13 @@ const FlowInModal = memo(() => {
             },
             {
                 title: <> Address  </>,
-                dataIndex: 'address',
-                render: (text: any, r: any) => {
-                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
-                        <Text>{r.name || r.address}</Text>
-                    </div>;
-                },
+                dataIndex: 'wallet_address',
             },
 
             {
-                title: <>
-                    Inflow
-                </>,
-                dataIndex: 'amount',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>$ {text}</Text>
-                    </div>;
-                },
+                title: 'Inflow',
+                dataIndex: 'in_amount',
+                render: (r: any) => '$' + r
             },
         ]
     }, []);

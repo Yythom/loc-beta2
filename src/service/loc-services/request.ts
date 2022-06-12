@@ -12,12 +12,16 @@ import type {
   SmartMoneyDensityListResponse,
   SmartMoneyStableCoinPositionRecordListRequest,
   SmartMoneyStableCoinPositionRecordListResponse,
+  SmartMoneyEthPositionRecordListRequest,
+  SmartMoneyEthPositionRecordListResponse,
   TokenListRequest,
   TokenListResponse,
   TokenDetailRequest,
   TokenDetailResponse,
   SmartMoneyTokenFlowListRequest,
   SmartMoneyTokenFlowListResponse,
+  WalletAddressFlowListRequest,
+  WalletAddressFlowListResponse,
   SmartMoneySwapVolumesHistoryListRequest,
   SmartMoneySwapVolumesHistoryListResponse,
   WalletAddressProfitListRequest,
@@ -34,8 +38,7 @@ import type {
   WalletAddressBalanceHistoryListResponse,
   WalletAddressBalanceListRequest,
   WalletAddressBalanceListResponse,
-  WalletAddressFlowListRequest,
-  WalletAddressFlowListResponse,
+  WalletAddressFlowDetailRequest,
   WalletAddressTokenProfitListRequest,
   WalletAddressTokenProfitListResponse,
   WalletAddressProfitDetailRequest,
@@ -44,7 +47,6 @@ import type {
   WalletAddressTransactionListResponse,
   WalletAddressListRequest,
   WalletAddressListResponse,
-  WalletAddressDetailRequest,
   WalletAddressDetailResponse,
   TokenPriceListRequest,
   TokenPriceListResponse,
@@ -292,6 +294,66 @@ export const postMainApiV1TokenBalanceStableList = /* #__PURE__ */ (() => {
   return request;
 })();
 
+/** @description request parameter type for postMainApiV1TokenBalanceEthList */
+export interface PostMainApiV1TokenBalanceEthListOption {
+  /** @description */
+  body: {
+    /**
+        @description */
+    SmartMoneyEthPositionRecordListRequest: SmartMoneyEthPositionRecordListRequest;
+  };
+}
+
+/** @description response type for postMainApiV1TokenBalanceEthList */
+export interface PostMainApiV1TokenBalanceEthListResponse {
+  /**
+   * @description
+   *   OK
+   */
+  200: {
+    /**
+        @description
+          错误码
+        @example
+          0 */
+    code?: number;
+    /**
+        @description
+          错误信息
+        @example
+          0 */
+    msg?: string;
+    data?: SmartMoneyEthPositionRecordListResponse;
+  };
+}
+
+export type PostMainApiV1TokenBalanceEthListResponseSuccess =
+  PostMainApiV1TokenBalanceEthListResponse[200];
+/**
+ * @description
+ *   获取eth资产占比列表
+ * @tags Token Balance接口
+ * @produces application/json
+ */
+export const postMainApiV1TokenBalanceEthList = /* #__PURE__ */ (() => {
+  const method = "post";
+  const url = "/main/api/v1/token/balance/eth/list";
+  function request(
+    option: PostMainApiV1TokenBalanceEthListOption
+  ): Promise<PostMainApiV1TokenBalanceEthListResponseSuccess> {
+    return requester(url, {
+      method,
+      ...option,
+    }) as unknown as Promise<PostMainApiV1TokenBalanceEthListResponseSuccess>;
+  }
+
+  /** http method */
+  request.method = method;
+  /** request url */
+  request.url = url;
+  return request;
+})();
+
 /** @description request parameter type for postMainApiV1TokenList */
 export interface PostMainApiV1TokenListOption {
   header?: {
@@ -477,6 +539,66 @@ export const postMainApiV1TokenFlowList = /* #__PURE__ */ (() => {
       method,
       ...option,
     }) as unknown as Promise<PostMainApiV1TokenFlowListResponseSuccess>;
+  }
+
+  /** http method */
+  request.method = method;
+  /** request url */
+  request.url = url;
+  return request;
+})();
+
+/** @description request parameter type for postMainApiV1TokenFlowAddressList */
+export interface PostMainApiV1TokenFlowAddressListOption {
+  /** @description */
+  body: {
+    /**
+        @description */
+    WalletAddressFlowListRequest: WalletAddressFlowListRequest;
+  };
+}
+
+/** @description response type for postMainApiV1TokenFlowAddressList */
+export interface PostMainApiV1TokenFlowAddressListResponse {
+  /**
+   * @description
+   *   OK
+   */
+  200: {
+    /**
+        @description
+          错误码
+        @example
+          0 */
+    code?: number;
+    /**
+        @description
+          错误信息
+        @example
+          0 */
+    msg?: string;
+    data?: WalletAddressFlowListResponse;
+  };
+}
+
+export type PostMainApiV1TokenFlowAddressListResponseSuccess =
+  PostMainApiV1TokenFlowAddressListResponse[200];
+/**
+ * @description
+ *   获取token flow详细的地址列表
+ * @tags Token Flow接口
+ * @produces application/json
+ */
+export const postMainApiV1TokenFlowAddressList = /* #__PURE__ */ (() => {
+  const method = "post";
+  const url = "/main/api/v1/token/flow/address/list";
+  function request(
+    option: PostMainApiV1TokenFlowAddressListOption
+  ): Promise<PostMainApiV1TokenFlowAddressListResponseSuccess> {
+    return requester(url, {
+      method,
+      ...option,
+    }) as unknown as Promise<PostMainApiV1TokenFlowAddressListResponseSuccess>;
   }
 
   /** http method */
@@ -1087,6 +1209,53 @@ export const postMainApiV1WalletBalanceTokenFlow = /* #__PURE__ */ (() => {
   return request;
 })();
 
+/** @description request parameter type for postMainApiV1WalletBalanceTokenFlowDetail */
+export interface PostMainApiV1WalletBalanceTokenFlowDetailOption {
+  /** @description */
+  body: {
+    /**
+        @description */
+    WalletAddressFlowDetailRequest: WalletAddressFlowDetailRequest;
+  };
+}
+
+/** @description response type for postMainApiV1WalletBalanceTokenFlowDetail */
+export interface PostMainApiV1WalletBalanceTokenFlowDetailResponse {
+  /**
+   * @description
+   *   OK
+   */
+  200: any;
+}
+
+export type PostMainApiV1WalletBalanceTokenFlowDetailResponseSuccess =
+  PostMainApiV1WalletBalanceTokenFlowDetailResponse[200];
+/**
+ * @description
+ *   获取地址token flow记录的详情列表
+ * @tags Wallet Balance接口
+ * @produces application/json
+ */
+export const postMainApiV1WalletBalanceTokenFlowDetail =
+  /* #__PURE__ */ (() => {
+    const method = "post";
+    const url = "/main/api/v1/wallet/balance/token/flow/detail";
+    function request(
+      option: PostMainApiV1WalletBalanceTokenFlowDetailOption
+    ): Promise<PostMainApiV1WalletBalanceTokenFlowDetailResponseSuccess> {
+      return requester(url, {
+        method,
+        ...option,
+      }) as unknown as Promise<PostMainApiV1WalletBalanceTokenFlowDetailResponseSuccess>;
+    }
+
+    /** http method */
+    request.method = method;
+    /** request url */
+    request.url = url;
+    return request;
+  })();
+
 /** @description request parameter type for postMainApiV1WalletBalanceProfitList */
 export interface PostMainApiV1WalletBalanceProfitListOption {
   /** @description */
@@ -1334,7 +1503,7 @@ export interface PostMainApiV1WalletAddressDetailOption {
   body: {
     /**
         @description */
-    WalletAddressDetailRequest: WalletAddressDetailRequest;
+    WalletAddressFlowDetailRequest: WalletAddressFlowDetailRequest;
   };
 }
 

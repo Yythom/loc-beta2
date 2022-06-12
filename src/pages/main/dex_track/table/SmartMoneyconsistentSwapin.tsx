@@ -53,7 +53,7 @@ const SmartMoneyconsistentSwapin = memo(() => {
             },
             {
                 title: <>Address</>,
-                dataIndex: 'address_num',
+                dataIndex: 'address_count',
             },
             {
                 title: <>Avg Swap in Times</>,

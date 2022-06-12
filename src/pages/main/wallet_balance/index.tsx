@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import ErrorBoundary from "@/components/Boundary";
-import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
-import { postMainApiV1TokenList } from "@/service/loc-services";
+import { postMainApiV1TokenList, postMainApiV1WalletAddressDetail } from "@/service/loc-services";
 // import WalletBalanceService from "@/services/wallet_balance";
 import { debounce, formatUrl } from "@/utils/js_utils/format";
-import { IconCopy, IconSearch } from "@douyinfe/semi-icons";
 import { AutoComplete, Input, TabPane, Tabs, Tag, Toast } from "@douyinfe/semi-ui";
 import dayjs from "dayjs";
-import { createContext, Fragment, memo, ReactChild, ReactFragment, ReactPortal, useMemo, useState } from "react";
+import { createContext, memo, useMemo, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import WalletChart from "./chart";
 import './index.scss'
@@ -27,7 +24,7 @@ import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 // import TokenOutflow from "./table/TokenOutflow";
 // import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
 
-const initTokenAddress = '0x0000000000000000000000000000000000000000'
+const initTokenAddress = ''
 // 0x0000000000000000000000000000000000000000
 export const TokenContext = createContext<{ token: any, wallet: any }>({ token: '', wallet: '' });
 
@@ -50,18 +47,20 @@ const WalletBalance = memo(() => {
         },
     })
 
-    const [wallet_lables, f, setTokenTagParams] = useRequest<any, any>(async function name(params) {
-    }, {
+    const [wallet_lables, f, setTokenTagParams] = useRequest<any, any>(postMainApiV1WalletAddressDetail, {
         initParams: {
-            address: wallet_address
+            "condition": {},
+            "search": {
+                "wallet_address": "0x53f470a909d7ce7f35e62f4470fd440b2ed5d8cd"
+            }
         }
     })
 
     return (
         <div className='wallet_balance' style={{ width: '100%', height: '100%', }}>
             <div style={{ height: '40px' }}></div>
-            <div className="fb card" style={{ color: '#fff', height: '120px', marginBottom: '3rem' }}>
-                <div className="card fd" style={{ width: '49%', height: '100%', justifyContent: 'center' }} >
+            <div className="fb card searchInput" style={{ color: '#fff', height: '120px', marginBottom: '3rem' }}>
+                <div className="card fd" style={{ width: '49%', height: '100%', justifyContent: 'center', position: 'relative' }} >
                     <Input
                         maxLength={42}
                         value={wallet_address}
@@ -71,7 +70,7 @@ const WalletBalance = memo(() => {
                         onChange={(e) => {
                             setWalletAddress(e)
                             localStorage.setItem('WalletAddress', e)
-                            setTokenTagParams({ address: e })
+                            setTokenTagParams('search', { wallet_address: e })
                         }}
                         style={{ borderRadius: '200px', width: '500px' }}
                         prefix='Wallet Address'
@@ -81,18 +80,17 @@ const WalletBalance = memo(() => {
                         token && <div className="flex" style={{ width: 'max-content' }}>
                             <CopyToClipboard text={token} onCopy={() => Toast.success('copyed Token Address')} ><div className="flex hover" style={{ fontSize: '16px' }}>
                                 {params?.name || params?.address}
-                                <IconCopy />
                             </div>
                             </CopyToClipboard>
                         </div>
                     } */}
 
                     {
-                        wallet_lables?.list?.length > 0 && < div style={{ marginTop: '6px' }}>
+                        wallet_lables?.tags?.length > 0 && < div style={{ marginTop: '6px', position: 'absolute', top: '56px' }}>
                             {
-                                wallet_lables?.list?.map((e: any) => (
-                                    <Tag style={{ marginRight: '10px' }} key={e.name}>
-                                        {e.name}
+                                wallet_lables?.tags?.map((e: any) => (
+                                    <Tag style={{ marginRight: '10px' }} key={e.wallet_address}>
+                                        {e.tag}
                                     </Tag>
                                 ))
                             }
@@ -109,8 +107,6 @@ const WalletBalance = memo(() => {
                         placeholder='Search for Token'
                         onSearch={(e: any) => {
                             if (e.slice(0, 2) === '0x' && e.length === 42) {
-                                // setToken(e)
-                                //address
                                 setTokenName('search', { search: e })
                             } else {
                                 setTokenName('search', { search: e })
@@ -137,42 +133,8 @@ const WalletBalance = memo(() => {
                 </div>
             </div>
 
-            {/* <Fragment>
-                <div className="title">Token Overview </div>
-                <div className="fd" style={{ color: '#fff', marginBottom: '3rem', alignItems: 'flex-end' }}>
-                    <div className="flex more_setting">
-                        <Tabs
-                            type="button"
-                            defaultActiveKey="7"
-                            onChange={(itemKey) => {
-                                setParams('search', {
-                                    days: itemKey || ''
-                                })
-                            }}>
-                            <TabPane tab="1 Day" itemKey="1" />
-                            <TabPane tab="3 Day" itemKey="3" />
-                            <TabPane tab="7 Day" itemKey="7" />
-                        </Tabs>
-                    </div>
-                    {
-                        <ProEchart
-                            classname='test3'
-                            option={{
-                                x_option: {
-                                    name: 'Date',
-                                    data: [12312331, 12739812]?.map((e: any) => dayjs(e.tag * 1000).format('MM/DD YYYY')),
-                                },
-                            }}
-                            dataSource={[{
-                                name: 'balance',
-                                list: [1, 23, 23, 153, 254]
-                            }]}
-                        />
-                    }
-                </div>
-            </Fragment> */}
             <TokenContext.Provider value={{ token: params?.search?.search, wallet: wallet_address }} >
-                {/* <WalletChart /> */}
+                <WalletChart />
                 {/* <TokenInflow /> */}
                 {/* <ProfitinDEX /> */}
                 {/* <TokenBalance /> */}

@@ -4,6 +4,7 @@ import useRequest from "@/hooks/useRequest";
 import { postMainApiV1DexTraceTotalSwapVolumesList, postMainApiV1TokenPriceHistoryList } from "@/service/loc-services";
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
+import dayjs from "dayjs";
 import { Fragment, memo } from "react";
 
 const DexChart = memo(() => {
@@ -69,14 +70,17 @@ const DexChart = memo(() => {
                 option={{
                     x_option: {
                         name: 'Date',
-                        data: VolumesList?.list?.map((e: any) => `111`) || [],
+                        data: VolumesList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YYYY-MM-DD')) || [],
                     },
                 }}
                 dataSource={[
                     [
                         {
                             name: 'Eth Price',
-                            list: tokenHistoryList?.list?.map((e: any) => e.price) || []
+                            list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
+                            y_option: {
+                                min: 'dataMin', //取最小值为最小刻度
+                            }
                         },
                     ],
                     [

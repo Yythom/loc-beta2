@@ -15,8 +15,6 @@ const TokenBalance = memo(() => {
                 "all": true
             },
             "search": {
-                "token_address": ctx?.token,
-                "period": 1,
                 "wallet_address": ctx.wallet,
             }
         }
@@ -34,7 +32,7 @@ const TokenBalance = memo(() => {
             onTableChange,
         }
     } = useTable<any, any>(
-        postMainApiV1WalletBalanceTokenList,
+        postMainApiV1WalletBalanceList,
         {
             listen_params: req
         }
@@ -67,12 +65,12 @@ const TokenBalance = memo(() => {
     return (
         <div className='table'>
             <div className='title'>Token Balance</div>
-            <div className='flex' style={{ justifyContent: 'flex-end' }}>
+            {/* <div className='flex' style={{ justifyContent: 'flex-end' }}>
                 <MoreSetting
                     setParams={setSearch}
                     params={params}
                 />
-            </div>
+            </div> */}
             <BuildTable columns={columns} />
         </div>
     )

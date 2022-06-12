@@ -42,6 +42,10 @@ class NumberUtils {
             return result;
         }
     }
+
+    static toThousands(num: number) {
+        return Number((num || 0)).toLocaleString()
+    }
 }
 
 export default NumberUtils;

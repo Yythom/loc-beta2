@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
+import NumberUtils from '@/utils/js_utils/number';
 import * as echarts from 'echarts';
 import { useEffect, useState } from 'react';
 import echart_theme from './theme';
@@ -118,15 +119,18 @@ function useEchart(classname: string, option: useEchartOption,
 
 					//支持字符串模板和回调函数两种形式,模板变量有 {a}, {b}，{c}，{d}，{e}，分别表示系列名，数据名，数据值等
 					// formatter: "{a0}{b0}",
-					// formatter: (p: any[]) => {
-					// 	console.log(p);
-
-					// 	return '1231'
-					// },
+					formatter: (p: any[]) => {
+						let ret = p?.[0]?.axisValue || ''
+						p?.forEach(e => {
+							let data = NumberUtils.toThousands(e.data)
+							const str = `<div>${e.marker}${e.seriesName}  <span style="margin-left:20px ;">${data}</span></div>`
+							ret += str
+						})
+						return ret
+					},
 				},
 			}
 			console.log(opt);
-
 			myChart.setOption(opt);
 			setEChart(myChart);
 		}
