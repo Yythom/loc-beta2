@@ -53,38 +53,42 @@ const RecentTransactions = memo(() => {
             {
                 title: 'Type',
                 dataIndex: 'type',
-                render: (t: any) => t?.message
+                render: (t: any) => {
+                    if (t === 1) return 'Send'
+                    if (t === 2) return 'Received'
+                    if (t === 3) return 'Swap'
+                }
             },
-            // {
-            //     title: 'From',
-            //     dataIndex: 'from_info',
-            //     render: (t: any, r: any) => {
-            //         return r?.type === 1 ?
-            //             <div >
-            //                 <div>{r.from_amount}</div>
-            //                 <div>{r.from_info}</div>
-            //             </div> :
-            //             <div>
-            //                 <div>From</div>
-            //                 <div>{getSubStr(r.from)}</div>
-            //             </div>
-            //     }
-            // },
-            // {
-            //     title: 'To',
-            //     dataIndex: 'to_info',
-            //     render: (t: any, r: any) => {
-            //         return r?.type === 1 ?
-            //             <div >
-            //                 <div>'r.to_amount'</div>
-            //                 <div>{r.to_info}</div>
-            //             </div> :
-            //             <div>
-            //                 <div>To</div>
-            //                 <div>{getSubStr(r.to)}</div>
-            //             </div>
-            //     }
-            // },
+            {
+                title: 'From',
+                dataIndex: 'from_info',
+                render: (t: any, r: any) => {
+                    return t?.type === 1 ?
+                        <div >
+                            <div>{t?.value}</div>
+                            <div>{t?.token?.symbol}</div>
+                        </div> :
+                        <div>
+                            <div>From</div>
+                            <div>{getSubStr(r.from)}</div>
+                        </div>
+                }
+            },
+            {
+                title: 'To',
+                dataIndex: 'to_info',
+                render: (t: any, r: any) => {
+                    return t?.type === 1 ?
+                        <div >
+                            <div>{t?.value}</div>
+                            <div>{t?.token?.symbol}</div>
+                        </div> :
+                        <div>
+                            <div>To</div>
+                            <div>{getSubStr(r.to)}</div>
+                        </div>
+                }
+            },
 
             {
                 title: 'Value',

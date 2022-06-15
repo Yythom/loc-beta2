@@ -13,17 +13,10 @@ import './index.scss'
 import ProfitinDEX from "./table/ProfitinDEX";
 import RecentTransactions from "./table/RecentTransactions";
 import TokenBalance from "./table/TokenBalance";
-// import ProfitinDEX from "./table/ProfitinDEX";
-// import RecentTransactions from "./table/RecentTransactions";
-// import TokenBalance from "./table/TokenBalance";
 import TokenInflow from "./table/TokenInflow";
 import TokenInflowfromCEX from "./table/TokenInflowfromCEX";
 import TokenOutflow from "./table/TokenOutflow";
 import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
-// import TokenInflowfromCEX from "./table/TokenInflowfromCEX";
-// import TokenOutflow from "./table/TokenOutflow";
-// import TokenOutflowfromCEX from "./table/TokenOutflowfromCEX";
-
 const initTokenAddress = ''
 // 0x0000000000000000000000000000000000000000
 export const TokenContext = createContext<{ token: any, wallet: any }>({ token: '', wallet: '' });
@@ -31,7 +24,9 @@ export const TokenContext = createContext<{ token: any, wallet: any }>({ token: 
 const WalletBalance = memo(() => {
     const initAddr: any = formatUrl()
     const JumpAddress = useMemo(() => initAddr?.address || '', [])
+
     const [wallet_address, setWalletAddress] = useState(JumpAddress || localStorage.getItem('WalletAddress') || '')
+    const [success_wallet_address, set_success_wallet_address] = useState(wallet_address)
 
     const [tokenInfoList, fetchToken, setTokenName, loading, params] = useRequest<any, any>(postMainApiV1TokenList, {
         initParams: {
@@ -47,13 +42,17 @@ const WalletBalance = memo(() => {
         },
     })
 
-    const [wallet_lables, f, setTokenTagParams] = useRequest<any, any>(postMainApiV1WalletAddressDetail, {
+    const [wallet_lables, f, setTokenTagParams, l, p] = useRequest<any, any>(postMainApiV1WalletAddressDetail, {
         initParams: {
             "condition": {},
             "search": {
-                "wallet_address": "0x53f470a909d7ce7f35e62f4470fd440b2ed5d8cd"
+                // "wallet_address": "0x6eef09b526d883f98762a7005fabd2c800dfca44"
+                "wallet_address": ""
             }
-        }
+        },
+        callback(data) {
+            set_success_wallet_address(p?.search?.wallet_address)
+        },
     })
 
     return (
@@ -84,7 +83,6 @@ const WalletBalance = memo(() => {
                             </CopyToClipboard>
                         </div>
                     } */}
-
                     {
                         wallet_lables?.tags?.length > 0 && < div style={{ marginTop: '6px', position: 'absolute', top: '56px' }}>
                             {
@@ -116,7 +114,7 @@ const WalletBalance = memo(() => {
                             console.log(itm, 'select');
                             const _name = itm.split('--')[0];
                             const _addr = itm.split('--')[1];
-                            setTokenName('search', { search: _name })
+                            setTokenName('search', { search: _addr || '' })
                         }}
                         renderSelectedItem={(itm: any) => {
                             return itm?.value?.split('--')[1]
@@ -133,7 +131,7 @@ const WalletBalance = memo(() => {
                 </div>
             </div>
 
-            <TokenContext.Provider value={{ token: params?.search?.search, wallet: wallet_address }} >
+            <TokenContext.Provider value={{ token: params?.search?.search, wallet: success_wallet_address }} >
                 <WalletChart />
                 {/* <TokenInflow /> */}
                 {/* <ProfitinDEX /> */}

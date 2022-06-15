@@ -23,7 +23,7 @@ const ProEchart = memo(({
 
 	return <div className={classname} style={{
 		width: '100%',
-		height: '40rem',
+		height: '400px',
 	}}>
 
 	</div>
