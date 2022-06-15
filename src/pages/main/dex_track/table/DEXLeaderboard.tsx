@@ -9,7 +9,9 @@ import useTable from "@/hooks/useTable";
 import LangComponent from "@/lang/local";
 import MoreSetting from "@/components/table_component/MoreSetting";
 import NumberUtils from "@/utils/js_utils/number";
-import { postMainApiV1DexTraceDexLeaderBoardList } from "@/service/loc-services";
+import { postMainApiV1DexTraceDexLeaderBoardList, postMainApiV1DexTraceDexLeaderBoardListDetail } from "@/service/loc-services";
+import { ProModal } from "@/utils/ui_utils/toast";
+import dayjs from "dayjs";
 
 const DEXLeaderboard = memo(() => {
     const history = useHistory()
@@ -42,49 +44,34 @@ const DEXLeaderboard = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Address</>,
-                dataIndex: 'wallet_address',
-                render: (text: any, r: any) => {
-                    return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + text)}>
-                        <Text>{text}</Text>
+                title: 'Address',
+                dataIndex: '#####',
+                render: (t: any, r: any) => {
+                    const text = r?.wallet_address
+                    return <div className='flex hover' onClick={() => { ProModal(<Modal wallet_address={text} />, text) }}>
+                        {text}
                     </div>;
                 },
             },
             {
                 title: <>Invest($)</>,
                 dataIndex: 'invest_value',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${text}</Text>
-                    </div>;
-                },
+                render: (r: any) => '$' + r
             },
             {
                 title: <>Return($)</>,
                 dataIndex: 'return_value',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${text}</Text>
-                    </div>;
-                },
+                render: (r: any) => '$' + r
             },
             {
                 title: <>Profit($)</>,
                 dataIndex: 'profit',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${text}</Text>
-                    </div>;
-                },
+                render: (r: any) => '$' + r
             },
             {
                 title: <>ROI</>,
                 dataIndex: 'roi',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{text}%</Text>
-                    </div>;
-                },
+                render: (r: any) => r + '%'
             },
         ]
     }, []);
@@ -106,3 +93,74 @@ const DEXLeaderboard = memo(() => {
 })
 
 export default DEXLeaderboard
+
+
+const Modal = memo(({ wallet_address }: { wallet_address: string }) => {
+    const history = useHistory()
+
+    const {
+        setParams,
+        params,
+        tableData,
+        BuildTable,
+        loading
+    } = useTable<any, any>(
+        postMainApiV1DexTraceDexLeaderBoardListDetail,
+        {
+            initParams: {
+                "period": 1,
+                "wallet_address": wallet_address,
+                "page": {
+                    "page_size": 2,
+                    "page": 1,
+                    "total": true
+                }
+            }
+        }
+    )
+
+
+    const columns = useMemo(() => {
+        return [
+            {
+                title: 'In Token',
+                dataIndex: 'in_token_symbol',
+            },
+            {
+                title: 'Out Token',
+                dataIndex: 'out_token_symbol',
+            },
+            {
+                title: 'Invest',
+                dataIndex: 'invest_value',
+                render: (r: any) => '$' + r
+            },
+            {
+                title: 'Return',
+                dataIndex: 'return_value',
+                render: (r: any) => '$' + r
+            },
+            {
+                title: 'Profit',
+                dataIndex: 'profit',
+                render: (r: any) => '$' + r
+            },
+            {
+                title: 'Roi',
+                dataIndex: 'roi',
+                render: (r: any) => r + '%'
+            },
+            {
+                title: 'Time',
+                dataIndex: 'create_at',
+                render: (r: any) => dayjs(r * 1000).format('YYYY-MM-DD HH:mm:ss')
+            },
+        ]
+    }, []);
+
+    return <div style={{ marginTop: '12px' }}>
+        <div className='Portfolio card' style={{ marginTop: '20px' }}>
+            <BuildTable columns={columns} />
+        </div>
+    </div>
+})

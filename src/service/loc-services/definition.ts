@@ -35,6 +35,8 @@ export type WalletAddressProfitListSortProfit = BaseSortCreateAt;
 export type WalletAddressProfitListSortRoi = BaseSortCreateAt;
 export type WalletAddressProfitItemPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
+export type DexLeaderBoardDetailRequestPeriod =
+  SmartMoneyBalanceHistoryListSearchPeriod;
 export type SwapTransactionListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type SwapTransactionSortVolumes = BaseSortCreateAt;
@@ -55,8 +57,6 @@ export type TokenPriceHistoryListSearchPeriod =
 export type WalletAddressBalanceHistoryListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressBalanceListSearchPeriod =
-  SmartMoneyBalanceHistoryListSearchPeriod;
-export type WalletAddressFlowDetailSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
 export type WalletAddressTokenProfitListSearchPeriod =
   SmartMoneyBalanceHistoryListSearchPeriod;
@@ -120,12 +120,7 @@ export interface SmartMoneyBalanceHistoryItem {
    * @description
    *   日期
    */
-  create_date?: number;
-  /**
-   * @description
-   *   时间
-   */
-  create_hour?: number;
+  create_at?: number;
 }
 
 export interface SmartMoneyBalanceHistoryListResponse {
@@ -361,12 +356,7 @@ export interface SmartMoneyStableCoinPositionRecordItem {
    * @description
    *   日期
    */
-  create_date?: number;
-  /**
-   * @description
-   *   时间
-   */
-  create_hour?: number;
+  create_at?: number;
 }
 
 export interface SmartMoneyStableCoinPositionRecordListResponse {
@@ -422,12 +412,7 @@ export interface SmartMoneyEthPositionRecordItem {
    * @description
    *   日期
    */
-  create_date?: number;
-  /**
-   * @description
-   *   时间
-   */
-  create_hour?: number;
+  create_at?: number;
 }
 
 export interface SmartMoneyEthPositionRecordListResponse {
@@ -924,14 +909,9 @@ export interface SmartMoneySwapVolumesHistoryItem {
   swap_volumes?: string;
   /**
    * @description
-   *   日期
-   */
-  create_date?: number;
-  /**
-   * @description
    *   时间
    */
-  create_hour?: number;
+  create_at?: number;
 }
 
 export interface SmartMoneySwapVolumesHistoryListResponse {
@@ -1102,6 +1082,101 @@ export interface WalletAddressProfitListResponse {
   total?: number;
 }
 
+export interface DexLeaderBoardDetailRequest {
+  /**
+   * @description
+   *   钱包地址
+   */
+  wallet_address?: string;
+  /**
+   * @description
+   *   周期
+   */
+  period?: DexLeaderBoardDetailRequestPeriod;
+  page?: Page;
+}
+
+export interface DexLeaderBoardDetailItem {
+  /**
+   * @description
+   *   钱包地址
+   */
+  wallet_address?: string;
+  /**
+   * @description
+   *   转出token地址
+   */
+  out_token_address?: string;
+  /**
+   * @description
+   *   转出token Symbol
+   */
+  out_token_symbol?: string;
+  /**
+   * @description
+   *   转出数量
+   */
+  out_amount?: string;
+  /**
+   * @description
+   *   转入token地址
+   */
+  in_token_address?: string;
+  /**
+   * @description
+   *   转入token Symbol
+   */
+  in_token_symbol?: string;
+  /**
+   * @description
+   *   转入数量
+   */
+  in_amount?: string;
+  /**
+   * @description
+   *   价值
+   */
+  volumes?: string;
+  /**
+   * @description
+   *   现价
+   */
+  now_price?: string;
+  /**
+   * @description
+   *   投入价值
+   */
+  invest_value?: string;
+  /**
+   * @description
+   *   回报价值
+   */
+  return_value?: string;
+  /**
+   * @description
+   *   收益
+   */
+  profit?: string;
+  /**
+   * @description
+   *   收益率
+   */
+  roi?: string;
+  /**
+   * @description
+   *   创建时间
+   */
+  create_at?: number;
+}
+
+export interface DexLeaderBoardDetailResponse {
+  /**
+   * @description
+   *   列表
+   */
+  list?: Array<DexLeaderBoardDetailItem>;
+}
+
 /**
  * @description
  *   搜索参数
@@ -1268,11 +1343,6 @@ export interface TokenPairItem {
   in_token_address?: string;
   /**
    * @description
-   *   入token名称
-   */
-  in_token_name?: string;
-  /**
-   * @description
    *   入token symbol
    */
   in_token_symbol?: string;
@@ -1281,11 +1351,6 @@ export interface TokenPairItem {
    *   出token地址
    */
   out_token_address?: string;
-  /**
-   * @description
-   *   出token名称
-   */
-  out_token_name?: string;
   /**
    * @description
    *   出token symbol
@@ -1501,6 +1566,11 @@ export interface TokenPriceHistoryItem {
    *   小时
    */
   create_hour?: number;
+  /**
+   * @description
+   *   日期
+   */
+  create_at?: number;
 }
 
 export interface TokenPriceHistoryListResponse {
@@ -1561,12 +1631,7 @@ export interface WalletAddressBalanceHistoryItem {
    * @description
    *   日期
    */
-  create_date?: number;
-  /**
-   * @description
-   *   小时
-   */
-  create_hour?: number;
+  create_at?: number;
 }
 
 export interface WalletAddressBalanceHistoryListResponse {
@@ -1692,50 +1757,6 @@ export interface WalletAddressBalanceListResponse {
    * @default 0
    */
   total?: number;
-}
-
-/**
- * @description
- *   搜索参数
- */
-export interface WalletAddressFlowDetailSearch {
-  /**
-   * @description
-   *   钱包地址
-   */
-  wallet_address?: string;
-  /**
-   * @description
-   *   token地址
-   */
-  token_address?: string;
-  /**
-   * @description
-   *   周期
-   */
-  period?: WalletAddressFlowDetailSearchPeriod;
-  /**
-   * @description
-   *   是否中心化交易所
-   * @default 0
-   */
-  is_cex?: number;
-  /**
-   * @description
-   *   是否流出
-   * @default 0
-   */
-  is_out?: number;
-  /**
-   * @description
-   *   是否流入
-   * @default 0
-   */
-  is_in?: number;
-}
-
-export interface WalletAddressFlowDetailRequest {
-  search?: WalletAddressFlowDetailSearch;
 }
 
 /**
@@ -1975,18 +1996,11 @@ export interface WalletAddressTransactionListResponse {
 
 /**
  * @description
- *   控制参数
- */
-export interface WalletAddressCondition {}
-
-/**
- * @description
  *   搜索参数
  */
 export interface WalletAddressListSearch {}
 
 export interface WalletAddressListRequest {
-  condition?: WalletAddressCondition;
   search?: WalletAddressListSearch;
   page?: Page;
   sort?: BaseSort;
@@ -2016,6 +2030,18 @@ export interface WalletAddressListResponse {
    * @default 0
    */
   total?: number;
+}
+
+export interface WalletAddressSearch {
+  /**
+   * @description
+   *   钱包地址
+   */
+  wallet_address?: string;
+}
+
+export interface WalletAddressDetailRequest {
+  search?: WalletAddressSearch;
 }
 
 export interface WalletAddressDetailResponse {

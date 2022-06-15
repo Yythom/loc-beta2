@@ -26,6 +26,8 @@ import type {
   SmartMoneySwapVolumesHistoryListResponse,
   WalletAddressProfitListRequest,
   WalletAddressProfitListResponse,
+  DexLeaderBoardDetailRequest,
+  DexLeaderBoardDetailResponse,
   SwapTransactionListRequest,
   SwapTransactionListResponse,
   SmartMoneySwapVolumesRecordListRequest,
@@ -38,7 +40,6 @@ import type {
   WalletAddressBalanceHistoryListResponse,
   WalletAddressBalanceListRequest,
   WalletAddressBalanceListResponse,
-  WalletAddressFlowDetailRequest,
   WalletAddressTokenProfitListRequest,
   WalletAddressTokenProfitListResponse,
   WalletAddressProfitDetailRequest,
@@ -47,6 +48,7 @@ import type {
   WalletAddressTransactionListResponse,
   WalletAddressListRequest,
   WalletAddressListResponse,
+  WalletAddressDetailRequest,
   WalletAddressDetailResponse,
   TokenPriceListRequest,
   TokenPriceListResponse,
@@ -729,6 +731,67 @@ export const postMainApiV1DexTraceDexLeaderBoardList = /* #__PURE__ */ (() => {
   return request;
 })();
 
+/** @description request parameter type for postMainApiV1DexTraceDexLeaderBoardListDetail */
+export interface PostMainApiV1DexTraceDexLeaderBoardListDetailOption {
+  /** @description */
+  body: {
+    /**
+        @description */
+    DexLeaderBoardDetailRequest: DexLeaderBoardDetailRequest;
+  };
+}
+
+/** @description response type for postMainApiV1DexTraceDexLeaderBoardListDetail */
+export interface PostMainApiV1DexTraceDexLeaderBoardListDetailResponse {
+  /**
+   * @description
+   *   OK
+   */
+  200: {
+    /**
+        @description
+          错误码
+        @example
+          0 */
+    code?: number;
+    /**
+        @description
+          错误信息
+        @example
+          0 */
+    msg?: string;
+    data?: DexLeaderBoardDetailResponse;
+  };
+}
+
+export type PostMainApiV1DexTraceDexLeaderBoardListDetailResponseSuccess =
+  PostMainApiV1DexTraceDexLeaderBoardListDetailResponse[200];
+/**
+ * @description
+ *   获取Dex Leaderboard列表
+ * @tags Dex Track接口
+ * @produces application/json
+ */
+export const postMainApiV1DexTraceDexLeaderBoardListDetail =
+  /* #__PURE__ */ (() => {
+    const method = "post";
+    const url = "/main/api/v1/dex/trace/dex/leader/board/list/detail";
+    function request(
+      option: PostMainApiV1DexTraceDexLeaderBoardListDetailOption
+    ): Promise<PostMainApiV1DexTraceDexLeaderBoardListDetailResponseSuccess> {
+      return requester(url, {
+        method,
+        ...option,
+      }) as unknown as Promise<PostMainApiV1DexTraceDexLeaderBoardListDetailResponseSuccess>;
+    }
+
+    /** http method */
+    request.method = method;
+    /** request url */
+    request.url = url;
+    return request;
+  })();
+
 /** @description request parameter type for postMainApiV1DexTraceSwapList */
 export interface PostMainApiV1DexTraceSwapListOption {
   /** @description */
@@ -1209,53 +1272,6 @@ export const postMainApiV1WalletBalanceTokenFlow = /* #__PURE__ */ (() => {
   return request;
 })();
 
-/** @description request parameter type for postMainApiV1WalletBalanceTokenFlowDetail */
-export interface PostMainApiV1WalletBalanceTokenFlowDetailOption {
-  /** @description */
-  body: {
-    /**
-        @description */
-    WalletAddressFlowDetailRequest: WalletAddressFlowDetailRequest;
-  };
-}
-
-/** @description response type for postMainApiV1WalletBalanceTokenFlowDetail */
-export interface PostMainApiV1WalletBalanceTokenFlowDetailResponse {
-  /**
-   * @description
-   *   OK
-   */
-  200: any;
-}
-
-export type PostMainApiV1WalletBalanceTokenFlowDetailResponseSuccess =
-  PostMainApiV1WalletBalanceTokenFlowDetailResponse[200];
-/**
- * @description
- *   获取地址token flow记录的详情列表
- * @tags Wallet Balance接口
- * @produces application/json
- */
-export const postMainApiV1WalletBalanceTokenFlowDetail =
-  /* #__PURE__ */ (() => {
-    const method = "post";
-    const url = "/main/api/v1/wallet/balance/token/flow/detail";
-    function request(
-      option: PostMainApiV1WalletBalanceTokenFlowDetailOption
-    ): Promise<PostMainApiV1WalletBalanceTokenFlowDetailResponseSuccess> {
-      return requester(url, {
-        method,
-        ...option,
-      }) as unknown as Promise<PostMainApiV1WalletBalanceTokenFlowDetailResponseSuccess>;
-    }
-
-    /** http method */
-    request.method = method;
-    /** request url */
-    request.url = url;
-    return request;
-  })();
-
 /** @description request parameter type for postMainApiV1WalletBalanceProfitList */
 export interface PostMainApiV1WalletBalanceProfitListOption {
   /** @description */
@@ -1503,7 +1519,7 @@ export interface PostMainApiV1WalletAddressDetailOption {
   body: {
     /**
         @description */
-    WalletAddressFlowDetailRequest: WalletAddressFlowDetailRequest;
+    WalletAddressDetailRequest: WalletAddressDetailRequest;
   };
 }
 
