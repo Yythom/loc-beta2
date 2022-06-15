@@ -55,56 +55,28 @@ const SwapTransactions = memo(() => {
             {
                 title: <>Time</>,
                 dataIndex: 'create_at',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{dayjs(text * 1000).format('MM-DD-YYYY HH:mm:ss')}</Text>
-                    </div>;
-                },
+                render: (r: any) => dayjs(r * 1000).format('MM-DD-YYYY HH:mm:ss')
             },
             {
                 title: <>Token in</>,
                 dataIndex: 'in_token_symbol',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{text}</Text>
-                    </div>;
-                },
             },
             {
                 title: <>Amount In</>,
                 dataIndex: 'in_amount',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{text}</Text>
-                    </div>;
-                },
             },
             {
                 title: <>Token out</>,
                 dataIndex: 'out_token_symbol',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{text}</Text>
-                    </div>;
-                },
             },
             {
                 title: <>Amount out</>,
                 dataIndex: 'out_amount',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{text}</Text>
-                    </div>;
-                },
             },
             {
                 title: <>Volume($)</>,
                 dataIndex: 'volumes',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${text}</Text>
-                    </div>;
-                },
+                render: (r: any) => '$' + r
             },
         ]
     }, [params]);

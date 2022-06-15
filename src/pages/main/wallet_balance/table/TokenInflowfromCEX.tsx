@@ -52,7 +52,7 @@ const TokenInflowfromCEX = memo(() => {
             {
                 title: 'Inflow ',
                 dataIndex: 'in_amount',
-                render: (text: any, rec: any, index: any) => <div>${text}</div>,
+                render: (e: any) => '$' + e
             },
             {
                 title: 'Inflow Value',
@@ -68,7 +68,7 @@ const TokenInflowfromCEX = memo(() => {
             {
                 title: 'Inflow Price',
                 dataIndex: 'in_average_price',
-                render: (text: any, rec: any, index: any) => <div>${text}</div>,
+                render: (e: any) => '$' + e
             },
         ]
     }, []);

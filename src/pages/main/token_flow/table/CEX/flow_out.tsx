@@ -55,9 +55,7 @@ const FlowOut = memo(() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
                         ProModal(<FlowOutModal />, 'Token Flow Out')
                     }}>
-                        <div className='flex'  >
-                            <Text> $ {text}</Text>
-                        </div>
+                        ${text}
                     </div>
                 },
             },
@@ -69,9 +67,7 @@ const FlowOut = memo(() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
                         ProModal(<FlowOutModal />, 'Token Flow Out')
                     }}>
-                        <div className='flex'  >
-                            <Text>{text}</Text>
-                        </div>
+                        {text}
                     </div>
                 },
             },

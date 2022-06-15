@@ -62,11 +62,7 @@ const SmartMoneyconsistentSwapin = memo(() => {
             {
                 title: <>Swap in volume</>,
                 dataIndex: 'volumes',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${text}</Text>
-                    </div>;
-                },
+                render: (r: any) => '$' + r
             },
         ]
     }, [params]);

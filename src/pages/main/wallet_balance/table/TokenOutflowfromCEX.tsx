@@ -53,7 +53,7 @@ const TokenOutflowfromCEX = memo(() => {
             {
                 title: 'Outflow ',
                 dataIndex: 'out_amount',
-                render: (text: any, rec: any, index: any) => <div>${text}</div>,
+                render: (e: any) => '$' + e
             },
             {
                 title: 'Outflow Value',
@@ -69,7 +69,7 @@ const TokenOutflowfromCEX = memo(() => {
             {
                 title: 'Outflow Price',
                 dataIndex: 'out_average_price',
-                render: (text: any, rec: any, index: any) => <div>${text}</div>,
+                render: (e: any) => '$' + e
             },
         ]
     }, []);

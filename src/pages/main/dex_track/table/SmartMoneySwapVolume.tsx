@@ -44,38 +44,22 @@ const SmartMoneySwapVolume = memo(() => {
             {
                 title: <>Token in </>,
                 dataIndex: '#',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{record?.swap_pair?.in_token_symbol}</Text>
-                    </div>;
-                },
+                render: (text: any, record: any, index: any) => record?.swap_pair?.in_token_symbol,
             },
             {
                 title: <>Token out</>,
                 dataIndex: '##',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{record?.swap_pair?.out_token_symbol}</Text>
-                    </div>;
-                },
+                render: (text: any, record: any, index: any) => record?.swap_pair?.out_token_symbol,
             },
             {
                 title: <>Volume</>,
                 dataIndex: 'volumes',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${text}</Text>
-                    </div>;
-                },
+                render: (r: any) => '$' + r
             },
             {
                 title: <>Volume Change</>,
                 dataIndex: 'volumes_change',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>${text}</Text>
-                    </div>;
-                },
+                render: (r: any) => '$' + r
             },
         ]
     }, [params]);

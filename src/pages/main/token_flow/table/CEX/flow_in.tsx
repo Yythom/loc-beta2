@@ -131,11 +131,7 @@ const FlowInModal = memo(() => {
             {
                 title: <>No.  </>,
                 dataIndex: '#',
-                render: (text: any, record: any, index: any) => {
-                    return <div className='flex' >
-                        <Text>{index + 1}</Text>
-                    </div>;
-                },
+                render: (text: any, record: any, index: any) => index + 1,
             },
             {
                 title: <> Address  </>,

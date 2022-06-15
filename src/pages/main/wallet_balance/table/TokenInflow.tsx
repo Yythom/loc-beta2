@@ -72,7 +72,7 @@ const TokenInflow = memo(() => {
             {
                 title: 'Inflow Price($)',
                 dataIndex: 'in_average_price',
-                render: (text: any, rec: any, index: any) => <div>${text}</div>,
+                render: (e: any) => '$' + e
             },
         ]
     }, []);
