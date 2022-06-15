@@ -111,7 +111,7 @@ const Modal = memo(({ wallet_address }: { wallet_address: string }) => {
                 "period": 1,
                 "wallet_address": wallet_address,
                 "page": {
-                    "page_size": 2,
+                    "page_size": 5,
                     "page": 1,
                     "total": true
                 }
