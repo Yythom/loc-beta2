@@ -41,6 +41,7 @@ const DEXLeaderboard = memo(() => {
             }
         }
     )
+
     const columns = useMemo(() => {
         return [
             {
@@ -48,9 +49,9 @@ const DEXLeaderboard = memo(() => {
                 dataIndex: '#####',
                 render: (t: any, r: any) => {
                     const text = r?.wallet_address
-                    return <div className='flex hover' onClick={() => { ProModal(<Modal wallet_address={text} />, text) }}>
+                    return <div className='flex hover' onClick={() => { ProModal(<Modal wallet_address={r?.wallet_address} period={params?.search?.period} />, text) }} >
                         {text}
-                    </div>;
+                    </div >;
                 },
             },
             {
@@ -74,10 +75,10 @@ const DEXLeaderboard = memo(() => {
                 render: (r: any) => r + '%'
             },
         ]
-    }, []);
+    }, [params?.search]);
 
     return <div style={{ marginTop: '12px' }}>
-        <div className="title">DEX Leaderboard</div>
+        <div className="title">DEX Leaderboard   </div>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
@@ -95,7 +96,7 @@ const DEXLeaderboard = memo(() => {
 export default DEXLeaderboard
 
 
-const Modal = memo(({ wallet_address }: { wallet_address: string }) => {
+const Modal = memo(({ wallet_address, period }: { wallet_address: string, period: number }) => {
     const history = useHistory()
 
     const {
@@ -118,7 +119,6 @@ const Modal = memo(({ wallet_address }: { wallet_address: string }) => {
             }
         }
     )
-
 
     const columns = useMemo(() => {
         return [

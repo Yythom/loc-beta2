@@ -13,7 +13,8 @@ const TokenOutflow = memo(() => {
         if (!ctx?.wallet) return null
         return {
             "sort": {
-                "create_at": "desc"
+                "create_at": "desc",
+                volumes: 'asc',
             },
             "search": {
                 "period": 1,
