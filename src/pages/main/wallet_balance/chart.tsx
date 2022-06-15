@@ -132,7 +132,7 @@ const WalletChart = memo(() => {
                 option={{
                     x_option: {
                         name: 'Date',
-                        data: tokenHistoryList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YYYY-MM-DD')) || [],
+                        data: tokenHistoryList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
                     },
                 }}
                 dataSource={charts}

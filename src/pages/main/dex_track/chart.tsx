@@ -69,8 +69,8 @@ const DexChart = memo(() => {
                 classname='test3'
                 option={{
                     x_option: {
-                        name: 'Date',
-                        data: VolumesList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YYYY-MM-DD')) || [],
+                        name: ' Date',
+                        data: VolumesList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
                     },
                 }}
                 dataSource={[

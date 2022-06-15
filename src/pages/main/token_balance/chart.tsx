@@ -91,7 +91,7 @@ const TokenBalanceChart = memo((props) => {
                 option={{
                     x_option: {
                         name: ' Date',
-                        data: totalList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YYYY-MM-DD')) || [],
+                        data: totalList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
                     },
                 }}
                 dataSource={[{
@@ -131,7 +131,7 @@ const TokenBalanceChart = memo((props) => {
                 option={{
                     x_option: {
                         name: ' Date',
-                        data: stableList?.list?.map((e: any) => `111`) || [],
+                        data: stableList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
                     },
                 }}
 
