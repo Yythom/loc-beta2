@@ -76,7 +76,10 @@ function useTable<T, P = undefined>(
             sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : '';
             setParams({
                 ...params,
-                page: useTable.initPage,
+                page: {
+                    page: 1,
+                    page_size: (ret as any)?.page_size
+                },
                 sort: sortRet
             } as any)
             return sortOrder

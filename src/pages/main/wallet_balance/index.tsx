@@ -138,7 +138,7 @@ const WalletBalance = memo(() => {
                 {/* <TokenBalance /> */}
 
                 <TokenBalance />
-                <div className="fb flex-1">
+                {/* <div className="fb flex-1">
                     <TokenInflow />
                     <TokenOutflow />
                 </div>
@@ -146,7 +146,7 @@ const WalletBalance = memo(() => {
                     <TokenInflowfromCEX />
                     <TokenOutflowfromCEX />
                 </div>
-                <ProfitinDEX />
+                <ProfitinDEX /> */}
                 <RecentTransactions />
             </TokenContext.Provider>
         </div >

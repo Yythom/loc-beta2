@@ -47,6 +47,8 @@ const BuildTable = memo((
                         </div>;
                     }
                 }
+                // e.sorter = true
+
                 return e
             })
         }

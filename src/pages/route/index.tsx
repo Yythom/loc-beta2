@@ -50,14 +50,21 @@ const menu_route: RouteItemInterface[] = [
         itemKey: 'dex-track',
     },
     {
-        text: 'Token Flow',
+        text: 'Smart Money',
         icon: 'iconshezhi',
-        itemKey: 'token-flow',
-    },
-    {
-        text: 'Token Balance',
-        icon: 'iconshezhi',
-        itemKey: 'token-balance',
+        itemKey: 'Smart-Money',
+        items: [
+            {
+                text: 'Token Flow',
+                icon: 'iconshezhi',
+                itemKey: 'token-flow',
+            },
+            {
+                text: 'Token Balance',
+                icon: 'iconshezhi',
+                itemKey: 'token-balance',
+            },
+        ]
     },
     {
         text: 'Wallet Balance',
