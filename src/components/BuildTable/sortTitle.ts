@@ -29,5 +29,7 @@ const sortTitle = [
     '% of Market Cap',
     'Market Cap Holding by SmartMoney',
     'Market Cap',
+
+    '',// wallet_balance
 ]
 export default sortTitle
