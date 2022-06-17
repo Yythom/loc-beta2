@@ -39,26 +39,26 @@ const SmartMoneyDensity = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
+                title: 'Token',
                 dataIndex: 'token_name',
             },
             {
-                title: <>Market Cap</>,
+                title: 'Market Cap',
                 dataIndex: 'market_cap',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>Market Cap Holding by SmartMoney</>,
+                title: 'Market Cap Holding by SmartMoney',
                 dataIndex: 'sm_holding',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>% of Market Cap</>,
+                title: '% of Market Cap',
                 dataIndex: 'holding_percentage',
                 render: (r: any) => r + ' %'
             },
             {
-                title: <>% of Market Cap Change</>,
+                title: '% of Market Cap Change',
                 dataIndex: 'market_cap_change',
                 render: (r: any) => r + ' %'
             },

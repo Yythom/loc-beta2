@@ -41,23 +41,23 @@ const ConsistentIn = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token </>,
+                title: 'Token ',
                 dataIndex: 'token_name',
             },
             {
-                title: <>Inflow times </>,
+                title: 'Inflow times ',
                 dataIndex: 'times',
             },
             {
-                title: <>Address</>,
+                title: 'Address',
                 dataIndex: 'wallet_address_count',
             },
             {
-                title: <>Avg Inflow Times</>,
+                title: 'Avg Inflow Times',
                 dataIndex: 'average_times',
             },
             {
-                title: <>volume</>,
+                title: 'volume',
                 dataIndex: 'volumes',
             },
         ]

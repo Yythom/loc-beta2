@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Collapsible, Table } from "@douyinfe/semi-ui";
+import { Collapsible, Modal, Table } from "@douyinfe/semi-ui";
 import { memo, useMemo } from "react";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import { Pagination } from '@douyinfe/semi-ui';
@@ -49,28 +49,28 @@ const DEXLeaderboard = memo(() => {
                 dataIndex: '#####',
                 render: (t: any, r: any) => {
                     const text = r?.wallet_address
-                    return <div className='flex hover' onClick={() => { ProModal(<Modal wallet_address={r?.wallet_address} period={params?.search?.period} />, text) }} >
+                    return <div className='flex hover' onClick={() => { ProModal(<DetailModal wallet_address={r?.wallet_address} period={params?.search?.period} />, text) }} >
                         {text}
                     </div >;
                 },
             },
             {
-                title: <>Invest($)</>,
+                title: 'Invest($)',
                 dataIndex: 'invest_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>Return($)</>,
+                title: 'Return($)',
                 dataIndex: 'return_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>Profit($)</>,
+                title: 'Profit($)',
                 dataIndex: 'profit',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>ROI</>,
+                title: 'ROI',
                 dataIndex: 'roi',
                 render: (r: any) => r + '%'
             },
@@ -89,6 +89,7 @@ const DEXLeaderboard = memo(() => {
             </Collapsible>
         </div>
         <BuildTable columns={columns} />
+        <DetailModal wallet_address={'0x240b5317fe8da47f4020628cb6f36adc006da12a'} period={params?.search?.period} />
     </div>
 
 })
@@ -96,7 +97,7 @@ const DEXLeaderboard = memo(() => {
 export default DEXLeaderboard
 
 
-const Modal = memo(({ wallet_address, period }: { wallet_address: string, period: number }) => {
+const DetailModal = memo(({ wallet_address, period }: { wallet_address: string, period: number }) => {
     const history = useHistory()
 
     const {
@@ -131,22 +132,22 @@ const Modal = memo(({ wallet_address, period }: { wallet_address: string, period
                 dataIndex: 'out_token_symbol',
             },
             {
-                title: 'Invest',
+                title: 'Invest($)',
                 dataIndex: 'invest_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Return',
+                title: 'Return($)',
                 dataIndex: 'return_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Profit',
+                title: 'Profit($)',
                 dataIndex: 'profit',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Roi',
+                title: 'ROI',
                 dataIndex: 'roi',
                 render: (r: any) => r + '%'
             },

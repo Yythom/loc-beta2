@@ -42,22 +42,22 @@ const SmartMoneySwapVolume = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token in </>,
+                title: 'Token in ',
                 dataIndex: '#',
                 render: (text: any, record: any, index: any) => record?.swap_pair?.in_token_symbol,
             },
             {
-                title: <>Token out</>,
+                title: 'Token out',
                 dataIndex: '##',
                 render: (text: any, record: any, index: any) => record?.swap_pair?.out_token_symbol,
             },
             {
-                title: <>Volume</>,
+                title: 'Volume',
                 dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>Volume Change</>,
+                title: 'Volume Change',
                 dataIndex: 'volumes_change',
                 render: (r: any) => '$' + r
             },

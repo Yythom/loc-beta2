@@ -90,7 +90,25 @@ body[theme-mode="dark"] .semi-portal * {
     background: var(--bd-color);
 }
 
+.modal-content .card {
+    padding: 0 !important;
+}
 
+.ReactModal__Content {
+    opacity: 0.3;
+    transition: 300ms;
+    overflow: hidden !important;
+}
+
+.ReactModal__Content--after-open {
+    opacity: 1;
+    overflow: hidden !important;
+}
+
+.ReactModal__Content--before-close {
+    opacity: 0;
+    overflow: hidden !important;
+}
 
 ul,
 li,

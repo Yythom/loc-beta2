@@ -35,35 +35,35 @@ const SmartMoneyHolding = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
+                title: 'Token',
                 dataIndex: 'token_name',
             },
             {
-                title: <>Token Balance</>,
+                title: 'Token Balance',
                 dataIndex: 'position_amount',
 
             },
             {
-                title: <>Current Value</>,
+                title: 'Current Value',
                 dataIndex: 'position_volumes',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>% of All Token</>,
+                title: '% of All Token',
                 dataIndex: 'percentage',
                 render: (r: any) => r + '%'
             },
             {
-                title: <>Address</>,
+                title: 'Address',
                 dataIndex: 'address_count',
             },
             {
-                title: <>Value Change</>,
+                title: 'Value Change',
                 dataIndex: 'volumes_change',
                 render: (r: any) => '$' + r
             },
             {
-                title: <>Token Change</>,
+                title: 'Token Change',
                 dataIndex: 'amount_change',
             },
 

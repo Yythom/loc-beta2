@@ -98,6 +98,7 @@ function useTable<T, P = undefined>(
                 buildDataSource={(ret as any)?.list || []}
                 loading={loading}
                 columns={columns}
+                params={params}
                 setParams={setParams}
                 ret={ret}
                 onChange={(e: ChangeInfo<any>) => { onTableChange(e) }}

@@ -44,23 +44,23 @@ const SmartMoneyconsistentSwapin = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
+                title: 'Token',
                 dataIndex: 'token_name',
             },
             {
-                title: <>Swap in Times</>,
+                title: 'Swap in Times',
                 dataIndex: 'times',
             },
             {
-                title: <>Address</>,
+                title: 'Address',
                 dataIndex: 'address_count',
             },
             {
-                title: <>Avg Swap in Times</>,
+                title: 'Avg Swap in Times',
                 dataIndex: 'avg_swap_times',
             },
             {
-                title: <>Swap in volume</>,
+                title: 'Swap in volume',
                 dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },

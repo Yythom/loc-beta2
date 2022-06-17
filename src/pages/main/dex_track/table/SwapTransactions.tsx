@@ -44,7 +44,7 @@ const SwapTransactions = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Address</>,
+                title: 'Address',
                 dataIndex: 'wallet_address',
                 // render: (text: any, r: any) => {
                 //     return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>
@@ -53,28 +53,28 @@ const SwapTransactions = memo(() => {
                 // },
             },
             {
-                title: <>Time</>,
+                title: 'Time',
                 dataIndex: 'create_at',
                 render: (r: any) => dayjs(r * 1000).format('MM-DD-YYYY HH:mm:ss')
             },
             {
-                title: <>Token in</>,
+                title: 'Token in',
                 dataIndex: 'in_token_symbol',
             },
             {
-                title: <>Amount In</>,
+                title: 'Amount In',
                 dataIndex: 'in_amount',
             },
             {
-                title: <>Token out</>,
+                title: 'Token out',
                 dataIndex: 'out_token_symbol',
             },
             {
-                title: <>Amount out</>,
+                title: 'Amount out',
                 dataIndex: 'out_amount',
             },
             {
-                title: <>Volume($)</>,
+                title: 'Volume($)',
                 dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },

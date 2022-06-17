@@ -3,21 +3,25 @@ import loacl from '@/lang/semi-ui-local';
 import goTokenEthScan from '@/utils/ui_utils/goTokenEthScan';
 import { ConfigProvider, LocaleProvider, Pagination, Table, Tag } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
-import { Fragment, memo, useMemo, } from 'react';
+import { Fragment, useMemo, } from 'react';
+import sortTitle from './sortTitle';
 
-const BuildTable = memo((
-    { buildDataSource, columns, loading, setParams, ret, onChange, hidePage, }: {
+const BuildTable = (
+    { buildDataSource, columns, loading, setParams, ret, onChange, hidePage, params }: {
         buildDataSource: any[],
         columns: ColumnProps<any>[],
         loading: boolean,
+        params: any,
         setParams: any,
         ret: any // 原始数据
         onChange?: any
         hidePage?: boolean
     }) => {
+
+
     const _columns = useMemo(() => {
         if (columns) {
-            return columns.map(e => {
+            return columns.map((e: any) => {
                 const copyFn: any = e?.render
                 if (e?.dataIndex?.includes('token_name')) {
                     e.render = (text: any, record: any, index: any) =>
@@ -47,12 +51,21 @@ const BuildTable = memo((
                         </div>;
                     }
                 }
-                // e.sorter = true
-
+                const isSort = sortTitle
+                    .find(str => {
+                        return str.toLocaleLowerCase().includes((e?.title as any)?.toLocaleLowerCase() || '') && str.length === e?.title?.length
+                    })
+                if (isSort) {
+                    e.sorter = true
+                    const currentSort = params?.sort?.[e?.dataIndex || '']
+                    if (currentSort) {
+                        (e as any).sortOrder = `${currentSort}end`
+                    } else e.sortOrder = false
+                }
                 return e
             })
         }
-    }, [columns])
+    }, [columns, params])
 
     return (
         <LocaleProvider locale={loacl['en_US']}>
@@ -79,7 +92,6 @@ const BuildTable = memo((
                         <Table
                             onChange={onChange}
                             loading={loading}
-
                             dataSource={buildDataSource}
                             columns={_columns}
                             pagination={false}
@@ -89,5 +101,5 @@ const BuildTable = memo((
             </ConfigProvider>
         </LocaleProvider>
     )
-})
+}
 export default BuildTable;

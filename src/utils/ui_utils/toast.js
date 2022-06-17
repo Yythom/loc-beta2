@@ -1,6 +1,8 @@
-import { Button, Modal, Notification } from "@douyinfe/semi-ui";
-import { Fragment, useState } from "react";
-
+import { Button, Notification, } from "@douyinfe/semi-ui";
+import { useState } from "react";
+import ReactDOM from 'react-dom'
+import CoutomModal from "./Modal";
+// http://reactcommunity.org/react-modal/styles/transitions/
 function showNotic(type = 'success', opt = { content: ` ` }) {
 	Notification[type](opt)
 }
@@ -14,33 +16,17 @@ export const closeModal = async (isFetch = false) => {
 	}
 }
 const ProModal = (Content, title, cb = function () { }, Footer = null,) => {
-	const initProps = {
-		icon: false,
-	};
-	const _modal = Modal.info({
-		...initProps,
-		onCancel: () => {
-			ctro[ctro.length - 1].destroy()
-			ctro.splice(ctro.length - 1, 1)
-		},
-		title,
-		content: <Fragment>
-			{Content}
-			<div style={{ height: '2rem', minWidth: '800px' }}></div>
-		</Fragment>,
-		footer: Footer ? () => {
-			return Footer;
-		} : null,
-	});
-
-	ctro.push((() => {
-		const modalOpenItem = { ..._modal, }
-		modalOpenItem.close = async () => {
-			await cb()
-			modalOpenItem.destroy()
-		}
-		return { ...modalOpenItem }
-	})());
+	const doc = window.document //或者可以指定index.html里的元素,参照官方文档
+	const elem = doc.createElement('div')
+	ReactDOM.render(
+		<CoutomModal elem={elem}>
+			<div className="modal-content">
+				<div className="title">{title}</div>
+				{Content}
+			</div>
+		</CoutomModal>,
+		elem
+	)
 };
 
 const ModalFooter = ({ onOk }) => {

@@ -41,12 +41,12 @@ const FlowOutCon = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
+                title: 'Token',
                 dataIndex: 'token_name',
             },
 
             {
-                title: <>  Outflow($)  </>,
+                title: '  Outflow($)  ',
                 dataIndex: 'volumes',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
@@ -58,7 +58,7 @@ const FlowOutCon = memo(() => {
                 },
             },
             {
-                title: <>Address</>,
+                title: 'Address',
                 dataIndex: 'wallet_address_count',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
@@ -128,7 +128,7 @@ const FlowOutModal = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>No.  </>,
+                title: 'No.  ',
                 dataIndex: '#',
                 render: (text: any, record: any, index: any) => {
                     return <div className='flex' >

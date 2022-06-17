@@ -30,6 +30,7 @@
   }
 }
 
+
 .bold {
   font-weight: bold;
 }
@@ -192,4 +193,8 @@ body[theme-mode="dark"] {
       color: #e14eca !important;
     }
   }
+}
+
+.semi-navigation-vertical .semi-navigation-list>.semi-navigation-sub-wrap>.semi-navigation-sub-title-selected .semi-navigation-item-icon:first-child {
+  color: #fff !important;
 }

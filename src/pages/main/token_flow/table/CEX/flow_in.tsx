@@ -42,11 +42,11 @@ const FlowIn = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>Token</>,
+                title: 'Token',
                 dataIndex: 'token_name',
             },
             {
-                title: <>  Inflow($)  </>,
+                title: '  Inflow($)  ',
                 dataIndex: 'volumes',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
@@ -60,7 +60,7 @@ const FlowIn = memo(() => {
                 },
             },
             {
-                title: <>Address</>,
+                title: 'Address',
                 dataIndex: 'wallet_address_count',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
@@ -129,12 +129,12 @@ const FlowInModal = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: <>No.  </>,
+                title: 'No.  ',
                 dataIndex: '#',
                 render: (text: any, record: any, index: any) => index + 1,
             },
             {
-                title: <> Address  </>,
+                title: ' Address  ',
                 dataIndex: 'wallet_address',
             },
 
