@@ -25,7 +25,7 @@ const FlowOut = memo(() => {
         postMainApiV1TokenFlowList,
         {
             initParams: {
-                sort: { volumes: 'asc' },
+
                 "search": {
                     "is_consistent": 0,
                     "is_in": 0,
@@ -48,7 +48,7 @@ const FlowOut = memo(() => {
             },
 
             {
-                title: '  Outflow($)  ',
+                title: 'Outflow($)',
                 dataIndex: 'volumes',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {

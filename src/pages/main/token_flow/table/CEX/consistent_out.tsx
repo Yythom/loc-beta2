@@ -23,7 +23,7 @@ const ConsistentOut = memo(() => {
         postMainApiV1TokenFlowList,
         {
             initParams: {
-                sort: { volumes: 'asc' },
+
                 "search": {
                     "is_consistent": 1,
                     "is_in": 0,

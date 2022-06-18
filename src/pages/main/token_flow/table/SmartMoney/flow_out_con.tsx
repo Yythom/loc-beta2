@@ -25,7 +25,7 @@ const FlowOutCon = memo(() => {
         postMainApiV1TokenFlowList,
         {
             initParams: {
-                sort: { volumes: 'asc' },
+
                 "search": {
                     "is_consistent": 0,
                     "is_in": 0,

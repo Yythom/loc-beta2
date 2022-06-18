@@ -49,7 +49,9 @@ const DEXLeaderboard = memo(() => {
                 dataIndex: '#####',
                 render: (t: any, r: any) => {
                     const text = r?.wallet_address
-                    return <div className='flex hover' onClick={() => { ProModal(<DetailModal wallet_address={r?.wallet_address} period={params?.search?.period} />, text) }} >
+                    return <div className='flex hover' onClick={() => {
+                        ProModal(<DetailModal wallet_address={r?.wallet_address} period={params?.search?.period} />, <Text className="title hover" onClick={() => window.open('/wallet-balance?address=' + (text || r?.address?.wallet_address))}>{text}</Text>)
+                    }} >
                         {text}
                     </div >;
                 },

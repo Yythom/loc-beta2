@@ -67,8 +67,8 @@ const menu_route: RouteItemInterface[] = [
         ]
     },
     {
-        text: 'Wallet Balance',
-        icon: 'iconshezhi',
+        text: '',
+        icon: '',
         itemKey: 'wallet-balance',
     },
     // {

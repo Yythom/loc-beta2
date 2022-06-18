@@ -97,6 +97,9 @@ const TokenBalanceChart = memo((props) => {
                 dataSource={[{
                     name: 'Smart Money Holding',
                     list: totalList?.list?.map((e: any) => e.balance_volumes) || [],
+                    y_option: {
+                        min: 'dataMin', //取最小值为最小刻度 
+                    }
                 }]}
             />
         </div>
@@ -132,6 +135,7 @@ const TokenBalanceChart = memo((props) => {
                     x_option: {
                         name: ' Date',
                         data: stableList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
+
                     },
                 }}
 
