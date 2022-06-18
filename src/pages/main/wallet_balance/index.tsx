@@ -132,7 +132,7 @@ const WalletBalance = memo(() => {
             </div>
 
             <TokenContext.Provider value={{ token: params?.search?.search, wallet: success_wallet_address }} >
-                <WalletChart />
+                {/* <WalletChart /> */}
                 {/* <TokenInflow /> */}
                 {/* <ProfitinDEX /> */}
                 {/* <TokenBalance /> */}

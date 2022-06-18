@@ -135,7 +135,6 @@ const TokenBalanceChart = memo((props) => {
                     x_option: {
                         name: ' Date',
                         data: stableList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
-
                     },
                 }}
 
