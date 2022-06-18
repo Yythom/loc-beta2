@@ -91,7 +91,6 @@ const DEXLeaderboard = memo(() => {
             </Collapsible>
         </div>
         <BuildTable columns={columns} />
-        <DetailModal wallet_address={'0x240b5317fe8da47f4020628cb6f36adc006da12a'} period={params?.search?.period} />
     </div>
 
 })
