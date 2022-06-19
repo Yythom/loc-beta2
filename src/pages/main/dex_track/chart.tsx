@@ -87,7 +87,7 @@ const DexChart = memo(() => {
                     ],
                     [
                         {
-                            name: 'volumes',
+                            name: 'Swap Volumes',
                             list: VolumesList?.list?.map((e: any) => e.swap_volumes) || [],
                             y_option: {
                                 min: 'dataMin', //取最小值为最小刻度
