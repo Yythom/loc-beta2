@@ -47,7 +47,7 @@ const WalletBalance = memo(() => {
             "condition": {},
             "search": {
                 // "wallet_address": "0x6eef09b526d883f98762a7005fabd2c800dfca44"
-                "wallet_address": ""
+                "wallet_address": wallet_address
             }
         },
         callback(data) {
@@ -75,14 +75,6 @@ const WalletBalance = memo(() => {
                         prefix='Wallet Address'
                         placeholder='Search for Wallet Address'
                     />
-                    {/* {
-                        token && <div className="flex" style={{ width: 'max-content' }}>
-                            <CopyToClipboard text={token} onCopy={() => Toast.success('copyed Token Address')} ><div className="flex hover" style={{ fontSize: '16px' }}>
-                                {params?.name || params?.address}
-                            </div>
-                            </CopyToClipboard>
-                        </div>
-                    } */}
                     {
                         wallet_lables?.tags?.length > 0 && < div style={{ marginTop: '6px', position: 'absolute', top: '56px' }}>
                             {

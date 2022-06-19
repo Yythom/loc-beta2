@@ -58,6 +58,7 @@ const BuildTable = (
                 if (isSort) {
                     e.sorter = true
                     const currentSort = params?.sort?.[e?.dataIndex || '']
+
                     if (currentSort) {
                         (e as any).sortOrder = `${currentSort}end`
                     } else e.sortOrder = false

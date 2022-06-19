@@ -57,7 +57,8 @@ const TokenBalanceChart = memo((props) => {
                 },
                 "search": {
                     "token_address": "0x0000000000000000000000000000000000000000",
-                    "period": 1
+                    "period": 1,
+                    'two_hour': true
                 },
                 "condition": {}
             }
@@ -108,7 +109,7 @@ const TokenBalanceChart = memo((props) => {
 
         {/* 表二 */}
         <Text>
-            <h2>Smart Money  StableCoin & ETH vs All Coins</h2>
+            <h2>Smart Money StableCoin & ETH vs All Coins</h2>
         </Text>
         <div className="fd" style={{ alignItems: 'flex-end' }}>
             <div className="flex more_setting"  >
@@ -144,6 +145,9 @@ const TokenBalanceChart = memo((props) => {
                             name: 'Eth Price ($)',
                             list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
                             y_option: {
+                                // "axisTick": {       //y轴刻度线
+                                //     "show": false
+                                // },
                                 min: 'dataMin', //取最小值为最小刻度 
                             }
                         },
@@ -153,9 +157,11 @@ const TokenBalanceChart = memo((props) => {
                             name: 'Eth percentage (%)',
                             list: ethList?.list?.map((e: any) => e.percentage) || [],
                             y_option: {
+
                                 axisLabel: {
                                     show: false
                                 },
+
                                 min: 'dataMin', //取最小值为最小刻度 
                             }
                         },
@@ -165,9 +171,11 @@ const TokenBalanceChart = memo((props) => {
                             name: 'Stable percentage (%)',
                             list: stableList?.list?.map((e: any) => e.percentage) || [],
                             y_option: {
-                                "axisTick": {       //y轴刻度线
-                                    "show": false
+                                nameLocation: 'middle',
+                                axisLabel: {
+                                    show: false
                                 },
+
                                 min: 'dataMin', //取最小值为最小刻度 
                             }
                         },

@@ -111,7 +111,7 @@ const DetailModal = memo(({ wallet_address, period }: { wallet_address: string, 
         postMainApiV1DexTraceDexLeaderBoardListDetail,
         {
             initParams: {
-                "period": 1,
+                "period": period,
                 "wallet_address": wallet_address,
                 "page": {
                     "page_size": 5,

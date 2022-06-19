@@ -23,7 +23,7 @@ const RecentTransactions = memo(() => {
             "page": {
                 "page_size": 20,
                 "page": 1
-            }
+            },
         }
     }, [ctx?.wallet, ctx?.token])
 
@@ -43,6 +43,7 @@ const RecentTransactions = memo(() => {
             listen_params: req
         }
     )
+
     const columns = useMemo(() => {
         return [
             {
@@ -100,12 +101,12 @@ const RecentTransactions = memo(() => {
     return (
         <div className='table'>
             <div className='title'>Recent Transactions</div>
-            <div className='flex' style={{ justifyContent: 'flex-end' }}>
+            {/* <div className='flex' style={{ justifyContent: 'flex-end' }}>
                 <MoreSetting
                     setParams={setSearch}
                     params={params}
                 />
-            </div>
+            </div> */}
             <BuildTable columns={columns} />
         </div>
     )

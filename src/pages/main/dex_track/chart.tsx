@@ -37,7 +37,7 @@ const DexChart = memo(() => {
                 "search": {
                     "token_address": "0x0000000000000000000000000000000000000000",
                     "period": 1,
-                    'two_hour': true
+                    'two_hour': false
                 },
                 "condition": {}
             }
@@ -81,7 +81,7 @@ const DexChart = memo(() => {
                             list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
                             y_option: {
                                 min: 'dataMin', //取最小值为最小刻度
-                                max: 'dataMax'
+                                max: 'dataMax',
                             }
                         },
                     ],
@@ -90,8 +90,7 @@ const DexChart = memo(() => {
                             name: 'volumes',
                             list: VolumesList?.list?.map((e: any) => e.swap_volumes) || [],
                             y_option: {
-                                // min: 0, //取最小值为最小刻度
-                                // max: 'dataMax'
+                                min: 'dataMin', //取最小值为最小刻度
                             }
                         }
                     ]

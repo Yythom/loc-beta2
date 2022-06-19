@@ -65,7 +65,7 @@ const ConsistentIn = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className="title">Consistent Token Inflow to CEX</div>
+        <div className="title">Consistent Token Inflow from CEX</div>
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting

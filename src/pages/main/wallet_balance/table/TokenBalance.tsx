@@ -51,7 +51,7 @@ const TokenBalance = memo(() => {
             },
             {
                 title: ' Current Value',
-                dataIndex: 'current_price',
+                dataIndex: 'volumes',
                 render: (t: any, r: any, i: any) => <div>${t}</div>
             },
             {
@@ -71,7 +71,7 @@ const TokenBalance = memo(() => {
                     params={params}
                 />
             </div> */}
-            <BuildTable columns={columns} />
+            <BuildTable columns={columns} hidePage={true} />
         </div>
     )
 })

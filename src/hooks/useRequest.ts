@@ -33,7 +33,6 @@ function useRequest<T, P = undefined>(
             setParams({ ..._params });
         }
         const res = await promise({ body: _params || params });
-
         setloading(false);
         if (res) {
             setRet(res);
@@ -50,6 +49,7 @@ function useRequest<T, P = undefined>(
     useEffect(() => {
         // 监听模式需要控制变量useMemo
         if (option?.listen_params && !option.start_owner) {
+
             fetch({ ...option?.listen_params, ...params, }, true)
         }
     }, [option?.listen_params, params])

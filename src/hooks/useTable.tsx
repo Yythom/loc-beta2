@@ -41,7 +41,6 @@ function useTable<T, P = undefined>(
         listen_params: option?.listen_params,
     })
 
-
     useLayoutEffect(() => {
         option?.start_owner && fetch();
     }, []);
@@ -73,7 +72,7 @@ function useTable<T, P = undefined>(
         if (sorter) {
             const { sortOrder, dataIndex } = sorter;
             const sortRet: any = {}
-            sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : '';
+            sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : null;
             setParams({
                 ...params,
                 page: {

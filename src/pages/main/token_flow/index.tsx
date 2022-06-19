@@ -15,14 +15,15 @@ const TokenFlow = memo(() => {
 
     return (
         <div className='flow flex' style={{ width: '100%', height: '100%', }}>
-            <FlowIn />
-            <FlowOut />
-            <ConsistentIn />
-            <ConsistentOut />
             <FlowInCon />
             <FlowOutCon />
             <ConsistentInCon />
             <ConsistentOutCon />
+
+            <FlowIn />
+            <FlowOut />
+            <ConsistentIn />
+            <ConsistentOut />
         </div >
     )
 })
