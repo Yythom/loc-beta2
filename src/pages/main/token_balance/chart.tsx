@@ -47,7 +47,7 @@ const TokenBalanceChart = memo((props) => {
             }
         })
     const [tokenHistoryList, ff,
-        setParamsHistoryTokens,] = useRequest<any, any>(postMainApiV1TokenPriceHistoryList, {
+        setParamsHistoryTokens, l, p] = useRequest<any, any>(postMainApiV1TokenPriceHistoryList, {
             initParams: {
                 "page": {
                     "all": true
@@ -120,6 +120,7 @@ const TokenBalanceChart = memo((props) => {
                             period: Number(itemKey)
                         })
                         setParamsHistoryTokens('search', {
+                            ...p?.search,
                             period: Number(itemKey)
                         })
 
