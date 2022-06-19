@@ -77,10 +77,6 @@ const TokenBalanceChart = memo((props) => {
                         setParamsTotal('search', {
                             period: Number(itemKey)
                         })
-                        setParamsStable('search', {
-                            period: Number(itemKey)
-                        })
-
                     }}>
                     <TabPane tab="1 Day" itemKey="1" />
                     <TabPane tab="3 Day" itemKey="2" />
@@ -117,10 +113,13 @@ const TokenBalanceChart = memo((props) => {
                     type="button"
                     defaultActiveKey="1"
                     onChange={(itemKey) => {
-                        setParamsTotal('search', {
+                        setParamsStable('search', {
                             period: Number(itemKey)
                         })
-                        setParamsStable('search', {
+                        setParamsEthList('search', {
+                            period: Number(itemKey)
+                        })
+                        setParamsHistoryTokens('search', {
                             period: Number(itemKey)
                         })
 
