@@ -9,7 +9,7 @@ import { Fragment, memo } from "react";
 
 const DexChart = memo(() => {
     const [VolumesList, fetch,
-        setParamsVolumes,] = useRequest<any, any>(postMainApiV1DexTraceTotalSwapVolumesList, {
+        setParamsVolumes, ll, pp] = useRequest<any, any>(postMainApiV1DexTraceTotalSwapVolumesList, {
             initParams: {
                 "search": {
                     "period": 1,
@@ -27,7 +27,7 @@ const DexChart = memo(() => {
         })
 
     const [tokenHistoryList, f,
-        setParamsTokens,] = useRequest<any, any>(postMainApiV1TokenPriceHistoryList, {
+        setParamsTokens, l, p] = useRequest<any, any>(postMainApiV1TokenPriceHistoryList, {
             initParams: {
                 "page": {
                     "all": true
@@ -55,9 +55,11 @@ const DexChart = memo(() => {
                     defaultActiveKey="1"
                     onChange={(itemKey) => {
                         setParamsVolumes('search', {
+                            ...pp?.search,
                             period: Number(itemKey)
                         })
                         setParamsTokens('search', {
+                            ...p?.search,
                             period: Number(itemKey)
                         })
 

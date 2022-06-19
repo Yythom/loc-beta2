@@ -72,7 +72,7 @@ function useTable<T, P = undefined>(
         if (sorter) {
             const { sortOrder, dataIndex } = sorter;
             const sortRet: any = {}
-            sortRet[dataIndex] = sortOrder ? `${sortOrder}`?.replace('end', '') : null;
+            if (sortOrder) sortRet[dataIndex] = `${sortOrder}`?.replace('end', '')
             setParams({
                 ...params,
                 page: {
