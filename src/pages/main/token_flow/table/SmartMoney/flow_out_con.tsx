@@ -74,7 +74,7 @@ const FlowOutCon = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className="title">Token Outflow from Smart Money</div>
+        <div className="title">Token Outflow</div>
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting

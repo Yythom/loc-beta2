@@ -61,7 +61,7 @@ const ConsistentInCon = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className="title">Consistent Token Inflow from Smart Money</div>
+        <div className="title">Consistent Token Inflow</div>
         <div className='fb' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting
