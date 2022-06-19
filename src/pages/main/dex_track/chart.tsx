@@ -12,7 +12,8 @@ const DexChart = memo(() => {
         setParamsVolumes,] = useRequest<any, any>(postMainApiV1DexTraceTotalSwapVolumesList, {
             initParams: {
                 "search": {
-                    "period": 1
+                    "period": 1,
+                    "token_address": "0x0000000000000000000000000000000000000000",
                 },
                 "condition": {},
                 "page": {
