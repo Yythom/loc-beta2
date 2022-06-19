@@ -46,7 +46,7 @@ const FlowIn = memo(() => {
                 dataIndex: 'token_name',
             },
             {
-                title: '  Inflow($)  ',
+                title: 'Inflow($)',
                 dataIndex: 'volumes',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {

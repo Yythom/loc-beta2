@@ -47,7 +47,7 @@ const RecentTransactions = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: 'DateTime',
+                title: 'Date Time',
                 dataIndex: 'create_at',
                 render: (t: any) => <div>{dayjs(t * 1000).format('YYYY-MM-DD HH:mm:ss')}</div>
             },

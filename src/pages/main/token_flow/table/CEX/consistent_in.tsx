@@ -45,7 +45,7 @@ const ConsistentIn = memo(() => {
                 dataIndex: 'token_name',
             },
             {
-                title: 'Inflow times ',
+                title: 'Inflow times',
                 dataIndex: 'times',
             },
             {

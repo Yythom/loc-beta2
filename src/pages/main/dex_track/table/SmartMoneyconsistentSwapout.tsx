@@ -48,7 +48,7 @@ const SmartMoneyconsistentSwapout = memo(() => {
                 dataIndex: 'token_name',
             },
             {
-                title: 'Swap in Times',
+                title: 'Swap out Times',
                 dataIndex: 'times',
             },
             {

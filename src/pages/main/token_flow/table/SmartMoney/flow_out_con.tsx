@@ -46,7 +46,7 @@ const FlowOutCon = memo(() => {
             },
 
             {
-                title: '  Outflow($)  ',
+                title: 'Outflow($)',
                 dataIndex: 'volumes',
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {

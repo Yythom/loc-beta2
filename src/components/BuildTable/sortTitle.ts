@@ -12,9 +12,13 @@ const sortTitle = [
     'Avg Swap out Times',
     'Avg Swap in Times',
     'Swap in volume',
+    'Swap in Times',
+    'Swap out Times',
 
     'Inflow($)', // totkn flow
     'Outflow($)',
+    'Outflow times',
+    'Inflow times',
     'address',
     'Avg Inflow Times',
     'Avg outflow Times',
@@ -30,6 +34,8 @@ const sortTitle = [
     'Market Cap Holding by SmartMoney',
     'Market Cap',
 
-    '',// wallet_balance
+    'Current Value',  // wallet_balance
+    'Token Balance',
+    'Date Time',
 ]
 export default sortTitle

@@ -45,7 +45,7 @@ const DEXLeaderboard = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: 'Address',
+                title: 'Address ',
                 dataIndex: '#####',
                 render: (t: any, r: any) => {
                     const text = r?.wallet_address

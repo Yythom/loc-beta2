@@ -45,7 +45,7 @@ const ConsistentOut = memo(() => {
                 dataIndex: 'token_name',
             },
             {
-                title: 'Outflow times ',
+                title: 'Outflow times',
                 dataIndex: 'times',
             },
             {
