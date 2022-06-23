@@ -53,7 +53,7 @@ const FlowOut = memo(() => {
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
-                        ProModal(<FlowOutModal />, 'Token Flow Out')
+                        ProModal(<FlowOutModal />, 'Token Outflow to CEX')
                     }}>
                         ${text}
                     </div>
@@ -65,7 +65,7 @@ const FlowOut = memo(() => {
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
-                        ProModal(<FlowOutModal />, 'Token Flow Out')
+                        ProModal(<FlowOutModal />, 'Token Outflow to CEX')
                     }}>
                         {text}
                     </div>
@@ -139,11 +139,11 @@ const FlowOutModal = memo(() => {
                 },
             },
             {
-                title: 'Address',
+                title: 'Address ',
                 dataIndex: 'wallet_address',
             },
             {
-                title: 'Outflow',
+                title: 'Outflow($)',
                 dataIndex: 'out_amount',
                 render: (r: any) => '$' + r
             },

@@ -2,6 +2,7 @@
 import ProEchart from "@/components/echart/pro_echart";
 import useRequest from "@/hooks/useRequest";
 import { postMainApiV1DexTraceTotalSwapVolumesList, postMainApiV1TokenBalanceEthList, postMainApiV1TokenBalanceStableList, postMainApiV1TokenBalanceTotalList, postMainApiV1TokenPriceHistoryList } from "@/service/loc-services";
+import NumberUtils from "@/utils/js_utils/number";
 import { TabPane, Tabs } from "@douyinfe/semi-ui";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import dayjs from "dayjs";
@@ -96,6 +97,11 @@ const TokenBalanceChart = memo((props) => {
                     list: totalList?.list?.map((e: any) => e.balance_volumes) || [],
                     y_option: {
                         min: 'dataMin', //取最小值为最小刻度 
+                        axisLabel: {
+                            formatter: function (value: any, index: number) {
+                                return index > 0 ? NumberUtils.numToMPa(value) : ''
+                            }
+                        }
                     }
                 }]}
             />
@@ -134,7 +140,7 @@ const TokenBalanceChart = memo((props) => {
                 classname='StableCoin'
                 option={{
                     x_option: {
-                        name: ' Date',
+                        name: '          Date',
                         data: stableList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
                     },
                 }}
@@ -142,7 +148,7 @@ const TokenBalanceChart = memo((props) => {
                 dataSource={[
                     [
                         {
-                            name: 'Eth Price ($)',
+                            name: 'ETH Price ($)',
                             list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
                             y_option: {
                                 // "axisTick": {       //y轴刻度线
@@ -154,7 +160,7 @@ const TokenBalanceChart = memo((props) => {
                     ],
                     [
                         {
-                            name: 'Eth percentage (%)',
+                            name: 'ETH percentage (%)',
                             list: ethList?.list?.map((e: any) => e.percentage) || [],
                             y_option: {
 

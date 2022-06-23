@@ -21,6 +21,7 @@ class NumberUtils {
     }
 
     static numToMPa = (num: any) => {
+        if (num == 0) return 0
         const result = Number(this.numToDivide(num, 6)) < 1 ?
             `${Number(this.numToDivide(num, 3)).toFixed(2)} K`
             : `${Number(this.numToDivide(num, 6)).toFixed(2)} M`

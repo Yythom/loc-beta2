@@ -94,6 +94,7 @@ const RecentTransactions = memo(() => {
             {
                 title: 'Value',
                 dataIndex: 'volumes',
+                render: (t: any, r: any) => '$' + t
             },
         ]
     }, []);

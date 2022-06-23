@@ -46,8 +46,7 @@ const TokenBalance = memo(() => {
             },
             {
                 title: 'Token Balance',
-                dataIndex: 'amount', // todo
-                render: (t: any, r: any, i: any) => <div>${t}</div>
+                dataIndex: 'amount',
             },
             {
                 title: 'Current Value',

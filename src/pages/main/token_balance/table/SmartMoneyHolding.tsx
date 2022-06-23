@@ -58,12 +58,12 @@ const SmartMoneyHolding = memo(() => {
                 dataIndex: 'address_count',
             },
             {
-                title: 'Value Change',
+                title: 'Value Change (1d)',
                 dataIndex: 'volumes_change',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Token Change',
+                title: 'Token Change (1d)',
                 dataIndex: 'amount_change',
             },
 

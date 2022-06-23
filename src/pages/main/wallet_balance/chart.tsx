@@ -61,7 +61,7 @@ const WalletChart = memo(() => {
     const charts: any = useMemo(() => {
         const Ethprice = [
             {
-                name: 'Eth Price',
+                name: 'ETH Price',
                 list: walletBalances?.list?.map((e: any) => e.current_price) || [],
                 y_option: {
                     min: 'dataMin', //取最小值为最小刻度  

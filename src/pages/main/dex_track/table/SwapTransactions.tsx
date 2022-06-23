@@ -44,7 +44,7 @@ const SwapTransactions = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: 'Address',
+                title: 'Address ',
                 dataIndex: 'wallet_address',
                 // render: (text: any, r: any) => {
                 //     return <div className='flex hover' onClick={() => history.push('/wallet-balance?address=' + r.address)}>

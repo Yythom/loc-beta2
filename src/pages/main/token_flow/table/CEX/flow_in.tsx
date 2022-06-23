@@ -48,16 +48,14 @@ const FlowIn = memo(() => {
             {
                 title: 'Inflow($)',
                 dataIndex: 'volumes',
-                render: (text: any, record: any, index: any) => {
-                    return <div className="hover" onClick={() => {
+                render: (text: any, record: any, index: any) =>
+                    <div className="hover" onClick={() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
-                        ProModal(<FlowInModal />, 'Token Flow in')
+                        ProModal(<FlowInModal />, 'Token Inflow from CEX')
                     }}>
-                        <div className='flex'  >
-                            <Text>$ {text}</Text>
-                        </div>
+                        $ {text}
                     </div>
-                },
+                ,
             },
             {
                 title: 'Address',
@@ -65,9 +63,9 @@ const FlowIn = memo(() => {
                 render: (text: any, record: any, index: any) => {
                     return <div className="hover" onClick={() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
-                        ProModal(<FlowInModal />, 'Token Flow in')
+                        ProModal(<FlowInModal />, 'Token Inflow from CEX')
                     }}>
-                        <Text>{text}</Text>
+                        $ {text}
                     </div>
                 },
             },
@@ -134,12 +132,12 @@ const FlowInModal = memo(() => {
                 render: (text: any, record: any, index: any) => index + 1,
             },
             {
-                title: ' Address  ',
+                title: 'Address  ',
                 dataIndex: 'wallet_address',
             },
 
             {
-                title: 'Inflow',
+                title: 'Inflow($)',
                 dataIndex: 'in_amount',
                 render: (r: any) => '$' + r
             },
@@ -147,13 +145,6 @@ const FlowInModal = memo(() => {
     }, []);
 
     return <div style={{ marginTop: '12px' }}>
-        {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        {/* <Collapsible isOpen={true}>
-            <MoreSetting
-                setParams={setSearchParams}
-                params={params}
-            />
-        </Collapsible> */}
         <div className='Portfolio card' style={{ marginTop: '20px' }}>
             <BuildTable columns={columns} />
         </div>

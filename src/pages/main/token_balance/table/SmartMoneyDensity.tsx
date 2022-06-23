@@ -58,7 +58,7 @@ const SmartMoneyDensity = memo(() => {
                 render: (r: any) => r + ' %'
             },
             {
-                title: '% of Market Cap Change',
+                title: '% of Market Cap Change (1d)',
                 dataIndex: 'market_cap_change',
                 render: (r: any) => r + ' %'
             },

@@ -69,7 +69,7 @@ const SmartMoneyconsistentSwapout = memo(() => {
 
     return <div style={{ marginTop: '12px' }}>
         {/* <DefaultSetting setParams={setSearchParams} setOpen={setOpen} isOpen={isOpen} /> */}
-        <div className="title">Smart Money consistent Swap out</div>
+        <div className="title">Smart Money Consistent Swap out</div>
         <div className='flex' style={{ justifyContent: 'flex-end' }}>
             <Collapsible isOpen={true}>
                 <MoreSetting

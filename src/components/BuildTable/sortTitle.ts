@@ -27,9 +27,9 @@ const sortTitle = [
     'Token Balance', // Token Balance
     'Current Value',
     '% of All Token',
-    'Value Change',
-    'Token Change',
-    '% of Market Cap Change',
+    'Value Change (1d)',
+    'Token Change (1d)',
+    '% of Market Cap Change (1d)',
     '% of Market Cap',
     'Market Cap Holding by SmartMoney',
     'Market Cap',
@@ -37,5 +37,7 @@ const sortTitle = [
     'Current Value',  // wallet_balance
     'Token Balance',
     'Date Time',
+
+    // modal 
 ]
 export default sortTitle
