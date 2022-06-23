@@ -57,17 +57,17 @@ const DEXLeaderboard = memo(() => {
                 },
             },
             {
-                title: 'Invest($)',
+                title: 'Invest',
                 dataIndex: 'invest_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Return($)',
+                title: 'Return',
                 dataIndex: 'return_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Profit($)',
+                title: 'Profit',
                 dataIndex: 'profit',
                 render: (r: any) => '$' + r
             },
@@ -133,17 +133,17 @@ const DetailModal = memo(({ wallet_address, period }: { wallet_address: string, 
                 dataIndex: 'out_token_symbol',
             },
             {
-                title: 'Invest($)',
+                title: 'Invest',
                 dataIndex: 'invest_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Return($)',
+                title: 'Return',
                 dataIndex: 'return_value',
                 render: (r: any) => '$' + r
             },
             {
-                title: 'Profit($)',
+                title: 'Profit',
                 dataIndex: 'profit',
                 render: (r: any) => '$' + r
             },

@@ -1,7 +1,7 @@
 const sortTitle = [
-    'Invest($)',  // dex
-    'Return($)',
-    'Profit($)',
+    'Invest',  // dex
+    'Return',
+    'Profit',
     'Roi',
     'Time',
     'Amount in',
@@ -22,7 +22,7 @@ const sortTitle = [
     'address',
     'Avg Inflow Times',
     'Avg outflow Times',
-    'Volume($)',
+    'Volume',
 
     'Token Balance', // Token Balance
     'Current Value',
@@ -37,6 +37,7 @@ const sortTitle = [
     'Current Value',  // wallet_balance
     'Token Balance',
     'Date Time',
+    'Value',
 
     // modal 
 ]

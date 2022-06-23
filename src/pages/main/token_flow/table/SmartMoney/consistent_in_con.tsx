@@ -62,7 +62,7 @@ const ConsistentInCon = memo(() => {
                 dataIndex: 'average_times',
             },
             {
-                title: 'volume',
+                title: 'Volume',
                 dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },

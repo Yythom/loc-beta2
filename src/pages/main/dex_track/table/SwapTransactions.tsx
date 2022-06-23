@@ -74,7 +74,7 @@ const SwapTransactions = memo(() => {
                 dataIndex: 'out_amount',
             },
             {
-                title: 'Volume($)',
+                title: 'Volume',
                 dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },

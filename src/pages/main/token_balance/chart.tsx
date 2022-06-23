@@ -99,7 +99,7 @@ const TokenBalanceChart = memo((props) => {
                         min: 'dataMin', //取最小值为最小刻度 
                         axisLabel: {
                             formatter: function (value: any, index: number) {
-                                return index > 0 ? NumberUtils.numToMPa(value) : ''
+                                return index > 0 ? '$' + NumberUtils.numToMPa(value) : ''
                             }
                         }
                     }
@@ -140,7 +140,7 @@ const TokenBalanceChart = memo((props) => {
                 classname='StableCoin'
                 option={{
                     x_option: {
-                        name: '          Date',
+                        name: '       Date',
                         data: stableList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
                     },
                 }}
@@ -151,38 +151,45 @@ const TokenBalanceChart = memo((props) => {
                             name: 'ETH Price ($)',
                             list: tokenHistoryList?.list?.map((e: any) => e.price) || [],
                             y_option: {
-                                // "axisTick": {       //y轴刻度线
-                                //     "show": false
-                                // },
+                                "axisLabel": {       //y轴刻度线
+                                    // "show": false
+                                    formatter: function (value: any, index: any) {
+                                        return Math.floor(value);
+                                    }
+                                },
                                 min: 'dataMin', //取最小值为最小刻度 
                             }
                         },
                     ],
                     [
                         {
-                            name: 'ETH percentage (%)',
+                            name: 'ETH Percentage (%)',
                             list: ethList?.list?.map((e: any) => e.percentage) || [],
                             y_option: {
-
                                 axisLabel: {
-                                    show: false
+                                    formatter: function (value: string, index: any) {
+                                        return value + '%';
+                                    }
                                 },
-
-                                min: 'dataMin', //取最小值为最小刻度 
+                                min: '0', //取最小值为最小刻度 
+                                max: '100', //取最小值为最小刻度 
                             }
                         },
                     ],
                     [
                         {
-                            name: 'Stable percentage (%)',
+                            name: 'StableCoin Percentage (%)',
                             list: stableList?.list?.map((e: any) => e.percentage) || [],
                             y_option: {
-                                nameLocation: 'middle',
+                                // nameLocation: 'middle',
                                 axisLabel: {
                                     show: false
                                 },
-
-                                min: 'dataMin', //取最小值为最小刻度 
+                                nameTextStyle: {
+                                    padding: [0, 0, 14, 0],
+                                },
+                                min: '0', //取最小值为最小刻度 
+                                max: '100', //取最小值为最小刻度 
                             }
                         },
                     ]

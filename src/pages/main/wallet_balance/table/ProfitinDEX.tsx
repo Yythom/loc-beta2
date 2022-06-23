@@ -46,17 +46,17 @@ const ProfitinDEX = memo(() => {
                 dataIndex: 'token_name',
             },
             {
-                title: 'Invest($)',
+                title: 'Invest',
                 dataIndex: 'invest_value',
                 render: (e: any) => '$' + e
             },
             {
-                title: 'Return($)',
+                title: 'Return',
                 dataIndex: 'return_value',
                 render: (e: any) => '$' + e
             },
             {
-                title: 'Profit($)',
+                title: 'Profit',
                 dataIndex: 'profit',
                 render: (e: any) => '$' + e
             },

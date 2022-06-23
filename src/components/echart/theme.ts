@@ -1,7 +1,7 @@
 const echart_theme: any =
 {
     "color": [
-        "#516b91",
+        "#556B2F",
         "#59c4e6",
         "#edafda",
         "#93b7e3",
@@ -12,7 +12,7 @@ const echart_theme: any =
     "textStyle": {},
     "title": {
         "textStyle": {
-            "color": "#516b91"
+            "color": "#556B2F"
         },
         "subtextStyle": {
             "color": "#93b7e3"
@@ -110,7 +110,7 @@ const echart_theme: any =
         "symbol": "emptyCircle",
         "smooth": true,
         "color": [
-            "#516b91",
+            "#556B2F",
             "#59c4e6",
             "#edafda",
             "#93b7e3",
@@ -124,7 +124,7 @@ const echart_theme: any =
     "map": {
         "itemStyle": {
             "areaColor": "#f3f3f3",
-            "borderColor": "#516b91",
+            "borderColor": "#556B2F",
             "borderWidth": 0.5
         },
         "label": {
@@ -133,18 +133,18 @@ const echart_theme: any =
         "emphasis": {
             "itemStyle": {
                 "areaColor": "#a5e7f0",
-                "borderColor": "#516b91",
+                "borderColor": "#556B2F",
                 "borderWidth": 1
             },
             "label": {
-                "color": "#516b91"
+                "color": "#556B2F"
             }
         }
     },
     "geo": {
         "itemStyle": {
             "areaColor": "#f3f3f3",
-            "borderColor": "#516b91",
+            "borderColor": "#556B2F",
             "borderWidth": 0.5
         },
         "label": {
@@ -153,11 +153,11 @@ const echart_theme: any =
         "emphasis": {
             "itemStyle": {
                 "areaColor": "#a5e7f0",
-                "borderColor": "#516b91",
+                "borderColor": "#556B2F",
                 "borderWidth": 1
             },
             "label": {
-                "color": "#516b91"
+                "color": "#556B2F"
             }
         }
     },
@@ -365,7 +365,7 @@ const echart_theme: any =
     },
     "visualMap": {
         "color": [
-            "#516b91",
+            "#556B2F",
             "#59c4e6",
             "#a5e7f0"
         ]
