@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import BigNumber from 'bignumber.js';
 import np from 'number-precision';
 

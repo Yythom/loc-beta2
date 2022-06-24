@@ -42,14 +42,13 @@ const SmartMoneySwapVolume = memo(() => {
     const columns = useMemo(() => {
         return [
             {
-                title: 'Token in ',
-                dataIndex: '#',
+                title: 'Token in',
+                dataIndex: 'in_token_symbol',
                 render: (text: any, record: any, index: any) => record?.swap_pair?.in_token_symbol,
             },
             {
                 title: 'Token out',
-                dataIndex: '##',
-                render: (text: any, record: any, index: any) => record?.swap_pair?.out_token_symbol,
+                dataIndex: 'out_token_symbol',
             },
             {
                 title: 'Volume',

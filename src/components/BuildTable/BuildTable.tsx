@@ -18,18 +18,20 @@ const BuildTable = (
         hidePage?: boolean
     }) => {
 
-
     const _columns = useMemo(() => {
         if (columns) {
             return columns.map((e: any) => {
-                const copyFn: any = e?.render
-                if (e?.dataIndex?.includes('token_name')) {
-                    e.render = (text: any, record: any, index: any) =>
-                        <div
-                            className={record?.token_address ? 'hover' : ''}
-                            onClick={() => record?.token_address && goTokenEthScan(record?.token_address)}>
-                            {copyFn?.(record?.token, record, index) || record?.token?.symbol}
+                if (['token_symbol', 'token_name'].find(st => e?.dataIndex?.includes(st))) {
+                    e.render = (text: any, record: any, index: any) => {
+                        return <div
+                            className={(record?.token_address || record?.[e.dataIndex]) ? 'hover' : ''}
+                            onClick={() => {
+                                (record?.token_address || record?.[e.dataIndex])
+                                    && goTokenEthScan(record?.token_address || record?.[e.dataIndex.replace('symbol', 'address')])
+                            }}>
+                            {record?.token?.token_name || record?.token?.symbol || text}
                         </div>
+                    }
                 }
                 if (e?.dataIndex?.includes('wallet_address') && e?.dataIndex?.length === 14) {
                     e.render = (text: any, r: any) => {
