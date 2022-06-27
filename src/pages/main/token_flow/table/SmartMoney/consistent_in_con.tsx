@@ -54,7 +54,7 @@ const ConsistentInCon = memo(() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
                         ProModal(<Modal />, 'Consistent Token Inflow')
                     }}>
-                        $ {text}
+                        {text}
                     </div>,
             },
             {
@@ -136,8 +136,8 @@ const Modal = memo(() => {
             },
 
             {
-                title: 'Inflow($)',
-                dataIndex: 'in_amount',
+                title: 'Inflow',
+                dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },
         ]

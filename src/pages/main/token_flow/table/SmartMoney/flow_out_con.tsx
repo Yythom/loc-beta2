@@ -141,8 +141,8 @@ const FlowOutModal = memo(() => {
                 dataIndex: 'wallet_address',
             },
             {
-                title: 'Outflow($)',
-                dataIndex: 'out_amount',
+                title: 'Outflow',
+                dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },
         ]

@@ -137,8 +137,8 @@ const FlowInModal = memo(() => {
             },
 
             {
-                title: 'Inflow($)',
-                dataIndex: 'in_amount',
+                title: 'Inflow',
+                dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },
         ]

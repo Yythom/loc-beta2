@@ -140,7 +140,7 @@ const TokenBalanceChart = memo((props) => {
                 classname='StableCoin'
                 option={{
                     x_option: {
-                        name: '       Date',
+                        name: '          Date',
                         data: stableList?.list?.map((e: any) => dayjs(e.create_at * 1000).format('YY-M-D H') + 'h') || [],
                     },
                 }}
@@ -171,8 +171,8 @@ const TokenBalanceChart = memo((props) => {
                                         return value + '%';
                                     }
                                 },
-                                min: '0', //取最小值为最小刻度 
-                                max: '100', //取最小值为最小刻度 
+                                min: 'dataMin', //取最小值为最小刻度 
+                                // max: '100', //取最小值为最小刻度 
                             }
                         },
                     ],
@@ -188,8 +188,8 @@ const TokenBalanceChart = memo((props) => {
                                 nameTextStyle: {
                                     padding: [0, 0, 14, 0],
                                 },
-                                min: '0', //取最小值为最小刻度 
-                                max: '100', //取最小值为最小刻度 
+                                min: 'dataMin', //取最小值为最小刻度 
+                                // max: '100', //取最小值为最小刻度 
                             }
                         },
                     ]

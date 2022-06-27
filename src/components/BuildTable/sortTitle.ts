@@ -40,5 +40,7 @@ const sortTitle = [
     'Value',
 
     // modal 
+    "Inflow",
+    'Outflow'
 ]
 export default sortTitle

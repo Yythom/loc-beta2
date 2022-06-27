@@ -58,7 +58,7 @@ const ConsistentOut = memo(() => {
                         history.push(`/token-flow?token_address=${record?.token_address}&period=${params?.search?.period}`)
                         ProModal(<Modal />, 'Consistent Token Outflow to CEX')
                     }}>
-                        $ {text}
+                        {text}
                     </div>,
             },
             {
@@ -141,8 +141,8 @@ const Modal = memo(() => {
             },
 
             {
-                title: 'Inflow($)',
-                dataIndex: 'in_amount',
+                title: 'Outflow',
+                dataIndex: 'volumes',
                 render: (r: any) => '$' + r
             },
         ]
